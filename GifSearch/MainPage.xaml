@@ -1,0 +1,262 @@
+﻿<Page x:Class="GifSearch.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ads="using:Microsoft.Advertising.WinRT.UI"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:GifSearch"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      FontFamily="Segoe UI"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="row_notification" Height="0" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition x:Name="row_pub" Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="LimeGreen">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Margin="12,0,0,0"
+                           VerticalAlignment="Center"
+                           FontFamily="Segoe MDL2 Assets"
+                           FontSize="12"
+                           Text="" />
+                <TextBlock Margin="6,0,0,0"
+                           VerticalAlignment="Center"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           Text="Gif link copied to clipboard!" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Margin="12"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       Text="GifSearch" />
+
+            <Button x:Name="button_filter"
+                    Grid.Column="1"
+                    Width="50"
+                    Height="50"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="Transparent"
+                    Click="button_filter_Click"
+                    Content=""
+                    FontFamily="Segoe MDL2 Assets"
+                    FontStretch="Normal" />
+        </Grid>
+
+
+
+        <Pivot x:Name="pivot_app"
+               Grid.Row="2"
+               Margin="0,-12,0,0"
+               SelectionChanged="pivot_app_SelectionChanged">
+            <PivotItem x:Name="pivotitem_trending">
+                <PivotItem.Header>
+                    <TextBlock FontSize="16"
+                               FontWeight="Bold"
+                               Text="TRENDING" />
+                </PivotItem.Header>
+                <Grid>
+                    <GridView x:Name="list_gifs_trending"
+                              Margin="-6,0,-6,0"
+                              SelectionChanged="list_gifs_trending_SelectionChanged"
+                              SizeChanged="list_gifs_trending_SizeChanged">
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                <Setter Property="VerticalAlignment" Value="Stretch" />
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <local:GifView x:Name="GifView"
+                                                   Margin="0,6,0,6"
+                                                   Stretch="UniformToFill"
+                                                   UriSource="{Binding image_url}" />
+                                </Grid>
+
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <ProgressRing x:Name="progressring_loading_trending"
+                                  Width="50"
+                                  Height="50"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  IsActive="False" />
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Name="pivotitem_search">
+                <PivotItem.Header>
+                    <TextBlock FontSize="16"
+                               FontWeight="Bold"
+                               Text="SEARCH" />
+                </PivotItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <AutoSuggestBox x:Name="textbox_search" QuerySubmitted="textbox_search_QuerySubmitted" />
+                        <!-- x:Name="textbox_search" Grid.Column="0" />
+                        <Button x:Name="button_search"
+                                Grid.Column="1"
+                                Margin="6,0,0,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Click="button_search_Click"
+                                Content="Search" />-->
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="6,12,6,6">
+                        <GridView x:Name="list_gifs_search"
+                                  Margin="-6,0,-6,0"
+                                  SelectionChanged="list_gifs_search_SelectionChanged"
+                                  SizeChanged="list_gifs_search_SizeChanged">
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <local:GifView x:Name="GifView"
+                                                       Margin="0,6,0,6"
+                                                       Stretch="UniformToFill"
+                                                       UriSource="{Binding image_url}" />
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                        <ProgressRing x:Name="progressring_loading"
+                                      Width="50"
+                                      Height="50"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsActive="False" />
+                    </Grid>
+
+                </Grid>
+
+            </PivotItem>
+            <PivotItem x:Name="pivotitem_about">
+                <PivotItem.Header>
+                    <TextBlock FontSize="16"
+                               FontWeight="Bold"
+                               Text="ABOUT" />
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="6">
+                        <TextBlock Margin="0,0,0,6"
+                                   FontWeight="Bold"
+                                   Text="- THE APP -" />
+                        <TextBlock Text="Original Idea by reddit.com/user/greywave" />
+                        <TextBlock Text="Creation Reddit thread (click here)" />
+
+                        <TextBlock Margin="0,12,0,6"
+                                   FontWeight="Bold"
+                                   Text="- CONTENT FROM -" />
+                        <TextBlock Text="Giphy - https://github.com/Giphy/GiphyAPI" />
+                        <TextBlock Text="Riffsy - http://api.riffsy.com/" />
+                        <TextBlock Margin="0,12,0,6"
+                                   FontWeight="Bold"
+                                   Text="- DONATIONS -" />
+                        <TextBlock Text="You can donate any amount to the developer:" />
+                        <TextBlock Text="Paypal: rodragamespt@gmail.com" />
+                        <TextBlock Margin="0,12,0,0"
+                                   FontWeight="Bold"
+                                   Text="Thanks! And enjoy the app!" />
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Margin="6"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Margin="0,6,0,0"
+                                   FontStyle="Italic"
+                                   FontWeight="Light"
+                                   Text="GifSearch 1.0.0.0 - All rights reserved © 2016" />
+                        <TextBlock FontSize="12"
+                                   FontStyle="Italic"
+                                   FontWeight="Light"
+                                   Text="Developed by Francisco Rodrigues" />
+                    </StackPanel>
+                </Grid>
+
+            </PivotItem>
+        </Pivot>
+
+        <Grid x:Name="grid_popup"
+              Grid.Row="2"
+              Visibility="Collapsed">
+            <StackPanel Width="80" HorizontalAlignment="Right">
+                <ListBox x:Name="listbox_filter" SelectionChanged="listbox_filter_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBoxItem x:Name="listitem_riffsy">
+                        <TextBlock Text="Riffsy" TextAlignment="Right" />
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="listitem_giphy">
+                        <TextBlock Text="Giphy" TextAlignment="Right" />
+                    </ListBoxItem>
+                </ListBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="grid_giphy"
+              Grid.Row="3"
+              Height="50"
+              Margin="0,6,0,6">
+            <Image x:Name="image_giphy"
+                   Height="30"
+                   VerticalAlignment="Center"
+                   Source="/Assets/banner_giphy.png"
+                   Stretch="Uniform"
+                   Visibility="Collapsed" />
+            <Image x:Name="image_riffsy"
+                   Height="30"
+                   VerticalAlignment="Center"
+                   Source="/Assets/banner_riffsy.png"
+                   Stretch="Uniform" />
+        </Grid>
+
+
+    </Grid>
+</Page>
