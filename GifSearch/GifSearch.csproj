@@ -98,16 +98,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GifGiphyFacade.cs" />
-    <Compile Include="GifRiffsyFacade.cs" />
-    <Compile Include="GifView.xaml.cs">
+    <Compile Include="Controllers\GifGiphyFacade.cs" />
+    <Compile Include="Controllers\GifRiffsyFacade.cs" />
+    <Compile Include="Controls\GifView.xaml.cs">
       <DependentUpon>GifView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\GifGiphyWrapper.cs" />
-    <Compile Include="Models\GifWrapper.cs" />
+    <Compile Include="Models\GifRiffsyWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,7 +133,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GifView.xaml">
+    <Page Include="Controls\GifView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

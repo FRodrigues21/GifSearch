@@ -18,7 +18,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace GifSearch
+namespace GifSearch.Controls
 {
     public sealed partial class GifView : UserControl
     {
