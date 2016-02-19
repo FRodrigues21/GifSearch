@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace GifSearch
 {
@@ -194,6 +195,14 @@ namespace GifSearch
             if (textbox_search.Text != null && !textbox_search.Text.Equals(current_text))
             {
                 searchClick();
+            }
+        }
+
+        private void textbox_search_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
             }
         }
     }
