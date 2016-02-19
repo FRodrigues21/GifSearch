@@ -154,7 +154,12 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GifRenderer\GifRendererUniversal\GifRendererUniversal.vcxproj">
+      <Project>{f311ff43-5aee-4f90-8371-aa1e41e02735}</Project>
+      <Name>GifRendererUniversal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

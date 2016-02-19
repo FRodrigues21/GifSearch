@@ -4,6 +4,7 @@
       xmlns:ads="using:Microsoft.Advertising.WinRT.UI"
       xmlns:controls="using:GifSearch.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:gif="using:GifRenderer"
       xmlns:local="using:GifSearch"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -47,7 +48,7 @@
                        FontFamily="/Fonts/Stilu.ttf#Stilu"
                        FontSize="20"
                        FontWeight="Bold"
-                       Text="Gif Search" />
+                       Text="gif Search" />
 
             <Button x:Name="button_filter"
                     Grid.Column="1"

@@ -14,9 +14,9 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GifSearch.App">
-      <uap:VisualElements DisplayName="Gif Search" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="A gif searching and sharing client for Windows 10 Mobile." BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="gifSearch.App">
+      <uap:VisualElements DisplayName="gif Search" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="A gif searching and sharing client for Windows 10 Mobile." BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="gif Search">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
