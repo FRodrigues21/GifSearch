@@ -38,13 +38,15 @@ namespace GifSearch
         {
             list_gifs_trending.Visibility = Visibility.Collapsed;
             progressring_loading_trending.IsActive = true;
-            if(App.source.Equals("riffsy"))
+            if (App.source.Equals("riffsy"))
             {
-                list_gifs_trending.ItemsSource = await GifRiffsyFacade.getTrending();
+                var collection = await GifRiffsyFacade.getTrending();
+                list_gifs_trending.ItemsSource = collection;
             }
             else if(App.source.Equals("giphy"))
             {
-                list_gifs_trending.ItemsSource = await GifGiphyFacade.getTrending();
+                var collection = await GifGiphyFacade.getTrending();
+                list_gifs_trending.ItemsSource = collection;
             }
             progressring_loading_trending.IsActive = false;
             list_gifs_trending.Visibility = Visibility.Visible;
@@ -65,9 +67,16 @@ namespace GifSearch
                 list_gifs_search.Visibility = Visibility.Collapsed;
                 progressring_loading.IsActive = true;
                 if (App.source.Equals("riffsy"))
-                    list_gifs_search.ItemsSource = await GifRiffsyFacade.searchGif(textbox_search.Text);
+                {
+                    var collection = await GifRiffsyFacade.searchGif(textbox_search.Text);
+                    list_gifs_search.ItemsSource = collection;
+                }
+                
                 else if (App.source.Equals("giphy"))
-                    list_gifs_search.ItemsSource = await GifGiphyFacade.searchGif(textbox_search.Text);
+                {
+                    var collection = await GifGiphyFacade.searchGif(textbox_search.Text);
+                    list_gifs_search.ItemsSource = collection;
+                }
                 progressring_loading.IsActive = false;
                 list_gifs_search.Visibility = Visibility.Visible;
                 current_text = textbox_search.Text;
@@ -80,46 +89,11 @@ namespace GifSearch
             panel.ItemWidth = panel.ItemHeight = e.NewSize.Width / 2;
         }
 
-        private void list_gifs_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (list_gifs_search.SelectedIndex >= 0)
-            {
-                showNotification();
-                var dataPackage = new DataPackage();
-                string text = "";
-                if (App.source.Equals("riffsy"))
-                    text = ((Result)e.AddedItems[0]).image_link;
-                else if (App.source.Equals("giphy"))
-                    text = ((Datum)e.AddedItems[0]).image_link;
-                dataPackage.SetText(text);
-                Clipboard.SetContent(dataPackage);
-                list_gifs_search.SelectedIndex = -1;
-            }
-
-        }
-
         private async void showNotification()
         {
             row_notification.Height = new GridLength(20, GridUnitType.Pixel);
             await Task.Delay(3000);
             row_notification.Height = new GridLength(0, GridUnitType.Pixel);
-        }
-
-        private void list_gifs_trending_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(list_gifs_trending.SelectedIndex >= 0)
-            {
-                showNotification();
-                var dataPackage = new DataPackage();
-                string text = "";
-                if (App.source.Equals("riffsy"))
-                    text = ((Result)e.AddedItems[0]).image_link;
-                else if (App.source.Equals("giphy"))
-                    text = ((Datum)e.AddedItems[0]).image_link;
-                dataPackage.SetText(text);
-                Clipboard.SetContent(dataPackage);
-                list_gifs_trending.SelectedIndex = -1;
-            }
         }
 
         private void list_gifs_trending_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -170,7 +144,6 @@ namespace GifSearch
 
         private void pivot_app_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            row_pub.Height = new GridLength(50, GridUnitType.Pixel);
             switch (((Pivot)sender).SelectedIndex)
             {
                 case 0:
@@ -183,9 +156,6 @@ namespace GifSearch
                     if (App.changed)
                         searchClick();
                     App.changed = false;
-                    break;
-                case 2:
-                    row_pub.Height = new GridLength(0, GridUnitType.Pixel);
                     break;
             }
         }
@@ -204,6 +174,44 @@ namespace GifSearch
             {
                 Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
             }
+        }
+
+        private void list_gifs_search_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            showNotification();
+            var dataPackage = new DataPackage();
+            string text = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = e.ClickedItem as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = e.ClickedItem as Datum;
+                text = datum.image_link;
+            }
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private void list_gifs_trending_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            showNotification();
+            var dataPackage = new DataPackage();
+            string text = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = e.ClickedItem as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = e.ClickedItem as Datum;
+                text = datum.image_link;
+            }
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

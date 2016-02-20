@@ -98,15 +98,28 @@ namespace GifSearch.Models
 
     public class Result
     {
-        public Uri image_url {
+        /*public Uri image_url {
             get {
                 string url = "";
                 foreach(Medium m in media)
                 {
-                    Debug.WriteLine(m.tinygif.preview);
+                    Debug.WriteLine(m.tinygif.url);
                     url = m.tinygif.url;   
                 }
                 return new Uri(url);
+            }
+        }*/
+        public string image_url
+        {
+            get
+            {
+                string url = "";
+                foreach (Medium m in media)
+                {
+                    Debug.WriteLine(m.tinygif.url);
+                    url = m.tinygif.url;
+                }
+                return url;
             }
         }
         public string image_link
