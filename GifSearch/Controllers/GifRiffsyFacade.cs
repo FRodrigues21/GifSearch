@@ -1,5 +1,4 @@
-﻿using GifSearch.Exceptions;
-using GifSearch.Models;
+﻿using GifSearch.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,14 +25,7 @@ namespace GifSearch
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;
-            try
-            {
-                response = await http.GetAsync(uri);
-            }
-            catch (WebException e)
-            {
-                throw new NoInternetConnectionException(); // No internet connection
-            }
+            response = await http.GetAsync(uri);
             var body = await response.Content.ReadAsStringAsync();
 
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
@@ -50,14 +42,7 @@ namespace GifSearch
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;
-            try
-            {
-                response = await http.GetAsync(uri);
-            }
-            catch (WebException e)
-            {
-                throw new NoInternetConnectionException(); // No internet connection
-            }
+            response = await http.GetAsync(uri);
             var body = await response.Content.ReadAsStringAsync();
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.results.Count);

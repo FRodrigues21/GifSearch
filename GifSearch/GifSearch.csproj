@@ -115,7 +115,6 @@
     <Compile Include="Controls\GifView.xaml.cs">
       <DependentUpon>GifView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exceptions\NoInternetConnectionException.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -161,12 +160,6 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GifRenderer\GifRendererUniversal\GifRendererUniversal.vcxproj">
-      <Project>{f311ff43-5aee-4f90-8371-aa1e41e02735}</Project>
-      <Name>GifRendererUniversal</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

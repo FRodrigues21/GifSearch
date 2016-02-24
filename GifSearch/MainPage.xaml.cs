@@ -11,7 +11,6 @@ using System.IO.IsolatedStorage;
 using System;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Store;
-using GifSearch.Exceptions;
 using Windows.System;
 
 namespace GifSearch
@@ -160,7 +159,7 @@ namespace GifSearch
         {
             if (textbox_search.Text != null)
             {
-                refresh_search.Visibility = Visibility.Visible;
+                refresh_search.Visibility = Visibility.Collapsed;
                 list_gifs_search.Visibility = Visibility.Collapsed;
                 progressring_loading.IsActive = true;
                 if (App.source.Equals("riffsy"))
