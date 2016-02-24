@@ -1,10 +1,12 @@
-﻿using GifSearch.Models;
+﻿using GifSearch.Exceptions;
+using GifSearch.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Web.Http;
@@ -22,8 +24,15 @@ namespace GifSearch
 
             String url = String.Format("http://api.giphy.com/v1/gifs/search?q={1}&api_key={0}&limit=8", apikey, search);
             Uri uri = new Uri(url);
-
-            var response = await http.GetAsync(uri);
+            var response = (HttpResponseMessage)null;
+            try
+            {
+                response = await http.GetAsync(uri);
+            }
+            catch (WebException e)
+            {
+                throw new NoInternetConnectionException(); // No internet connection
+            }
             var body = await response.Content.ReadAsStringAsync();
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
@@ -39,7 +48,15 @@ namespace GifSearch
             String url = String.Format("http://api.giphy.com/v1/gifs/trending?api_key={0}&limit=10", apikey);
             Uri uri = new Uri(url);
 
-            var response = await http.GetAsync(uri);
+            var response = (HttpResponseMessage)null;
+            try
+            {
+                response = await http.GetAsync(uri);
+            }
+            catch (WebException e)
+            {
+                throw new NoInternetConnectionException(); // No internet connection
+            }
             var body = await response.Content.ReadAsStringAsync();
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);

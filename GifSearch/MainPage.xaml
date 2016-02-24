@@ -91,6 +91,7 @@
                                Text="TRENDING" />
                 </PivotItem.Header>
                 <Grid>
+
                     <GridView x:Name="list_gifs_trending"
                               Margin="-6,0,-6,0"
                               IsItemClickEnabled="True"
@@ -118,6 +119,15 @@
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   IsActive="False" />
+                    <Button x:Name="refresh_trending"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Click="refresh_trending_Click"
+                            Content=""
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="30"
+                            Visibility="Collapsed" />
                 </Grid>
             </PivotItem>
             <PivotItem x:Name="pivotitem_search">
@@ -152,6 +162,7 @@
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="6,12,6,6">
+
                         <GridView x:Name="list_gifs_search"
                                   Margin="-6,0,-6,0"
                                   IsItemClickEnabled="True"
@@ -179,6 +190,15 @@
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
                                       IsActive="False" />
+                        <Button x:Name="refresh_search"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Click="refresh_search_Click"
+                                Content=""
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="30"
+                                Visibility="Collapsed" />
                     </Grid>
 
                 </Grid>
@@ -197,24 +217,32 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Margin="6">
                         <TextBlock Margin="0,0,0,6"
-                                   FontWeight="Bold"
-                                   Text="- THE APP -" />
+                                   FontSize="20"
+                                   FontWeight="Light"
+                                   Text="Idea" />
                         <TextBlock Text="Original Idea by reddit.com/user/greywave" />
-                        <TextBlock Text="Creation Reddit thread (click here)" />
+                        <TextBlock x:Name="reddit_link"
+                                   Tapped="reddit_link_Tapped"
+                                   Text="Original Reddit thread (click here)" />
 
                         <TextBlock Margin="0,12,0,6"
-                                   FontWeight="Bold"
-                                   Text="- CONTENT FROM -" />
+                                   FontSize="20"
+                                   FontWeight="Light"
+                                   Text="Content" />
                         <TextBlock Text="Giphy - https://github.com/Giphy/GiphyAPI" />
                         <TextBlock Text="Riffsy - http://api.riffsy.com/" />
                         <TextBlock Margin="0,12,0,6"
-                                   FontWeight="Bold"
-                                   Text="- DONATIONS -" />
-                        <TextBlock Text="You can donate any amount to the developer:" />
-                        <TextBlock Text="Paypal: rodragamespt@gmail.com" />
+                                   FontSize="20"
+                                   FontWeight="Light"
+                                   Text="Coffe" />
+                        <TextBlock Text="You can help the developer by buying the Donate IAP in the store!"
+                                   TextAlignment="Justify"
+                                   TextWrapping="Wrap" />
+
                         <TextBlock Margin="0,12,0,0"
                                    FontWeight="Bold"
-                                   Text="Thanks! And enjoy the app!" />
+                                   Text="THANKS! ENJOY THE APP!"
+                                   TextAlignment="Center" />
 
                     </StackPanel>
                     <StackPanel Grid.Row="1"

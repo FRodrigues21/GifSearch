@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2d967953-b71e-4438-bba0-53118bd0e73c" Publisher="CN=home" Version="1.0.0.0" />
+  <Identity Name="30472FranciscoRodrigues.14392819EE0CF" Publisher="CN=4B3CBB97-04DF-4897-8143-2AF4BFDD1653" Version="1.1.0.0" />
   <mp:PhoneIdentity PhoneProductId="2d967953-b71e-4438-bba0-53118bd0e73c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Gif Search</DisplayName>
+    <DisplayName>gif Search</DisplayName>
     <PublisherDisplayName>Francisco Rodrigues</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Mobile" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Mobile" MinVersion="10.0.10240.0" MaxVersionTested="10.0.10586.107" />
   </Dependencies>
   <Resources>
     <Resource Language="x-generate" />
