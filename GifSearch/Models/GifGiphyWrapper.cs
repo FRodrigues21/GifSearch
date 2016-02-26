@@ -193,20 +193,20 @@ namespace GifSearch.Models
 
     public class Datum
     {
-        /*public Uri image_url
+        public Uri image_url
         {
             get
             {
                 return new Uri(images.fixed_width_downsampled.url);
             }
-        }*/
-        public string image_url
+        }
+        /*public string image_url
         {
             get
             {
                 return images.fixed_width_downsampled.url;
             }
-        }
+        }*/
         public string type { get; set; }
         public string id { get; set; }
         public string slug { get; set; }

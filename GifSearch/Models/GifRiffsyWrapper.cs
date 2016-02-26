@@ -98,7 +98,7 @@ namespace GifSearch.Models
 
     public class Result
     {
-        /*public Uri image_url {
+        public Uri image_url {
             get {
                 string url = "";
                 foreach(Medium m in media)
@@ -108,8 +108,8 @@ namespace GifSearch.Models
                 }
                 return new Uri(url);
             }
-        }*/
-        public string image_url
+        }
+        /*public string image_url
         {
             get
             {
@@ -121,7 +121,7 @@ namespace GifSearch.Models
                 }
                 return url;
             }
-        }
+        }*/
         public string image_link
         {
             get

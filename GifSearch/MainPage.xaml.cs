@@ -12,6 +12,10 @@ using System;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Store;
 using Windows.System;
+using GifImage;
+using System.Collections.Generic;
+using System.Linq;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace GifSearch
 {
@@ -21,6 +25,7 @@ namespace GifSearch
 
         private string current_text = "";
         private Pivot pivot = null;
+        private GifImageSource _item_playing = null;
 
         public MainPage()
         {
@@ -28,6 +33,35 @@ namespace GifSearch
             image_riffsy.Visibility = Visibility.Collapsed;
             reviewfunction();
             pivot = pivot_app;
+            changeLogShow();
+            
+        }
+
+        public async void changeLogShow()
+        {
+            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            settings.Values.Remove("use");
+            if(!settings.Values.ContainsKey("use"))
+            {
+                settings.Values.Add("use", 0);
+                MessageDialog mydial = new MessageDialog("1.2.0.0\n\n- Click gif to start playing\n- Long press gif to copy link to keyboard\n- Gifs play only 3 times (prevent HIGH CPU usage)\n\nMore features will be added in the future!");
+                mydial.Title = "What's new?";
+                mydial.Commands.Add(new UICommand(
+                    "Continue to app",
+                    new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand(
+                   "Rate the app",
+                   new UICommandInvokedHandler(this.CommandInvokedHandler_yesclick)));
+                await mydial.ShowAsync();
+            }
+            else
+            {
+                list_gifs_trending_load();
+            }
+        }
+
+        private void CommandInvokedHandler_continueclick(IUICommand command)
+        {
             list_gifs_trending_load();
         }
 
@@ -74,9 +108,10 @@ namespace GifSearch
 
         private async void CommandInvokedHandler_yesclick(IUICommand command)
         {
+            list_gifs_trending_load();
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
             settings.Values["rcheck"] = 1;
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp"));
         }
 
         private void ad_microsoft_AdRefreshed(object sender, RoutedEventArgs e)
@@ -120,7 +155,8 @@ namespace GifSearch
                 try
                 {
                     collection = await GifGiphyFacade.getTrending();
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     MessageDialog mydial = new MessageDialog("It seems that you have no Internet connection\nFix the problem and try again!");
                     mydial.Title = "gif Search";
@@ -130,7 +166,7 @@ namespace GifSearch
                     await mydial.ShowAsync();
                     refresh_trending.Visibility = Visibility.Visible;
                 }
-                
+
                 list_gifs_trending.ItemsSource = collection;
             }
             progressring_loading_trending.IsActive = false;
@@ -139,7 +175,7 @@ namespace GifSearch
 
         private void CommandInvokedHandler_tryagain_trending(IUICommand command)
         {
-            
+
         }
 
         private void CommandInvokedHandler_tryagain_search(IUICommand command)
@@ -217,9 +253,9 @@ namespace GifSearch
 
         private async void showNotification()
         {
-            row_notification.Height = new GridLength(20, GridUnitType.Pixel);
+            row_notification.Height = 20;
             await Task.Delay(3000);
-            row_notification.Height = new GridLength(0, GridUnitType.Pixel);
+            row_notification.Height = 0;
         }
 
         private void list_gifs_trending_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -302,42 +338,42 @@ namespace GifSearch
             }
         }
 
-        private void list_gifs_search_ItemClick(object sender, ItemClickEventArgs e)
+        private void list_gifs_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            showNotification();
-            var dataPackage = new DataPackage();
-            string text = "";
-            if (App.source.Equals("riffsy"))
+            if (_item_playing != null)
+                _item_playing.Pause();
+            list_gifs_trending.UpdateLayout();
+            var _container = list_gifs_search.ContainerFromItem(list_gifs_search.SelectedItem);
+            var _children = allChildren(_container);
+            var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
+
+            GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
+            if (_gif != null)
             {
-                Result result = e.ClickedItem as Result;
-                text = result.image_link;
+                AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
+                _gif.Start();
             }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = e.ClickedItem as Datum;
-                text = datum.image_link;
-            }
-            dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
+
+            _item_playing = _gif;
         }
 
-        private void list_gifs_trending_ItemClick(object sender, ItemClickEventArgs e)
+        private void list_gifs_trending_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            showNotification();
-            var dataPackage = new DataPackage();
-            string text = "";
-            if (App.source.Equals("riffsy"))
+            if (_item_playing != null)
+                _item_playing.Pause();
+            list_gifs_trending.UpdateLayout();
+            var _container = list_gifs_trending.ContainerFromItem(list_gifs_trending.SelectedItem);
+            var _children = allChildren(_container);
+            var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
+
+            GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
+            if (_gif != null)
             {
-                Result result = e.ClickedItem as Result;
-                text = result.image_link;
-            }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = e.ClickedItem as Datum;
-                text = datum.image_link;
-            }
-            dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
+                AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
+                _gif.Start();
+            }    
+
+            _item_playing = _gif;
         }
 
         private void refresh_trending_Click(object sender, RoutedEventArgs e)
@@ -353,6 +389,66 @@ namespace GifSearch
         private async void reddit_link_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("https://www.reddit.com/r/WPDev/comments/46afdi/hey_developers_can_you_make_a_simple_gif_search/"));
+        }
+
+        public List<FrameworkElement> allChildren(DependencyObject parent)
+        {
+            List<FrameworkElement> controls = new List<FrameworkElement>();
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); ++i)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is FrameworkElement)
+                {
+                    controls.Add(child as FrameworkElement);
+                }
+                controls.AddRange(allChildren(child));
+            }
+            return controls;
+        }
+
+        private void list_gifs_trending_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
+        {
+            list_gifs_trending.UpdateLayout();
+            var _item = (e.OriginalSource as FrameworkElement).DataContext;
+            
+            showNotification();
+            var dataPackage = new DataPackage();
+            string text = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = _item as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = _item as Datum;
+                text = datum.image_link;
+            }
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private void list_gifs_search_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
+        {
+            list_gifs_search.UpdateLayout();
+            var _item = (e.OriginalSource as FrameworkElement).DataContext;
+
+            showNotification();
+            var dataPackage = new DataPackage();
+            string text = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = _item as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = _item as Datum;
+                text = datum.image_link;
+            }
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
         }
     }
 }
