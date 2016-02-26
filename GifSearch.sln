@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GifSearch", "GifSearch\GifSearch.csproj", "{FC8D8F2E-B083-4DDC-A42D-A0E0A536E380}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GifRendererUniversal", "GifRenderer\GifRendererUniversal\GifRendererUniversal.vcxproj", "{F311FF43-5AEE-4F90-8371-AA1E41E02735}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -35,18 +33,6 @@ Global
 		{FC8D8F2E-B083-4DDC-A42D-A0E0A536E380}.Release|x86.ActiveCfg = Release|x86
 		{FC8D8F2E-B083-4DDC-A42D-A0E0A536E380}.Release|x86.Build.0 = Release|x86
 		{FC8D8F2E-B083-4DDC-A42D-A0E0A536E380}.Release|x86.Deploy.0 = Release|x86
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|ARM.ActiveCfg = Debug|ARM
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|ARM.Build.0 = Debug|ARM
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|x64.ActiveCfg = Debug|x64
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|x64.Build.0 = Debug|x64
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|x86.ActiveCfg = Debug|Win32
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Debug|x86.Build.0 = Debug|Win32
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|ARM.ActiveCfg = Release|ARM
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|ARM.Build.0 = Release|ARM
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|x64.ActiveCfg = Release|x64
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|x64.Build.0 = Release|x64
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|x86.ActiveCfg = Release|Win32
-		{F311FF43-5AEE-4F90-8371-AA1E41E02735}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
