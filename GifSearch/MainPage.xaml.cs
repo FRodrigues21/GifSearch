@@ -34,18 +34,16 @@ namespace GifSearch
             reviewfunction();
             pivot = pivot_app;
             changeLogShow();
-            
         }
 
         public async void changeLogShow()
         {
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            settings.Values.Remove("use");
             if(!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
                 MessageDialog mydial = new MessageDialog("1.2.0.0\n\n- Click gif to start playing\n- Long press gif to copy link to keyboard\n- Gifs play only 3 times (prevent HIGH CPU usage)\n\nMore features will be added in the future!");
-                mydial.Title = "What's new?";
+                mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
                     new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
@@ -449,6 +447,11 @@ namespace GifSearch
             }
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
+        }
+
+        private async void gifgit_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://github.com/sskodje/GifImageSource"));
         }
     }
 }

@@ -4,8 +4,8 @@
       xmlns:ads="using:Microsoft.Advertising.WinRT.UI"
       xmlns:controls="using:GifSearch.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:GifSearch"
       xmlns:gif="using:GifImage"
+      xmlns:local="using:GifSearch"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       FontFamily="Segoe UI"
@@ -17,7 +17,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        
+
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -28,17 +28,19 @@
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <TextBlock x:Name="title_app"
-                       Margin="12"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       FontFamily="/Fonts/Stilu.ttf#Stilu"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       Text="gif Search" />
-                <TextBlock Foreground="Red" Text="BETA" VerticalAlignment="Center" />
+                           Margin="12"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontFamily="/Fonts/Stilu.ttf#Stilu"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Text="gif Search" />
+                <TextBlock VerticalAlignment="Center"
+                           Foreground="Red"
+                           Text="BETA" />
             </StackPanel>
 
-            
+
 
             <Grid x:Name="grid_giphy"
                   Grid.Column="1"
@@ -68,7 +70,11 @@
                     FontStretch="Normal" />
         </Grid>
 
-        <Grid Grid.Row="0" x:Name="row_notification" VerticalAlignment="Top" Height="0" Background="LimeGreen">
+        <Grid x:Name="row_notification"
+              Grid.Row="0"
+              Height="0"
+              VerticalAlignment="Top"
+              Background="LimeGreen">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock Margin="12,0,0,0"
                            VerticalAlignment="Center"
@@ -98,10 +104,10 @@
 
                     <GridView x:Name="list_gifs_trending"
                               Margin="-6,0,-6,0"
-                              IsHoldingEnabled="True"
                               Holding="list_gifs_trending_Holding"
-                              SelectionMode="Single"
+                              IsHoldingEnabled="True"
                               SelectionChanged="list_gifs_trending_SelectionChanged"
+                              SelectionMode="Single"
                               SizeChanged="list_gifs_trending_SizeChanged">
                         <GridView.ItemContainerStyle>
                             <Style TargetType="GridViewItem">
@@ -113,7 +119,12 @@
                         </GridView.ItemContainerStyle>
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <Image x:Name="gif_image" gif:AnimationBehavior.RepeatBehavior="3x" gif:AnimationBehavior.AutoStart="False" Margin="0,0,0,6" Stretch="UniformToFill" gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
+                                <Image x:Name="gif_image"
+                                       Margin="0,0,0,6"
+                                       Stretch="UniformToFill"
+                                       gif:AnimationBehavior.AutoStart="False"
+                                       gif:AnimationBehavior.ImageUriSource="{Binding image_url}"
+                                       gif:AnimationBehavior.RepeatBehavior="3x" />
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -169,10 +180,10 @@
 
                         <GridView x:Name="list_gifs_search"
                                   Margin="-6,0,-6,0"
+                                  Holding="list_gifs_search_Holding"
                                   IsHoldingEnabled="True"
-                              Holding="list_gifs_search_Holding"
-                              SelectionMode="Single"
                                   SelectionChanged="list_gifs_search_SelectionChanged"
+                                  SelectionMode="Single"
                                   SizeChanged="list_gifs_search_SizeChanged">
                             <GridView.ItemContainerStyle>
                                 <Style TargetType="GridViewItem">
@@ -184,7 +195,12 @@
                             </GridView.ItemContainerStyle>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Image x:Name="gif_image" gif:AnimationBehavior.RepeatBehavior="3x" gif:AnimationBehavior.AutoStart="False" Margin="0,0,0,6" Stretch="UniformToFill" gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
+                                    <Image x:Name="gif_image"
+                                           Margin="0,0,0,6"
+                                           Stretch="UniformToFill"
+                                           gif:AnimationBehavior.AutoStart="False"
+                                           gif:AnimationBehavior.ImageUriSource="{Binding image_url}"
+                                           gif:AnimationBehavior.RepeatBehavior="3x" />
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
@@ -232,9 +248,12 @@
                         <TextBlock Margin="0,12,0,6"
                                    FontSize="20"
                                    FontWeight="Light"
-                                   Text="Content" />
+                                   Text="Content and Libraries" />
                         <TextBlock Text="Giphy - https://github.com/Giphy/GiphyAPI" />
                         <TextBlock Text="Riffsy - http://api.riffsy.com/" />
+                        <TextBlock x:Name="gifgit"
+                                   Tapped="gifgit_Tapped"
+                                   Text="GifImageSource - https://github.com/sskodje/GifImageSource" />
                         <TextBlock Margin="0,12,0,6"
                                    FontSize="20"
                                    FontWeight="Light"
