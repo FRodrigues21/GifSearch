@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Models\GifGiphyWrapper.cs" />
     <Compile Include="Models\GifRiffsyWrapper.cs" />
+    <Compile Include="Models\PlayingItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

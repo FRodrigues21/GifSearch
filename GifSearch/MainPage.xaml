@@ -22,7 +22,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
@@ -40,22 +40,17 @@
                            Text="BETA" />
             </StackPanel>
 
-
-
-            <Grid x:Name="grid_giphy"
-                  Grid.Column="1"
-                  Margin="0,6,0,6">
-                <Image x:Name="image_giphy"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Source="/Assets/banner_giphy.png"
-                       Visibility="Collapsed" />
-                <Image x:Name="image_riffsy"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Source="/Assets/banner_riffsy.png"
-                       Stretch="Uniform" />
-            </Grid>
+            <Button x:Name="button_about"
+                    Grid.Column="1"
+                    Width="50"
+                    Height="50"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="Transparent"
+                    Click="button_filter_Click"
+                    Content=""
+                    FontFamily="Segoe MDL2 Assets"
+                    FontStretch="Normal" />
 
             <Button x:Name="button_filter"
                     Grid.Column="2"
@@ -101,7 +96,7 @@
                                Text="TRENDING" />
                 </PivotItem.Header>
                 <Grid>
-
+    
                     <ListView x:Name="list_gifs_trending"
                               Margin="-6,0,-6,0"
                               SelectionChanged="list_gifs_trending_SelectionChanged"
@@ -116,11 +111,12 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Image x:Name="gif_image"
-                                       Margin="0,0,0,6"
+                                <Grid Margin="0,6,0,6">
+                                    <Image x:Name="gif_image"
                                        Stretch="UniformToFill"
                                        gif:AnimationBehavior.AutoStart="False"
                                        gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -139,6 +135,19 @@
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="30"
                             Visibility="Collapsed" />
+                    <Grid x:Name="trending_pub" Height="50" VerticalAlignment="Top">
+                        <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="LightGray" BorderThickness="1">
+                            <Grid Margin="6">
+                                <Image x:Name="image_giphy"
+                               Stretch="None"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Source="/Assets/banner_giphy.png"
+                       Visibility="Visible" />
+                                <TextBlock x:Name="trending_pub_close" FontSize="20" Tapped="trending_pub_close_Tapped" VerticalAlignment="Top" HorizontalAlignment="Right" Text="" FontFamily="Segoe MDL2 Assets" />
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </PivotItem>
             <PivotItem x:Name="pivotitem_search">
@@ -162,42 +171,32 @@
                         <AutoSuggestBox x:Name="textbox_search"
                                         KeyUp="textbox_search_KeyUp"
                                         QuerySubmitted="textbox_search_QuerySubmitted" />
-                        <!-- x:Name="textbox_search" Grid.Column="0" />
-                        <Button x:Name="button_search"
-                                Grid.Column="1"
-                                Margin="6,0,0,0"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
-                                Click="button_search_Click"
-                                Content="Search" />-->
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="6,12,6,6">
-
-                        <GridView x:Name="list_gifs_search"
+                        <ListView x:Name="list_gifs_search"
                                   Margin="-6,0,-6,0"
                                   SelectionChanged="list_gifs_search_SelectionChanged"
-                                  SelectionMode="Single"
-                                  SizeChanged="list_gifs_search_SizeChanged">
-                            <GridView.ItemContainerStyle>
-                                <Style TargetType="GridViewItem">
+                                  SelectionMode="Single">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <Setter Property="HorizontalAlignment" Value="Stretch" />
                                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                                     <Setter Property="VerticalAlignment" Value="Stretch" />
                                 </Style>
-                            </GridView.ItemContainerStyle>
-                            <GridView.ItemTemplate>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Image x:Name="gif_image"
-                                           Margin="0,0,0,6"
-                                           Stretch="UniformToFill"
-                                           gif:AnimationBehavior.AutoStart="False"
-                                           gif:AnimationBehavior.ImageUriSource="{Binding image_url}"
-                                            />
+                                    <Grid Margin="0,6,0,6">
+                                        <Image x:Name="gif_image"
+                                       Stretch="UniformToFill"
+                                       gif:AnimationBehavior.AutoStart="False"
+                                       gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
+                                    </Grid>
                                 </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
+                            </ListView.ItemTemplate>
+                        </ListView>
                         <ProgressRing x:Name="progressring_loading"
                                       Width="50"
                                       Height="50"
