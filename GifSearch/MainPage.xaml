@@ -123,8 +123,7 @@
                                        Margin="0,0,0,6"
                                        Stretch="UniformToFill"
                                        gif:AnimationBehavior.AutoStart="False"
-                                       gif:AnimationBehavior.ImageUriSource="{Binding image_url}"
-                                       gif:AnimationBehavior.RepeatBehavior="3x" />
+                                       gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -253,7 +252,7 @@
                         <TextBlock Text="Riffsy - http://api.riffsy.com/" />
                         <TextBlock x:Name="gifgit"
                                    Tapped="gifgit_Tapped"
-                                   Text="GifImageSource - https://github.com/sskodje/GifImageSource" />
+                                   Text="GifImageSource by sskodje (BIG THANKS!)" />
                         <TextBlock Margin="0,12,0,6"
                                    FontSize="20"
                                    FontWeight="Light"
@@ -274,7 +273,7 @@
                         <TextBlock Margin="0,6,0,0"
                                    FontStyle="Italic"
                                    FontWeight="Light"
-                                   Text="GifSearch 1.1.0.0 - All rights reserved © 2016" />
+                                   Text="GifSearch 1.2.0.1 - All rights reserved © 2016" />
                         <TextBlock Margin="0,0,0,6"
                                    FontSize="12"
                                    FontStyle="Italic"

@@ -42,7 +42,7 @@ namespace GifSearch
             if(!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.2.0.0\n\n- Click gif to start playing\n- Long press gif to copy link to keyboard\n- Gifs play only 3 times (prevent HIGH CPU usage)\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.2.0.1\n\n-Gifs don't auto-play at start\n- Click gif to start playing\n- Long press gif to copy link to keyboard\n- Gifs play only 3 times (prevent HIGH CPU usage)\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
