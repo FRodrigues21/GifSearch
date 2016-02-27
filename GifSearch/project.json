@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "GifImageSource": "1.0.2",
+    "GifImageSource": "1.0.3",
     "Microsoft.ApplicationInsights": "1.2.3",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
