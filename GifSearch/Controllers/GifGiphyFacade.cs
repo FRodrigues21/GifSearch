@@ -29,7 +29,7 @@ namespace GifSearch
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
             Debug.WriteLine("Search Gifs downloaded: " + data.data.Count);
-            await Task.Delay(3000);
+            await Task.Delay(5000);
             return data.data;
         }
 
@@ -46,7 +46,7 @@ namespace GifSearch
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.data.Count);
-            await Task.Delay(3000);
+            await Task.Delay(5000);
             return data.data;
         }
 

@@ -42,7 +42,7 @@ namespace GifSearch
             if(!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.2.2.0\n\n- Gifs don't auto-play at start\n- Click gif to start playing\n- Long press gif to copy link to clipboard\n- Gifs play only 3 times (prevent HIGH CPU usage)\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.2.3.0\n\n- Fixed multiple search crash bug\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
@@ -109,7 +109,7 @@ namespace GifSearch
             list_gifs_trending_load();
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
             settings.Values["rcheck"] = 1;
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp"));
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
         }
 
         private void ad_microsoft_AdRefreshed(object sender, RoutedEventArgs e)
@@ -189,8 +189,20 @@ namespace GifSearch
             }
         }
 
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            control.IsTabStop = isTabStop;
+        }
+
         private async void searchClick()
         {
+            list_gifs_search.SelectedIndex = -1;
+            list_gifs_search.UpdateLayout();
             if (textbox_search.Text != null)
             {
                 refresh_search.Visibility = Visibility.Collapsed;
@@ -201,6 +213,7 @@ namespace GifSearch
                     var collection = (ObservableCollection<Result>)null;
                     try
                     {
+                        list_gifs_search.ItemsSource = new ObservableCollection<Result>();
                         collection = await GifRiffsyFacade.searchGif(textbox_search.Text);
                     }
                     catch (Exception e)
@@ -222,6 +235,7 @@ namespace GifSearch
                     var collection = (ObservableCollection<Datum>)null;
                     try
                     {
+                        list_gifs_search.ItemsSource = new ObservableCollection<Result>();
                         collection = await GifGiphyFacade.searchGif(textbox_search.Text);
                     }
                     catch (Exception e)
@@ -332,46 +346,53 @@ namespace GifSearch
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
+                LoseFocus(sender);
                 Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
             }
         }
 
         private void list_gifs_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_item_playing != null)
-                _item_playing.Pause();
-            list_gifs_trending.UpdateLayout();
-            var _container = list_gifs_search.ContainerFromItem(list_gifs_search.SelectedItem);
-            var _children = allChildren(_container);
-            var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
-
-            GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
-            if (_gif != null)
+            if(list_gifs_search.SelectedItem != null)
             {
-                AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
-                _gif.Start();
-            }
+                if (_item_playing != null)
+                    _item_playing.Pause();
+                list_gifs_trending.UpdateLayout();
+                var _container = list_gifs_search.ContainerFromItem(list_gifs_search.SelectedItem);
+                var _children = allChildren(_container);
+                var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
 
-            _item_playing = _gif;
+                GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
+                if (_gif != null)
+                {
+                    AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
+                    _gif.Start();
+                }
+
+                _item_playing = _gif;
+            }
         }
 
         private void list_gifs_trending_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_item_playing != null)
-                _item_playing.Pause();
-            list_gifs_trending.UpdateLayout();
-            var _container = list_gifs_trending.ContainerFromItem(list_gifs_trending.SelectedItem);
-            var _children = allChildren(_container);
-            var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
-
-            GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
-            if (_gif != null)
+            if(list_gifs_trending.SelectedItem != null)
             {
-                AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
-                _gif.Start();
-            }    
+                if (_item_playing != null)
+                    _item_playing.Pause();
+                list_gifs_trending.UpdateLayout();
+                var _container = list_gifs_trending.ContainerFromItem(list_gifs_trending.SelectedItem);
+                var _children = allChildren(_container);
+                var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
 
-            _item_playing = _gif;
+                GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
+                if (_gif != null)
+                {
+                    AnimationBehavior.SetRepeatBehavior(_control, new RepeatBehavior(3));
+                    _gif.Start();
+                }
+
+                _item_playing = _gif;
+            }
         }
 
         private void refresh_trending_Click(object sender, RoutedEventArgs e)

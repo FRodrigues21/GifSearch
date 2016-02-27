@@ -273,7 +273,7 @@
                         <TextBlock Margin="0,6,0,0"
                                    FontStyle="Italic"
                                    FontWeight="Light"
-                                   Text="GifSearch 1.2.2.0 - All rights reserved © 2016" />
+                                   Text="GifSearch 1.2.3.0 - All rights reserved © 2016" />
                         <TextBlock Margin="0,0,0,6"
                                    FontSize="12"
                                    FontStyle="Italic"

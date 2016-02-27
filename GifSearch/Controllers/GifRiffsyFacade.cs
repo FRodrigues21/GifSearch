@@ -30,7 +30,7 @@ namespace GifSearch
 
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
             Debug.WriteLine("Search Gifs downloaded: " + data.results.Count);
-            await Task.Delay(3000);
+            await Task.Delay(5000);
             return data.results;
         }
 
@@ -46,7 +46,7 @@ namespace GifSearch
             var body = await response.Content.ReadAsStringAsync();
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.results.Count);
-            await Task.Delay(3000);
+            await Task.Delay(5000);
             return data.results;
         }
 
