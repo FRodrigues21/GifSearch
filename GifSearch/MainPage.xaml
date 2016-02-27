@@ -102,22 +102,19 @@
                 </PivotItem.Header>
                 <Grid>
 
-                    <GridView x:Name="list_gifs_trending"
+                    <ListView x:Name="list_gifs_trending"
                               Margin="-6,0,-6,0"
-                              Holding="list_gifs_trending_Holding"
-                              IsHoldingEnabled="True"
                               SelectionChanged="list_gifs_trending_SelectionChanged"
-                              SelectionMode="Single"
-                              SizeChanged="list_gifs_trending_SizeChanged">
-                        <GridView.ItemContainerStyle>
-                            <Style TargetType="GridViewItem">
+                              SelectionMode="Single">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
                                 <Setter Property="VerticalAlignment" Value="Stretch" />
                             </Style>
-                        </GridView.ItemContainerStyle>
-                        <GridView.ItemTemplate>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Image x:Name="gif_image"
                                        Margin="0,0,0,6"
@@ -125,8 +122,8 @@
                                        gif:AnimationBehavior.AutoStart="False"
                                        gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                     <ProgressRing x:Name="progressring_loading_trending"
                                   Width="50"
                                   Height="50"
@@ -179,8 +176,6 @@
 
                         <GridView x:Name="list_gifs_search"
                                   Margin="-6,0,-6,0"
-                                  Holding="list_gifs_search_Holding"
-                                  IsHoldingEnabled="True"
                                   SelectionChanged="list_gifs_search_SelectionChanged"
                                   SelectionMode="Single"
                                   SizeChanged="list_gifs_search_SizeChanged">
@@ -199,7 +194,7 @@
                                            Stretch="UniformToFill"
                                            gif:AnimationBehavior.AutoStart="False"
                                            gif:AnimationBehavior.ImageUriSource="{Binding image_url}"
-                                           gif:AnimationBehavior.RepeatBehavior="3x" />
+                                            />
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
@@ -309,4 +304,13 @@
 
 
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="appbar" Visibility="Collapsed" IsOpen="True" ClosedDisplayMode="Compact">
+            <AppBarButton Click="appbar_copy_Click" x:Name="appbar_copy" Label="Copy Link" Icon="Copy" />
+            <AppBarButton Click="appbar_save_Click" x:Name="appbar_save" Label="Save" Icon="Save" />
+            <AppBarButton Click="appbar_startstop_Click" x:Name="appbar_startstop" Label="Start/Stop" Icon="Play" />
+        </CommandBar>
+    </Page.BottomAppBar>
+    
 </Page>

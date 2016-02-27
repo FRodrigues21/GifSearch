@@ -16,6 +16,10 @@ using GifImage;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Media.Animation;
+using System.IO;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using System.Net.Http;
 
 namespace GifSearch
 {
@@ -25,6 +29,7 @@ namespace GifSearch
 
         private string current_text = "";
         private Pivot pivot = null;
+        private Object _item_current = null;
         private GifImageSource _item_playing = null;
 
         public MainPage()
@@ -39,7 +44,7 @@ namespace GifSearch
         public async void changeLogShow()
         {
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if(!settings.Values.ContainsKey("use"))
+            if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
                 MessageDialog mydial = new MessageDialog("1.2.3.0\n\n- Fixed multiple search crash bug\n\nMore features will be added in the future!");
@@ -318,6 +323,7 @@ namespace GifSearch
 
         private void pivot_app_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            appbar.Visibility = Visibility.Collapsed;
             switch (((Pivot)sender).SelectedIndex)
             {
                 case 0:
@@ -353,11 +359,12 @@ namespace GifSearch
 
         private void list_gifs_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(list_gifs_search.SelectedItem != null)
+            if (list_gifs_search.SelectedItem != null)
             {
+                _item_current = list_gifs_search.SelectedItem;
                 if (_item_playing != null)
                     _item_playing.Pause();
-                list_gifs_trending.UpdateLayout();
+                list_gifs_search.UpdateLayout();
                 var _container = list_gifs_search.ContainerFromItem(list_gifs_search.SelectedItem);
                 var _children = allChildren(_container);
                 var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
@@ -371,12 +378,14 @@ namespace GifSearch
 
                 _item_playing = _gif;
             }
+            appbar.Visibility = Visibility.Visible;
         }
 
         private void list_gifs_trending_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(list_gifs_trending.SelectedItem != null)
+            if (list_gifs_trending.SelectedItem != null)
             {
+                _item_current = list_gifs_trending.SelectedItem;
                 if (_item_playing != null)
                     _item_playing.Pause();
                 list_gifs_trending.UpdateLayout();
@@ -393,6 +402,7 @@ namespace GifSearch
 
                 _item_playing = _gif;
             }
+            appbar.Visibility = Visibility.Visible;
         }
 
         private void refresh_trending_Click(object sender, RoutedEventArgs e)
@@ -426,53 +436,74 @@ namespace GifSearch
             return controls;
         }
 
-        private void list_gifs_trending_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
-        {
-            list_gifs_trending.UpdateLayout();
-            var _item = (e.OriginalSource as FrameworkElement).DataContext;
-            
-            showNotification();
-            var dataPackage = new DataPackage();
-            string text = "";
-            if (App.source.Equals("riffsy"))
-            {
-                Result result = _item as Result;
-                text = result.image_link;
-            }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = _item as Datum;
-                text = datum.image_link;
-            }
-            dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
-        }
-
-        private void list_gifs_search_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
-        {
-            list_gifs_search.UpdateLayout();
-            var _item = (e.OriginalSource as FrameworkElement).DataContext;
-
-            showNotification();
-            var dataPackage = new DataPackage();
-            string text = "";
-            if (App.source.Equals("riffsy"))
-            {
-                Result result = _item as Result;
-                text = result.image_link;
-            }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = _item as Datum;
-                text = datum.image_link;
-            }
-            dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
-        }
-
         private async void gifgit_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("https://github.com/sskodje/GifImageSource"));
+        }
+
+        private void appbar_copy_Click(object sender, RoutedEventArgs e)
+        {
+            list_gifs_trending.UpdateLayout();
+            var _item = _item_playing;
+
+            showNotification();
+            var dataPackage = new DataPackage();
+            string text = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = _item_current as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = _item_current as Datum;
+                text = datum.image_link;
+            }
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private async void appbar_save_Click(object sender, RoutedEventArgs e)
+        {
+            string url = "";
+            string name = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = _item_current as Result;
+                name = result.title;
+                url = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = _item_current as Datum;
+                name = "giphy_" + datum.id;
+                url = datum.image_link;
+            }
+
+            DownloadImage(url);
+
+            Debug.WriteLine("starting download!");
+        }
+
+        private async void DownloadImage(string url)
+        {
+            Debug.WriteLine(url);
+            string FileName = Path.GetFileName(url);
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage message = await httpClient.GetAsync(url);
+            StorageFolder myfolder = KnownFolders.SavedPictures;
+            StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
+            byte[] file = await message.Content.ReadAsByteArrayAsync();
+            await FileIO.WriteBytesAsync(SampleFile, file);
+            var files = await myfolder.GetFilesAsync();
+            Debug.WriteLine("image downloaded!");
+        }
+
+
+
+        private void appbar_startstop_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

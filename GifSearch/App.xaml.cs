@@ -33,7 +33,7 @@ namespace GifSearch
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            source = "riffsy";
+            source = "giphy";
             changed = false;
         }
 
