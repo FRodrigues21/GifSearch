@@ -47,7 +47,7 @@ namespace GifSearch
             if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.2.3.0\n\n- Fixed multiple search crash bug\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save gif to phone (Riffsy gifs don't work)\n- Added bottom appbar when clicking gif to show options\n- UI design improved\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
@@ -194,7 +194,7 @@ namespace GifSearch
             }
         }
 
-        private void LoseFocus(object sender)
+        private void loseFocus(object sender)
         {
             var control = sender as Control;
             var isTabStop = control.IsTabStop;
@@ -303,7 +303,7 @@ namespace GifSearch
         {
             if (e.Key == VirtualKey.Enter)
             {
-                LoseFocus(sender);
+                loseFocus(sender);
                 Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
             }
         }
