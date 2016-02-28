@@ -21,7 +21,7 @@ namespace GifSearch
         {
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit=8", apikey, search);
+            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, App.limit);
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;
@@ -38,7 +38,7 @@ namespace GifSearch
         {
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit=10", apikey);
+            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, App.limit);
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;

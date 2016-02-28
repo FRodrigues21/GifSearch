@@ -22,9 +22,9 @@ namespace GifSearch
 
     sealed partial class App : Application
     {
-
-        public static string source { get; set; }
         public static bool changed { get; set; }
+        public static string source { get; set; }
+        public static int limit { get; set; }
 
         public App()
         {
@@ -33,7 +33,20 @@ namespace GifSearch
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            source = "giphy";
+            loadVariablesFromStorage();
+        }
+
+        private void loadVariablesFromStorage()
+        {
+            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (settings.Values.ContainsKey("provider"))
+                source = (string)settings.Values["provider"];
+            else
+                source = "giphy";
+            if (settings.Values.ContainsKey("number"))
+                limit = (int)settings.Values["number"];
+            else
+                limit = 10;
             changed = false;
         }
 

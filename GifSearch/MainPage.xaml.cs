@@ -47,13 +47,13 @@ namespace GifSearch
             if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save gif to phone (Riffsy gifs don't work)\n- Added bottom appbar when clicking gif to show options\n- UI design improved\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save gif to phone (Riffsy gifs don't work)\n- New Settings/About page outside pivot\n- Added bottom appbar when clicking gif to show options\n- UI design improved\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
                     new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
                 mydial.Commands.Add(new UICommand(
-                   "Rate the app",
+                   "Review the app",
                    new UICommandInvokedHandler(this.CommandInvokedHandler_yesclick)));
                 await mydial.ShowAsync();
             }
@@ -322,7 +322,7 @@ namespace GifSearch
         {
             if(item != null)
             {
-                var item_current = item;
+                _item_current = item;
                 if (_item_playing != null)
                     _item_playing.pause();
                 list_gifs_trending.UpdateLayout();
@@ -470,6 +470,11 @@ namespace GifSearch
                     searchClick();
                 }
             }
+        }
+
+        private void button_about_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Settings_About));
         }
 
         /*private void list_gifs_search_SizeChanged(object sender, SizeChangedEventArgs e)
