@@ -269,42 +269,6 @@ namespace GifSearch
             row_notification.Height = 0;
         }
 
-        private void button_filter_Click(object sender, RoutedEventArgs e)
-        {
-            grid_popup_StateChange();
-        }
-
-        private void listbox_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            grid_popup_StateChange();
-            if (listitem_giphy.IsSelected)
-            {
-                App.source = "giphy";
-            }
-            else if (listitem_riffsy.IsSelected)
-            {
-                App.source = "riffsy";
-            }
-            App.changed = true;
-            if (pivot.SelectedIndex == 0)
-            {
-                list_gifs_trending_load();
-            }
-            else if (pivot.SelectedIndex == 1)
-            {
-                searchClick();
-            }
-        }
-
-        private void grid_popup_StateChange()
-        {
-
-            if (grid_popup.Visibility == Visibility.Collapsed)
-                grid_popup.Visibility = Visibility.Visible;
-            else
-                grid_popup.Visibility = Visibility.Collapsed;
-        }
-
         private void pivot_app_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (((Pivot)sender).SelectedIndex)
@@ -346,37 +310,23 @@ namespace GifSearch
 
         private void list_gifs_search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (list_gifs_search.SelectedItem != null)
-            {
-                _item_current = list_gifs_search.SelectedItem;
-                if (_item_playing != null)
-                    _item_playing.pause();
-                list_gifs_search.UpdateLayout();
-                var _container = list_gifs_search.ContainerFromItem(list_gifs_search.SelectedItem);
-                var _children = allChildren(_container);
-                var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
-
-                GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
-                if (_gif != null)
-                {
-                    _item_playing.instance = _gif;
-                    _item_playing.play();
-                }
-
-                _item_playing.instance = _gif;
-            }
-            appbar.Visibility = Visibility.Visible;
+            playGifAnimation(list_gifs_search, list_gifs_search.SelectedItem);
         }
 
         private void list_gifs_trending_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (list_gifs_trending.SelectedItem != null)
+            playGifAnimation(list_gifs_trending, list_gifs_trending.SelectedItem);
+        }
+
+        private void playGifAnimation(ListView list, Object item)
+        {
+            if(item != null)
             {
-                _item_current = list_gifs_trending.SelectedItem;
+                var item_current = item;
                 if (_item_playing != null)
                     _item_playing.pause();
                 list_gifs_trending.UpdateLayout();
-                var _container = list_gifs_trending.ContainerFromItem(list_gifs_trending.SelectedItem);
+                var _container = list.ContainerFromItem(item);
                 var _children = allChildren(_container);
                 var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
 
@@ -386,10 +336,8 @@ namespace GifSearch
                     _item_playing.instance = _gif;
                     _item_playing.play();
                 }
-
-                
+                appbar.Visibility = Visibility.Visible;
             }
-            appbar.Visibility = Visibility.Visible;
         }
 
         private void refresh_trending_Click(object sender, RoutedEventArgs e)
@@ -497,6 +445,31 @@ namespace GifSearch
         private void trending_pub_close_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             trending_pub.Height = 0;
+        }
+
+        private void content_select_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(pivot != null)
+            {
+                appbar.Visibility = Visibility.Collapsed;
+                if (giphy.IsSelected)
+                {
+                    App.source = "giphy";
+                }
+                else if (riffsy.IsSelected)
+                {
+                    App.source = "riffsy";
+                }
+                App.changed = true;
+                if (pivot.SelectedIndex == 0)
+                {
+                    list_gifs_trending_load();
+                }
+                else if (pivot.SelectedIndex == 1)
+                {
+                    searchClick();
+                }
+            }
         }
 
         /*private void list_gifs_search_SizeChanged(object sender, SizeChangedEventArgs e)
