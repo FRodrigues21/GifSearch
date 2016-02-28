@@ -39,6 +39,7 @@ namespace GifSearch
             pivot = pivot_app;
             _item_playing = new PlayingItem();
             changeLogShow();
+            row_notification.Visibility = Visibility.Visible;
         }
 
         public async void changeLogShow()
@@ -47,7 +48,7 @@ namespace GifSearch
             if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save gif to phone (Riffsy gifs don't work)\n- New Settings/About page outside pivot\n- Added bottom appbar when clicking gif to show options\n- UI design improved\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save GIF's to phone (Riffsy GIF's don't work)\n- New Settings/About page (click top right icon)\n- GIF's now have a bottom options bar\n- UI design improved following user sugestions\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand(
                     "Continue to app",
@@ -262,11 +263,13 @@ namespace GifSearch
             }
         }
 
-        private async void showNotification()
+        private async void showNotification(string icon, string text)
         {
-            row_notification.Height = 20;
+            notification_icon.Text = icon;
+            notification_text.Text = text;
+            SlideIn.Begin();
             await Task.Delay(3000);
-            row_notification.Height = 0;
+            SlideOut.Begin();
         }
 
         private void pivot_app_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -381,7 +384,7 @@ namespace GifSearch
             list_gifs_trending.UpdateLayout();
             var _item = _item_playing;
 
-            showNotification();
+            showNotification("", "GIF link copied to clipboard!");
             var dataPackage = new DataPackage();
             string text = "";
             if (App.source.Equals("riffsy"))
@@ -422,7 +425,7 @@ namespace GifSearch
 
         private async void DownloadImage(string url)
         {
-            Debug.WriteLine(url);
+            showNotification("", "Downloading image, wait a moment...");
             string FileName = Path.GetFileName(url);
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage message = await httpClient.GetAsync(url);
@@ -431,7 +434,7 @@ namespace GifSearch
             byte[] file = await message.Content.ReadAsByteArrayAsync();
             await FileIO.WriteBytesAsync(SampleFile, file);
             var files = await myfolder.GetFilesAsync();
-            Debug.WriteLine("image downloaded!");
+            showNotification("", "Image downloaded sucessfully!");
         }
 
         private void appbar_startstop_Click(object sender, RoutedEventArgs e)

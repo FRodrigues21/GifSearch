@@ -14,18 +14,46 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace GifSearch
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Settings_About : Page
     {
         public Settings_About()
         {
             this.InitializeComponent();
+            updateSelected();
+        }
+
+        private void updateSelected()
+        {
+            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (settings.Values.ContainsKey("provider"))
+            {
+                string provider = (string)settings.Values["provider"];
+                if (provider == "giphy")
+                    provider_picker.SelectedIndex = 0;
+                else
+                    provider_picker.SelectedIndex = 1;
+            }
+            else
+            {
+                provider_picker.SelectedIndex = 0;
+            }
+            if(settings.Values.ContainsKey("number"))
+            {
+                int number = (int)settings.Values["number"];
+                if (number == 8)
+                    number_picker.SelectedIndex = 0;
+                else if (number == 10)
+                    number_picker.SelectedIndex = 1;
+                else if(number == 20)
+                    number_picker.SelectedIndex = 2;
+            }
+            else
+            {
+                number_picker.SelectedIndex = 0;
+            }
         }
 
         private void button_back_Click(object sender, RoutedEventArgs e)
@@ -39,28 +67,29 @@ namespace GifSearch
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if(!settings.Values.ContainsKey("number"))
             {
-                var number = 10;
+                int number = 8;
                 if (picker_8.IsSelected)
                     number = 8;
                 else if (picker_10.IsSelected)
                     number = 10;
-                else
+                else if(picker_20.IsSelected)
                     number = 20;
                 settings.Values.Add("number", number);
                 App.limit = number;
             }
             else
             {
-                var number = 10;
+                int number = (int)settings.Values["number"];
                 if (picker_8.IsSelected)
                     number = 8;
                 else if (picker_10.IsSelected)
                     number = 10;
-                else
+                else if (picker_20.IsSelected)
                     number = 20;
                 settings.Values["number"] = number;
                 App.limit = number;
             }
+            Debug.WriteLine("Limit changed to: " + App.limit);
         }
 
         private void provider_picker_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,7 +97,7 @@ namespace GifSearch
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (!settings.Values.ContainsKey("provider"))
             {
-                var source = "giphy";
+                string source = "giphy";
                 if (picker_giphy.IsSelected)
                     source = "giphy";
                 else if (picker_riffsy.IsSelected)
@@ -78,7 +107,7 @@ namespace GifSearch
             }
             else
             {
-                var source = "giphy";
+                string source = (string)settings.Values["provider"];
                 if (picker_giphy.IsSelected)
                     source = "giphy";
                 else if (picker_riffsy.IsSelected)

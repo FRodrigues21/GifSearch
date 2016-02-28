@@ -58,7 +58,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Default GIF provider" />
-                    <ComboBox x:Name="provider_picker" SelectionChanged="provider_picker_SelectionChanged" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
+                    <ComboBox x:Name="provider_picker" SelectionChanged="provider_picker_SelectionChanged" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
                         <ComboBoxItem x:Name="picker_giphy">Giphy</ComboBoxItem>
                         <ComboBoxItem x:Name="picker_riffsy">Riffsy</ComboBoxItem>
                     </ComboBox>
@@ -71,7 +71,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Gifs download limit" />
-                    <ComboBox x:Name="number_picker" SelectionChanged="number_picker_SelectionChanged" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
+                    <ComboBox x:Name="number_picker" SelectionChanged="number_picker_SelectionChanged" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
                         <ComboBoxItem x:Name="picker_8">8</ComboBoxItem>
                         <ComboBoxItem x:Name="picker_10">10</ComboBoxItem>
                         <ComboBoxItem x:Name="picker_20">20</ComboBoxItem>
