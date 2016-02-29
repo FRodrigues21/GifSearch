@@ -104,6 +104,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Fonts\Stilu.ttf" />
     <None Include="GifSearch_StoreKey.pfx" />
+    <None Include="GifSearch_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -130,7 +131,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="GifSearch_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\banner_giphy.png" />
