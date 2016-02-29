@@ -20,6 +20,8 @@ using System.IO;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using System.Net.Http;
+using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 namespace GifSearch
 {
@@ -31,6 +33,7 @@ namespace GifSearch
         private Pivot pivot = null;
         private Object _item_current = null;
         private PlayingItem _item_playing;
+        private bool page_triggered = false;
 
         public MainPage()
         {
@@ -48,20 +51,23 @@ namespace GifSearch
             if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save GIF's to phone (Riffsy GIF's don't work)\n- New Settings/About page (click top right icon)\n- GIF's now have a bottom options bar\n- UI design improved following user sugestions\n\nMore features will be added in the future!");
+                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save GIF's to phone (Riffsy GIF's don't work)\n- New Settings/About page (top right icon)\n- GIF's now have a bottom options bar\n- UI design improved following users sugestions (Reddit)\n\nMore features will be added in the future!");
                 mydial.Title = "What's new in gif Search?";
-                mydial.Commands.Add(new UICommand(
-                    "Continue to app",
-                    new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
-                mydial.Commands.Add(new UICommand(
-                   "Review the app",
-                   new UICommandInvokedHandler(this.CommandInvokedHandler_yesclick)));
+                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_yesclick)));
                 await mydial.ShowAsync();
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Debug.WriteLine("NAVIGATED!");
+            page_triggered = true;
+            if (App.source == "giphy")
+                content_select.SelectedIndex = 0;
             else
-            {
-                list_gifs_trending_load();
-            }
+                content_select.SelectedIndex = 1;
+            page_triggered = false;
         }
 
         private void CommandInvokedHandler_continueclick(IUICommand command)
@@ -71,7 +77,7 @@ namespace GifSearch
 
         public async void reviewfunction()
         {
-            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            var settings = ApplicationData.Current.LocalSettings;
             string Appname = "gif Search";
 
             if (!settings.Values.ContainsKey("review"))
@@ -105,31 +111,19 @@ namespace GifSearch
             }
         }
 
-        private void CommandInvokedHandler_noclick(IUICommand command)
-        {
-
-        }
+        private void CommandInvokedHandler_noclick(IUICommand command) { }
 
         private async void CommandInvokedHandler_yesclick(IUICommand command)
         {
             list_gifs_trending_load();
-            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            var settings = ApplicationData.Current.LocalSettings;
             settings.Values["rcheck"] = 1;
             await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
         }
 
-        private void ad_microsoft_AdRefreshed(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("Ad refreshed.");
-        }
-
-        private void ad_microsoft_ErrorOccurred(object sender, AdErrorEventArgs e)
-        {
-            Debug.WriteLine("Ad loading error.");
-        }
-
         private async void list_gifs_trending_load()
         {
+            appbar.Visibility = Visibility.Collapsed;
             refresh_trending.Visibility = Visibility.Collapsed;
             list_gifs_trending.Visibility = Visibility.Collapsed;
             progressring_loading_trending.IsActive = true;
@@ -177,15 +171,9 @@ namespace GifSearch
             list_gifs_trending.Visibility = Visibility.Visible;
         }
 
-        private void CommandInvokedHandler_tryagain_trending(IUICommand command)
-        {
+        private void CommandInvokedHandler_tryagain_trending(IUICommand command) { }
 
-        }
-
-        private void CommandInvokedHandler_tryagain_search(IUICommand command)
-        {
-
-        }
+        private void CommandInvokedHandler_tryagain_search(IUICommand command) { }
 
         private void button_search_Click(object sender, RoutedEventArgs e)
         {
@@ -211,6 +199,7 @@ namespace GifSearch
             list_gifs_search.UpdateLayout();
             if (textbox_search.Text != null)
             {
+                appbar.Visibility = Visibility.Collapsed;
                 refresh_search.Visibility = Visibility.Collapsed;
                 list_gifs_search.Visibility = Visibility.Collapsed;
                 progressring_loading.IsActive = true;
@@ -263,8 +252,9 @@ namespace GifSearch
             }
         }
 
-        private async void showNotification(string icon, string text)
+        private async void showNotification(string icon, string text, SolidColorBrush color)
         {
+            row_notification.Background = color;
             notification_icon.Text = icon;
             notification_text.Text = text;
             SlideIn.Begin();
@@ -274,23 +264,26 @@ namespace GifSearch
 
         private void pivot_app_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (((Pivot)sender).SelectedIndex)
+            Debug.WriteLine("PIVOT CHANGED!");
+            appbar.Visibility = Visibility.Collapsed;
+            if (App.changed)
             {
-                case 0:
-                    if (App.changed)
-                        list_gifs_trending_load();
-                    App.changed = false;
-                    appbar.Visibility = Visibility.Collapsed;
-                    list_gifs_search.SelectedIndex = -1;
-                    break;
+                switch (((Pivot)sender).SelectedIndex)
+                {
+                    case 0:
+                        if (App.changed)
+                            list_gifs_trending_load();
+                        App.changed = false;
+                        list_gifs_search.SelectedIndex = -1;
+                        break;
 
-                case 1:
-                    if (App.changed)
-                        searchClick();
-                    App.changed = false;
-                    appbar.Visibility = Visibility.Collapsed;
-                    list_gifs_trending.SelectedIndex = -1;
-                    break;
+                    case 1:
+                        if (App.changed)
+                            searchClick();
+                        App.changed = false;
+                        list_gifs_trending.SelectedIndex = -1;
+                        break;
+                }
             }
         }
 
@@ -353,11 +346,6 @@ namespace GifSearch
             searchClick();
         }
 
-        private async void reddit_link_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("https://www.reddit.com/r/WPDev/comments/46afdi/hey_developers_can_you_make_a_simple_gif_search/"));
-        }
-
         public List<FrameworkElement> allChildren(DependencyObject parent)
         {
             List<FrameworkElement> controls = new List<FrameworkElement>();
@@ -374,17 +362,12 @@ namespace GifSearch
             return controls;
         }
 
-        private async void gifgit_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("https://github.com/sskodje/GifImageSource"));
-        }
-
         private void appbar_copy_Click(object sender, RoutedEventArgs e)
         {
             list_gifs_trending.UpdateLayout();
             var _item = _item_playing;
 
-            showNotification("", "GIF link copied to clipboard!");
+            showNotification("", "GIF link copied to clipboard!", new SolidColorBrush(Colors.LimeGreen));
             var dataPackage = new DataPackage();
             string text = "";
             if (App.source.Equals("riffsy"))
@@ -425,16 +408,23 @@ namespace GifSearch
 
         private async void DownloadImage(string url)
         {
-            showNotification("", "Downloading image, wait a moment...");
-            string FileName = Path.GetFileName(url);
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage message = await httpClient.GetAsync(url);
-            StorageFolder myfolder = KnownFolders.SavedPictures;
-            StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-            byte[] file = await message.Content.ReadAsByteArrayAsync();
-            await FileIO.WriteBytesAsync(SampleFile, file);
-            var files = await myfolder.GetFilesAsync();
-            showNotification("", "Image downloaded sucessfully!");
+            if(App.source == "giphy")
+            {
+                showNotification("", "Downloading image, wait a moment...", new SolidColorBrush(Colors.LimeGreen));
+                string FileName = Path.GetFileName(url);
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage message = await httpClient.GetAsync(url);
+                StorageFolder myfolder = KnownFolders.SavedPictures;
+                StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
+                byte[] file = await message.Content.ReadAsByteArrayAsync();
+                await FileIO.WriteBytesAsync(SampleFile, file);
+                var files = await myfolder.GetFilesAsync();
+                showNotification("", "Image downloaded sucessfully!", new SolidColorBrush(Colors.LimeGreen));
+            }
+            else
+            {
+                showNotification("", "The app can't currently save Riffsy GIF's!", new SolidColorBrush(Colors.Red));
+            }
         }
 
         private void appbar_startstop_Click(object sender, RoutedEventArgs e)
@@ -452,7 +442,8 @@ namespace GifSearch
 
         private void content_select_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(pivot != null)
+            Debug.WriteLine("COMBOBOX MAIN! > " + page_triggered);
+            if (pivot != null && !page_triggered)
             {
                 appbar.Visibility = Visibility.Collapsed;
                 if (giphy.IsSelected)
@@ -463,7 +454,6 @@ namespace GifSearch
                 {
                     App.source = "riffsy";
                 }
-                App.changed = true;
                 if (pivot.SelectedIndex == 0)
                 {
                     list_gifs_trending_load();
@@ -478,6 +468,11 @@ namespace GifSearch
         private void button_about_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Settings_About));
+        }
+
+        private void textbox_search_GotFocus(object sender, RoutedEventArgs e)
+        {
+            appbar.Visibility = Visibility.Collapsed;
         }
 
         /*private void list_gifs_search_SizeChanged(object sender, SizeChangedEventArgs e)

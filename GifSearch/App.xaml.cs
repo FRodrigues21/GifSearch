@@ -47,7 +47,7 @@ namespace GifSearch
                 limit = (int)settings.Values["number"];
             else
                 limit = 10;
-            changed = false;
+            changed = true;
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)

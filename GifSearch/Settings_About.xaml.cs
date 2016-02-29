@@ -76,6 +76,7 @@ namespace GifSearch
                     number = 20;
                 settings.Values.Add("number", number);
                 App.limit = number;
+                
             }
             else
             {
@@ -115,6 +116,7 @@ namespace GifSearch
                 settings.Values["provider"] = source;
                 App.source = source;
             }
+            App.changed = true;
         }
     }
 }
