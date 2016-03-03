@@ -31,7 +31,6 @@ namespace GifSearch
 
         private string current_text = "";
         private Pivot pivot = null;
-        private Object _item_current = null;
         private PlayingItem _item_playing;
         private bool page_triggered = false;
 
@@ -47,11 +46,12 @@ namespace GifSearch
 
         public async void changeLogShow()
         {
-            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            var settings = ApplicationData.Current.LocalSettings;
             if (!settings.Values.ContainsKey("use"))
             {
                 settings.Values.Add("use", 0);
-                MessageDialog mydial = new MessageDialog("1.3.0.0\n\n- Download/Save GIF's to phone (Riffsy GIF's don't work)\n- New Settings/About page (top right icon)\n- GIF's now have a bottom options bar\n- UI design improved following users sugestions (Reddit)\n\nMore features will be added in the future!");
+                string content = String.Format("{0}\n\n- Added .mp4 download option (only Giphy supported)\n- Fixed review app link", App.version);
+                MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
                 mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_yesclick)));
@@ -93,7 +93,7 @@ namespace GifSearch
                 if ((no % 5 == 0) && check == 0)
                 {
                     settings.Values["review"] = no;
-                    MessageDialog mydial = new MessageDialog("Thank you for using this application.\nWould you like to give some time to rate and review this application to help us improve");
+                    MessageDialog mydial = new MessageDialog("\n\nThank you for using this application.\nWould you like to give some time to rate and review this application to help us improve?");
                     mydial.Title = Appname;
                     mydial.Commands.Add(new UICommand(
                         "Yes",
@@ -118,7 +118,7 @@ namespace GifSearch
             list_gifs_trending_load();
             var settings = ApplicationData.Current.LocalSettings;
             settings.Values["rcheck"] = 1;
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+            await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }
 
         private async void list_gifs_trending_load()
@@ -316,9 +316,9 @@ namespace GifSearch
 
         private void playGifAnimation(ListView list, Object item)
         {
-            if(item != null)
+            if (item != null)
             {
-                _item_current = item;
+                _item_playing.instance = item;
                 if (_item_playing != null)
                     _item_playing.pause();
                 list_gifs_trending.UpdateLayout();
@@ -329,7 +329,7 @@ namespace GifSearch
                 GifImageSource _gif = AnimationBehavior.GetGifImageSource(_control);
                 if (_gif != null)
                 {
-                    _item_playing.instance = _gif;
+                    _item_playing.sourceInstance = _gif;
                     _item_playing.play();
                 }
                 appbar.Visibility = Visibility.Visible;
@@ -372,12 +372,12 @@ namespace GifSearch
             string text = "";
             if (App.source.Equals("riffsy"))
             {
-                Result result = _item_current as Result;
+                Result result = _item_playing.instance as Result;
                 text = result.image_link;
             }
             else if (App.source.Equals("giphy"))
             {
-                Datum datum = _item_current as Datum;
+                Datum datum = _item_playing.instance as Datum;
                 text = datum.image_link;
             }
 
@@ -385,46 +385,66 @@ namespace GifSearch
             Clipboard.SetContent(dataPackage);
         }
 
-        private void appbar_save_Click(object sender, RoutedEventArgs e)
+        private async void appbar_save_Click(object sender, RoutedEventArgs e)
         {
+            MessageDialog mydial = new MessageDialog("\nMost Windows Phone apps don't support GIF images at the moment\nYou may try to download the GIF as .mp4 in order to share it!\n\nIf you only wan't to store it to view later, select .gif");
+            mydial.Title = "Downloading gif...";
+            mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
+            mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
+            await mydial.ShowAsync();
+        }
+
+        private void downloadMediaGif(IUICommand command)
+        {
+            if (App.source == "giphy")
+                downloadFromSource("gif");
+            else
+                showNotification("", "The app can't currently save Riffsy GIF's to storage!", new SolidColorBrush(Colors.Red));
+        }
+
+        private void downloadMediaMp4(IUICommand command)
+        {
+            if(App.source == "giphy")
+                downloadFromSource("mp4");
+            else
+                showNotification("", "The app can't currently save Riffsy GIF's to storage!", new SolidColorBrush(Colors.Red));
+        }
+
+        private async void downloadFromSource(string type)
+        {
+            showNotification("", "Downloading media, wait a moment...", new SolidColorBrush(Colors.LimeGreen));
+            string url_image = "";
+            string url_video = "";
             string url = "";
-            string name = "";
             if (App.source.Equals("riffsy"))
             {
-                Result result = _item_current as Result;
-                name = result.title;
-                url = result.image_link;
+                Result result = _item_playing.instance as Result;
+                url_image = result.image_link;
+                url_video = result.image_video;
             }
             else if (App.source.Equals("giphy"))
             {
-                Datum datum = _item_current as Datum;
-                name = "giphy_" + datum.id;
-                url = datum.image_link;
+                Datum datum = _item_playing.instance as Datum;
+                url_image = datum.image_link;
+                url_video = datum.image_video;
             }
-
-            DownloadImage(url);
-            Debug.WriteLine("starting download!");
-        }
-
-        private async void DownloadImage(string url)
-        {
-            if(App.source == "giphy")
-            {
-                showNotification("", "Downloading image, wait a moment...", new SolidColorBrush(Colors.LimeGreen));
-                string FileName = Path.GetFileName(url);
-                HttpClient httpClient = new HttpClient();
-                HttpResponseMessage message = await httpClient.GetAsync(url);
-                StorageFolder myfolder = KnownFolders.SavedPictures;
-                StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-                byte[] file = await message.Content.ReadAsByteArrayAsync();
-                await FileIO.WriteBytesAsync(SampleFile, file);
-                var files = await myfolder.GetFilesAsync();
-                showNotification("", "Image downloaded sucessfully!", new SolidColorBrush(Colors.LimeGreen));
-            }
+            if (type == "gif")
+                url = url_image;
             else
-            {
-                showNotification("", "The app can't currently save Riffsy GIF's!", new SolidColorBrush(Colors.Red));
-            }
+                url = url_video;
+            string FileName = Path.GetFileName(url);
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage message = await httpClient.GetAsync(url);
+            StorageFolder myfolder = null;
+            if (type == "gif")
+                 myfolder = KnownFolders.SavedPictures;
+            else
+                myfolder = KnownFolders.VideosLibrary;
+            StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
+            byte[] file = await message.Content.ReadAsByteArrayAsync();
+            await FileIO.WriteBytesAsync(SampleFile, file);
+            var files = await myfolder.GetFilesAsync();
+            showNotification("", "Media downloaded sucessfully!", new SolidColorBrush(Colors.LimeGreen));
         }
 
         private void appbar_startstop_Click(object sender, RoutedEventArgs e)

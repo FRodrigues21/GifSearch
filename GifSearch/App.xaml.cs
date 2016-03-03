@@ -22,6 +22,7 @@ namespace GifSearch
 
     sealed partial class App : Application
     {
+        public static string version = "1.4.0.0";
         public static bool changed { get; set; }
         public static string source { get; set; }
         public static int limit { get; set; }

@@ -22,6 +22,7 @@ namespace GifSearch
         public Settings_About()
         {
             this.InitializeComponent();
+            version.DataContext = App.version;
             updateSelected();
         }
 

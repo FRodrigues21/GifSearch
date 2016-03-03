@@ -134,6 +134,18 @@ namespace GifSearch.Models
                 return url;
             }
         }
+        public string image_video
+        {
+            get
+            {
+                string url = "";
+                foreach (Medium m in media)
+                {
+                    url = m.mp4.url;
+                }
+                return url;
+            }
+        }
         public double created { get; set; }
         public string url { get; set; }
         public List<Medium> media { get; set; }

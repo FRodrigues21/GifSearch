@@ -231,6 +231,13 @@ namespace GifSearch.Models
                 return images.original.url;
             }
         }
+        public string image_video
+        {
+            get
+            {
+                return images.original.mp4;
+            }
+        }
     }
 
     public class Meta

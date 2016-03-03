@@ -11,21 +11,23 @@ namespace GifSearch.Models
     {
         public PlayingItem() { }
 
-        public GifImageSource instance { get; set; }
+        public Object instance { get; set; }
+        public string linkType { get; set; }
+        public GifImageSource sourceInstance { get; set; }
         public bool state { get; set; }
         public void play()
         {
-            if(instance != null)
+            if(sourceInstance != null)
             {
-                instance.Start();
+                sourceInstance.Start();
                 state = true;
             }
         }
         public void pause()
         {
-            if(instance != null)
+            if(sourceInstance != null)
             {
-                instance.Pause();
+                sourceInstance.Pause();
                 state = false;
             }
         }
