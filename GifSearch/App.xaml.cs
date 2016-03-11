@@ -22,6 +22,7 @@ namespace GifSearch
 
     sealed partial class App : Application
     {
+        public static StatusBar status_bar { get; set; }
         public static string version = "1.4.0.0";
         public static bool changed { get; set; }
         public static string source { get; set; }
@@ -55,7 +56,8 @@ namespace GifSearch
         {
 
             StatusBar statusBar = StatusBar.GetForCurrentView();
-            await statusBar.HideAsync();
+            status_bar = statusBar;
+            //await statusBar.HideAsync();
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -83,7 +85,7 @@ namespace GifSearch
             if (rootFrame.Content == null)
             {
 
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(Shell), e.Arguments);
             }
 
             Window.Current.Activate();
