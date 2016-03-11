@@ -47,6 +47,21 @@ namespace GifSearch
             {
                 this.splitviewPaneState();
                 Debug.WriteLine("Shell Nav selection changed.");
+                switch(((ListBox)sender).SelectedIndex)
+                {
+                    case 0:
+                        title.Text = "TRENDING";
+                        frame.Navigate(typeof(Trending));
+                        break;
+                    case 1:
+                        title.Text = "SEARCH";
+                        frame.Navigate(typeof(Search));
+                        break;
+                    case 2:
+                        title.Text = "FAVORITES";
+                        frame.Navigate(typeof(Trending));
+                        break;
+                }
             }
         }
 

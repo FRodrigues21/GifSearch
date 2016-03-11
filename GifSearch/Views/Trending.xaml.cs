@@ -4,9 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,9 +38,10 @@ namespace GifSearch.Views
             navigation_caused = false;
         }
 
-        private void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             appbar.IsOpen = true;
+            await App.status_bar.ProgressIndicator.HideAsync();
             ListView list = sender as ListView;
             playGifAnimation(list, list.SelectedItem);
         }
@@ -79,15 +86,128 @@ namespace GifSearch.Views
         private async void loadGifList()
         {
             App.status_bar.BackgroundOpacity = 1;
-            App.status_bar.ProgressIndicator.Text = "Loading gif list...";
+            App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
             #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            App.status_bar.ProgressIndicator.ShowAsync();
+            await App.status_bar.ProgressIndicator.ShowAsync();
             #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             gif_list.ItemsSource = await GifGiphyFacade.getTrending();
-            App.status_bar.ProgressIndicator.ProgressValue = 0;
-            App.status_bar.ProgressIndicator.Text = "";
+            await App.status_bar.ProgressIndicator.HideAsync();
         }
 
+        private async void copy_Click(object sender, RoutedEventArgs e)
+        {
+            App.status_bar.BackgroundOpacity = 1;
+            App.status_bar.ProgressIndicator.Text = "Link copied to clipboard, go share it!";
+            await App.status_bar.ProgressIndicator.ShowAsync();
+            var dataPackage = new DataPackage();
+            string text = "";
+
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = selected_gif.instance as Result;
+                text = result.image_link;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = selected_gif.instance as Datum;
+                text = datum.image_link;
+            }
+
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
+            await Task.Delay(3000);
+            await App.status_bar.ProgressIndicator.HideAsync();
+        }
+
+        private async void save_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog mydial = new MessageDialog("\nMost Windows Phone apps don't support GIF images at the moment\nYou may try to download the GIF as .mp4 in order to share it!\n\nIf you only wan't to store it to view later, select .gif");
+            mydial.Title = "Downloading gif";
+            mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
+            mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
+            await mydial.ShowAsync();
+        }
+
+        private async void downloadMediaGif(IUICommand command)
+        {
+            if (App.source == "giphy")
+                downloadFromSource("gif");
+            else
+            {
+                App.status_bar.BackgroundOpacity = 1;
+                App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
+                #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                await  App.status_bar.ProgressIndicator.ShowAsync();
+                #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                await Task.Delay(3000);
+                await App.status_bar.ProgressIndicator.HideAsync();
+            }
+
+        }
+
+        private async void downloadMediaMp4(IUICommand command)
+        {
+            if (App.source == "giphy")
+                downloadFromSource("mp4");
+            else
+            {
+                App.status_bar.BackgroundOpacity = 1;
+                App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                await App.status_bar.ProgressIndicator.ShowAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                await Task.Delay(3000);
+                await App.status_bar.ProgressIndicator.HideAsync();
+            }
+                
+        }
+
+        private async void downloadFromSource(string type)
+        {
+            App.status_bar.BackgroundOpacity = 1;
+            App.status_bar.ProgressIndicator.Text = "Downloading media to storage...";
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            await App.status_bar.ProgressIndicator.ShowAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+            string url_image = "";
+            string url_video = "";
+            string url = "";
+            if (App.source.Equals("riffsy"))
+            {
+                Result result = selected_gif.instance as Result;
+                url_image = result.image_link;
+                url_video = result.image_video;
+            }
+            else if (App.source.Equals("giphy"))
+            {
+                Datum datum = selected_gif.instance as Datum;
+                url_image = datum.image_link;
+                url_video = datum.image_video;
+            }
+            if (type == "gif")
+                url = url_image;
+            else
+                url = url_video;
+            string FileName = Path.GetFileName(url);
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage message = await httpClient.GetAsync(url);
+            StorageFolder myfolder = null;
+
+            if (type == "gif")
+                myfolder = KnownFolders.SavedPictures;
+            else
+                myfolder = KnownFolders.VideosLibrary;
+
+            StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
+            byte[] file = await message.Content.ReadAsByteArrayAsync();
+            await FileIO.WriteBytesAsync(SampleFile, file);
+            var files = await myfolder.GetFilesAsync();
+
+            App.status_bar.ProgressIndicator.Text = "Downloaded media sucessfully, go share it!";
+            await Task.Delay(2000);
+            await App.status_bar.ProgressIndicator.HideAsync();
+        }
 
     }
 }
