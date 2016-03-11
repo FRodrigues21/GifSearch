@@ -87,9 +87,7 @@ namespace GifSearch.Views
         {
             App.status_bar.BackgroundOpacity = 1;
             App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
-            #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             await App.status_bar.ProgressIndicator.ShowAsync();
-            #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             gif_list.ItemsSource = await GifGiphyFacade.getTrending();
             await App.status_bar.ProgressIndicator.HideAsync();
         }
@@ -136,9 +134,7 @@ namespace GifSearch.Views
             {
                 App.status_bar.BackgroundOpacity = 1;
                 App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
-                #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 await  App.status_bar.ProgressIndicator.ShowAsync();
-                #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 await Task.Delay(3000);
                 await App.status_bar.ProgressIndicator.HideAsync();
             }
@@ -153,9 +149,7 @@ namespace GifSearch.Views
             {
                 App.status_bar.BackgroundOpacity = 1;
                 App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 await App.status_bar.ProgressIndicator.ShowAsync();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 await Task.Delay(3000);
                 await App.status_bar.ProgressIndicator.HideAsync();
             }
@@ -166,9 +160,7 @@ namespace GifSearch.Views
         {
             App.status_bar.BackgroundOpacity = 1;
             App.status_bar.ProgressIndicator.Text = "Downloading media to storage...";
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             await App.status_bar.ProgressIndicator.ShowAsync();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
             string url_image = "";
             string url_video = "";
