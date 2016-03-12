@@ -216,7 +216,7 @@ namespace GifSearch.Views
                 myfolder = KnownFolders.SavedPictures;
             else
                 myfolder = KnownFolders.VideosLibrary;
-
+            await Task.Delay(1000);
             StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
             byte[] file = await message.Content.ReadAsByteArrayAsync();
             await FileIO.WriteBytesAsync(SampleFile, file);
