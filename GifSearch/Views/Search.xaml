@@ -17,7 +17,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <AutoSuggestBox Margin="6,0,6,6" KeyUp="search_KeyUp" Grid.Row="0" QuerySubmitted="search_QuerySubmitted" x:Name="search" QueryIcon="Find" GotFocus="search_GotFocus" Text="Search by keyword, text or tag" />
+            <AutoSuggestBox Margin="12,6,12,12" KeyUp="search_KeyUp" Grid.Row="0" QuerySubmitted="search_QuerySubmitted" x:Name="search" QueryIcon="Find" GotFocus="search_GotFocus" Text="Search by keyword, text or tag"/>
 
             <ListView Grid.Row="1" x:Name="gif_list"
                               SelectionChanged="gif_list_SelectionChanged"

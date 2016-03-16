@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -41,7 +42,7 @@ namespace GifSearch.Views
         private async void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             appbar.IsOpen = true;
-            await App.status_bar.ProgressIndicator.HideAsync();
+            //await App.status_bar.ProgressIndicator.HideAsync();
             ListView list = sender as ListView;
             playGifAnimation(list, list.SelectedItem);
         }
@@ -85,18 +86,28 @@ namespace GifSearch.Views
 
         private async void loadGifList()
         {
-            App.status_bar.BackgroundOpacity = 1;
-            App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
-            await App.status_bar.ProgressIndicator.ShowAsync();
-            gif_list.ItemsSource = await GifGiphyFacade.getTrending();
-            await App.status_bar.ProgressIndicator.HideAsync();
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                App.status_bar.BackgroundOpacity = 1;
+                App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
+                await App.status_bar.ProgressIndicator.ShowAsync();
+            }
+                gif_list.ItemsSource = await GifGiphyFacade.getTrending();
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                await App.status_bar.ProgressIndicator.HideAsync();
+            }
+            
         }
 
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
-            App.status_bar.BackgroundOpacity = 1;
-            App.status_bar.ProgressIndicator.Text = "Link copied to clipboard, go share it!";
-            await App.status_bar.ProgressIndicator.ShowAsync();
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                App.status_bar.BackgroundOpacity = 1;
+                App.status_bar.ProgressIndicator.Text = "Link copied to clipboard, go share it!";
+                await App.status_bar.ProgressIndicator.ShowAsync();
+            }
             var dataPackage = new DataPackage();
             string text = "";
 
@@ -114,7 +125,10 @@ namespace GifSearch.Views
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
             await Task.Delay(3000);
-            await App.status_bar.ProgressIndicator.HideAsync();
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                await App.status_bar.ProgressIndicator.HideAsync();
+            }
         }
 
         private async void save_Click(object sender, RoutedEventArgs e)

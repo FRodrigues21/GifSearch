@@ -12,22 +12,22 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <SplitView DisplayMode="Overlay" IsPaneOpen="False" x:Name="splitview">
             <SplitView.Pane>
-                <StackPanel>
+                <StackPanel Background="DodgerBlue">
                     <Button FontSize="18" Background="Transparent" x:Name="hamburguer_button" Click="hamburguer_button_Click" Width="50" Height="50" Content="" FontFamily="Segoe MDL2 Assets" />
                     <ListBox x:Name="nav" SelectionChanged="nav_SelectionChanged" Background="Transparent">
-                        <ListBoxItem>
+                        <ListBoxItem Style="{StaticResource ShellListBoxItemStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="20" Margin="6,0,0,0" VerticalAlignment="Center" Text="" FontFamily="Segoe MDL2 Assets" />
                                 <TextBlock FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0" Text="Trending" />
                             </StackPanel>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem Style="{StaticResource ShellListBoxItemStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="20" Margin="6,0,0,0" VerticalAlignment="Center" Text="" FontFamily="Segoe MDL2 Assets" />
                                 <TextBlock FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0" Text="Search" />
                             </StackPanel>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem Style="{StaticResource ShellListBoxItemStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="20" Margin="6,0,0,0" VerticalAlignment="Center" Text="" FontFamily="Segoe MDL2 Assets" />
                                 <TextBlock FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0" Text="Favorites" />
@@ -37,13 +37,13 @@
                 </StackPanel>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid>
+                <Grid Background="{ThemeResource BackgroundThemeColor}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Background="{ThemeResource AppBarBackgroundThemeBrush}">
+                    <Grid Grid.Row="0" Background="DodgerBlue">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>

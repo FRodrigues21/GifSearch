@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -54,10 +55,11 @@ namespace GifSearch
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-            StatusBar statusBar = StatusBar.GetForCurrentView();
-            status_bar = statusBar;
-            //await statusBar.HideAsync();
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                StatusBar statusBar = StatusBar.GetForCurrentView();
+                status_bar = statusBar;
+            }
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -85,7 +87,7 @@ namespace GifSearch
             if (rootFrame.Content == null)
             {
 
-                rootFrame.Navigate(typeof(Shell), e.Arguments);
+                rootFrame.Navigate(typeof(Tabs), e.Arguments);
             }
 
             Window.Current.Activate();
