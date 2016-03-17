@@ -43,8 +43,7 @@ namespace GifSearch.Views
         {
             appbar.IsOpen = true;
             //await App.status_bar.ProgressIndicator.HideAsync();
-            ListView list = sender as ListView;
-            playGifAnimation(list, list.SelectedItem);
+            //playGifAnimation(list, list.SelectedItem);
         }
 
         private void playGifAnimation(ListView list, Object item)
@@ -92,7 +91,7 @@ namespace GifSearch.Views
                 App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
                 await App.status_bar.ProgressIndicator.ShowAsync();
             }
-                gif_list.ItemsSource = await GifGiphyFacade.getTrending();
+            gif_list.ItemsSource = await GifGiphyFacade.getTrending();
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 await App.status_bar.ProgressIndicator.HideAsync();
@@ -215,5 +214,10 @@ namespace GifSearch.Views
             await App.status_bar.ProgressIndicator.HideAsync();
         }
 
+        private void gif_list_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var panel = (ItemsWrapGrid)((GridView)sender).ItemsPanelRoot;
+            panel.ItemWidth = panel.ItemHeight = e.NewSize.Width / 3;
+        }
     }
 }
