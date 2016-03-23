@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 
 namespace GifSearch.Models
 {
@@ -197,7 +198,10 @@ namespace GifSearch.Models
         {
             get
             {
-                return new Uri(images.fixed_width_downsampled.url);
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                    return new Uri(images.fixed_width_downsampled.url);
+                else
+                    return new Uri(images.fixed_width.url);
             }
         }
         /*public string image_url

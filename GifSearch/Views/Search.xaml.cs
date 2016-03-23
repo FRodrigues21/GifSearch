@@ -50,7 +50,6 @@ namespace GifSearch.Views
                 App.status_bar.ProgressIndicator.Text = "Loading search gif list...";
                 await App.status_bar.ProgressIndicator.ShowAsync();
                 gif_list.ItemsSource = await GifGiphyFacade.searchGif(search.Text);
-                await App.status_bar.ProgressIndicator.HideAsync();
             }
         }
 
@@ -224,6 +223,11 @@ namespace GifSearch.Views
 
             App.status_bar.ProgressIndicator.Text = "Downloaded media sucessfully, go share it!";
             await Task.Delay(2000);
+            await App.status_bar.ProgressIndicator.HideAsync();
+        }
+
+        private async void gif_image_Loaded(object sender, RoutedEventArgs e)
+        {
             await App.status_bar.ProgressIndicator.HideAsync();
         }
     }
