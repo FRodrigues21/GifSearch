@@ -113,12 +113,15 @@
     </Compile>
     <Compile Include="Controllers\GifGiphyFacade.cs" />
     <Compile Include="Controllers\GifRiffsyFacade.cs" />
+    <Compile Include="Controllers\NotificationBarFacade.cs" />
+    <Compile Include="Controllers\UserFacade.cs" />
     <Compile Include="Controls\GifView.xaml.cs">
       <DependentUpon>GifView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\FavoriteItem.cs" />
     <Compile Include="Models\GifGiphyWrapper.cs" />
     <Compile Include="Models\GifRiffsyWrapper.cs" />
     <Compile Include="Models\PlayingItem.cs" />

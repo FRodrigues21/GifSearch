@@ -1,4 +1,5 @@
 ﻿using GifImage;
+using GifSearch.Controllers;
 using GifSearch.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace GifSearch.Views
     public sealed partial class Trending : Page
     {
 
+        private int loaded_count = 0;
         private PlayingItem selected_gif = null;
         private Boolean navigation_caused = true;
 
@@ -98,23 +100,14 @@ namespace GifSearch.Views
 
         private async void loadGifList()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                App.status_bar.BackgroundOpacity = 1;
-                App.status_bar.ProgressIndicator.Text = "Loading trending gif list...";
-                await App.status_bar.ProgressIndicator.ShowAsync();
-            }
+            NotificationBarFacade.displayStatusBarMessage("Loading gif list...", false);
             gif_list.ItemsSource = await GifGiphyFacade.getTrending();
         }
 
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                App.status_bar.BackgroundOpacity = 1;
-                App.status_bar.ProgressIndicator.Text = "Link copied to clipboard, go share it!";
-                await App.status_bar.ProgressIndicator.ShowAsync();
-            }
+
+            NotificationBarFacade.displayStatusBarMessage("Link copied to clipboard, go share it!", true);
 
             var dataPackage = new DataPackage();
             string text = "";
@@ -132,14 +125,22 @@ namespace GifSearch.Views
    
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
+
             await Task.Delay(3000);
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                await App.status_bar.ProgressIndicator.HideAsync();
+            NotificationBarFacade.hideStatusBar();
+        }
+
+        private async void favorite_Click(object sender, RoutedEventArgs e)
+        {
+            NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
+            UserFacade.addFavorite(selected_gif.instance);
+            await Task.Delay(3000);
+            NotificationBarFacade.hideStatusBar();
         }
 
         private async void save_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog mydial = new MessageDialog("\nMost Windows Phone apps don't support GIF images at the moment\nYou may try to download the GIF as .mp4 in order to share it!\n\nIf you only wan't to store it to view later, select .gif");
+            MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\nYou may try to download the GIF as .mp4 in order to share it!\n\nIf you only wan't to store it to view later, select .gif");
             mydial.Title = "Downloading gif";
             mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
             mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
@@ -152,16 +153,9 @@ namespace GifSearch.Views
                 downloadFromSource("gif");
             else
             {
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    App.status_bar.BackgroundOpacity = 1;
-                    App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
-                    await App.status_bar.ProgressIndicator.ShowAsync();
-                }
-                    
+                NotificationBarFacade.displayStatusBarMessage("Can't download Riffsy GIF's at the moment!", true);
                 await Task.Delay(3000);
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                    await App.status_bar.ProgressIndicator.HideAsync();
+                NotificationBarFacade.hideStatusBar();
             }
 
         }
@@ -172,28 +166,17 @@ namespace GifSearch.Views
                 downloadFromSource("mp4");
             else
             {
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    App.status_bar.BackgroundOpacity = 1;
-                    App.status_bar.ProgressIndicator.Text = "Can't download Riffsy GIF's at the moment!";
-                    await App.status_bar.ProgressIndicator.ShowAsync();
-                }
-
+                NotificationBarFacade.displayStatusBarMessage("Can't download Riffsy GIF's at the moment!", true);
                 await Task.Delay(3000);
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                    await App.status_bar.ProgressIndicator.HideAsync();
+                NotificationBarFacade.hideStatusBar();
             }
-                
+
         }
 
         private async void downloadFromSource(string type)
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                App.status_bar.BackgroundOpacity = 1;
-                App.status_bar.ProgressIndicator.Text = "Downloading media to storage...";
-                await App.status_bar.ProgressIndicator.ShowAsync();
-            }
+
+            NotificationBarFacade.displayStatusBarMessage("Downloading media to storage...", false);
 
             string url_image = "";
             string url_video = "";
@@ -229,12 +212,9 @@ namespace GifSearch.Views
             await FileIO.WriteBytesAsync(SampleFile, file);
             var files = await myfolder.GetFilesAsync();
 
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                App.status_bar.ProgressIndicator.Text = "Downloaded media sucessfully, go share it!";
-                await Task.Delay(2000);
-                await App.status_bar.ProgressIndicator.HideAsync();
-            }
+            NotificationBarFacade.displayStatusBarMessage("Media was succesfly downloaded to storage!", true);
+            await Task.Delay(2000);
+            NotificationBarFacade.hideStatusBar();
         }
 
         private void gif_list_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -243,12 +223,19 @@ namespace GifSearch.Views
             panel.ItemWidth = panel.ItemHeight = e.NewSize.Width / 4;
         }
 
-        private async void gif_image_Loaded(object sender, RoutedEventArgs e)
+        private void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            if(loaded_count > 8)
             {
-                await App.status_bar.ProgressIndicator.HideAsync();
+                NotificationBarFacade.hideStatusBar();
+                loaded_count = 0;
+            }
+            else
+            {
+                loaded_count++;
             }
         }
+
+        
     }
 }

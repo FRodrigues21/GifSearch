@@ -39,7 +39,7 @@
     <Page.BottomAppBar>
         <AppBar x:Name="appbar" IsOpen="False">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <AppBarButton HorizontalAlignment="Right" x:Name="favorite" Icon="Favorite" Label="Favorite" />
+                <AppBarButton Click="favorite_Click" HorizontalAlignment="Right" x:Name="favorite" Icon="Favorite" Label="Favorite" />
                 <AppBarButton HorizontalAlignment="Right" Click="copy_Click" x:Name="copy" Icon="Copy" Label="Copy" />
                 <AppBarButton Click="save_Click" HorizontalAlignment="Right" x:Name="save" Icon="Save" Label="Save" />
                 <AppBarButton HorizontalAlignment="Right" x:Name="play" Icon="Play" Label="Play / Pause" />

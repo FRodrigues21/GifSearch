@@ -55,11 +55,6 @@ namespace GifSearch
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                StatusBar statusBar = StatusBar.GetForCurrentView();
-                status_bar = statusBar;
-            }
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
