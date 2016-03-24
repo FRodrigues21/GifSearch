@@ -133,7 +133,7 @@ namespace GifSearch.Views
         private async void favorite_Click(object sender, RoutedEventArgs e)
         {
             NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
-            UserFacade.addFavorite(selected_gif.instance);
+            UserFacade.addFavorite((Datum)selected_gif.instance);
             await Task.Delay(3000);
             NotificationBarFacade.hideStatusBar();
         }

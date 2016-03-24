@@ -160,26 +160,34 @@ namespace GifSearch.Controllers
 
         // USER FAVORITES
 
-        public static void addFavorite(Object obj)
+        public async static void addFavorite(Datum obj)
         {
-            ObservableCollection<FavoriteItem> tmp = getFavorites();
-            tmp.Add(new FavoriteItem(getSource(), obj));
+            ObservableCollection<Datum> tmp = await getFavorites();
+            tmp.Add(obj);
             setFavorites(tmp);
         }
 
-        public static ObservableCollection<FavoriteItem> getFavorites()
+        public async static Task<ObservableCollection<Datum>> getFavorites()
         {
-            var data = (string)getValue("favorites");
-            if (data != null)
-                return JsonConvert.DeserializeObject<ObservableCollection<FavoriteItem>>(data);
-            else
-                return new ObservableCollection<FavoriteItem>();
+            var data = await readStringFromLocalFile("favorites.txt");
+            try
+            {
+                if (data != null)
+                    return JsonConvert.DeserializeObject<ObservableCollection<Datum>>(data);
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine("Exception: Reading favorites list.");
+            }
+            setFavorites(new ObservableCollection<Datum>());
+            return new ObservableCollection<Datum>();
         }
 
-        public static void setFavorites(ObservableCollection<FavoriteItem> list)
+        public async static void setFavorites(ObservableCollection<Datum> list)
         {
             var data = JsonConvert.SerializeObject(list);
-            setValue("favorites", data);
+            if (data != null)
+               await saveStringToLocalFile("favorites.txt", data);
         }
 
         // STORAGE OPERATIONS

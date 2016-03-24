@@ -63,6 +63,9 @@ namespace GifSearch
                     case 1:
                         frame_2.Navigate(typeof(Search));
                         break;
+                    case 2:
+                        frame_3.Navigate(typeof(Favorites));
+                        break;
                 }
             }
         }

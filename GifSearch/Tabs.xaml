@@ -367,21 +367,7 @@
                     <PivotItem.Header>
                         <local:TabHeader Glyph="&#xE734;" Label="Favorites" />
                     </PivotItem.Header>
-                    <!--<Frame x:Name="frame_3" />-->
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontWeight="Bold"
-                                   Text="Favorites aren't working, I'm sorry!"
-                                   TextAlignment="Center"
-                                   TextWrapping="WrapWholeWords" />
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontWeight="Light"
-                                   Text="Fix is coming in the next version"
-                                   TextAlignment="Center"
-                                   TextWrapping="WrapWholeWords" />
-                    </StackPanel>
+                    <Frame x:Name="frame_3" />
                 </PivotItem>
             </Pivot>
         </Grid>

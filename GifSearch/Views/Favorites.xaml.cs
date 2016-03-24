@@ -13,7 +13,6 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.Storage;
-using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,51 +25,19 @@ using Windows.UI.Xaml.Navigation;
 namespace GifSearch.Views
 {
 
-    public sealed partial class Search : Page
+    public sealed partial class Favorites : Page
     {
 
         private int loaded_count = 0;
         private PlayingItem selected_gif = null;
         private Boolean navigation_caused = true;
 
-        public Search()
+        public Favorites()
         {
             this.InitializeComponent();
+            this.loadGifList();
             selected_gif = new PlayingItem();
             navigation_caused = false;
-        }
-
-        private void search_GotFocus(object sender, RoutedEventArgs e)
-        {
-            search.Text = "";
-        }
-
-        private async void search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-        {
-            if(search.Text != null)
-            {
-                NotificationBarFacade.displayStatusBarMessage("Loading search gif list...", true);
-                gif_list.ItemsSource = await GifGiphyFacade.searchGif(search.Text);
-            }
-        }
-
-        private void search_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.Enter)
-            {
-                loseFocus(sender);
-                Windows.UI.ViewManagement.InputPane.GetForCurrentView().TryHide();
-            }
-        }
-
-        private void loseFocus(object sender)
-        {
-            var control = sender as Control;
-            var isTabStop = control.IsTabStop;
-            control.IsTabStop = false;
-            control.IsEnabled = false;
-            control.IsEnabled = true;
-            control.IsTabStop = isTabStop;
         }
 
         private void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -129,8 +96,15 @@ namespace GifSearch.Views
             return controls;
         }
 
+        private async void loadGifList()
+        {
+            NotificationBarFacade.displayStatusBarMessage("Loading gif list...", false);
+            gif_list.ItemsSource = await UserFacade.getFavorites();
+        }
+
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
+
             NotificationBarFacade.displayStatusBarMessage("Link copied to clipboard, go share it!", true);
 
             var dataPackage = new DataPackage();
@@ -254,15 +228,7 @@ namespace GifSearch.Views
 
         private void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (loaded_count > 10)
-            {
-                NotificationBarFacade.hideStatusBar();
-                loaded_count = 0;
-            }
-            else
-            {
-                loaded_count++;
-            }
+            NotificationBarFacade.hideStatusBar();
         }
 
         private void play_Click(object sender, RoutedEventArgs e)
@@ -272,5 +238,6 @@ namespace GifSearch.Views
             else
                 selected_gif.pause();
         }
+
     }
 }
