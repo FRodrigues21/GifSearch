@@ -33,9 +33,9 @@ namespace GifSearch
         private async void loadChangeLog()
         {
             int count = UserFacade.getLogged();
-            if(count < 1000)
+            if(count <= 1)
             {
-                string content = String.Format("{0}\n\n- New and improved UI design!\n- Lots of perfomance improvements\n- Save your favorites GIF's!\n- Added cache to Trending List (loads faster now)\n", App.version);
+                string content = String.Format("{0}\n\n- New and improved UI design!\n- Lots of perfomance improvements\n- Added cache to Trending List (loads faster now)\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));

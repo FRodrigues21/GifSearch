@@ -3,6 +3,7 @@ using GifSearch.Controllers;
 using GifSearch.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -247,5 +248,6 @@ namespace GifSearch.Views
             else
                 selected_gif.pause();
         }
+
     }
 }
