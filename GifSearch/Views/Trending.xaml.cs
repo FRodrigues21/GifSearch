@@ -150,6 +150,8 @@ namespace GifSearch.Views
         private async void downloadMediaGif(IUICommand command)
         {
             if (App.source == "giphy")
+
+
                 downloadFromSource("gif");
             else
             {

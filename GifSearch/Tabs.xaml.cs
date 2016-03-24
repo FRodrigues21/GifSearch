@@ -14,8 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace GifSearch
 {
     public sealed partial class Tabs : Page
@@ -26,6 +24,12 @@ namespace GifSearch
         public Tabs()
         {
             this.InitializeComponent();
+            this.loadChangeLog();
+        }
+
+        private void loadChangeLog()
+        {
+
         }
 
         private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)

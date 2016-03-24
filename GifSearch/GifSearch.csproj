@@ -126,12 +126,6 @@
     <Compile Include="Models\GifRiffsyWrapper.cs" />
     <Compile Include="Models\PlayingItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings_About.xaml.cs">
-      <DependentUpon>Settings_About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
@@ -172,14 +166,6 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings_About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Shell.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TabHeader.xaml">
       <SubType>Designer</SubType>

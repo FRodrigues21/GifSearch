@@ -20,6 +20,7 @@ namespace GifSearch
 
         public static async Task<ObservableCollection<Datum>> searchGif(string search)
         {
+
             HttpClient http = new HttpClient();
 
             String url = String.Format("http://api.giphy.com/v1/gifs/search?q={1}&api_key={0}&limit={2}", apikey, search, UserFacade.getLimit());
@@ -30,12 +31,22 @@ namespace GifSearch
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
             Debug.WriteLine("Search Gifs downloaded: " + data.data.Count);
-            await Task.Delay(5000);
+
             return data.data;
         }
 
         public static async Task<ObservableCollection<Datum>> getTrending()
         {
+            Debug.WriteLine("Last update: " + UserFacade.getLastTrendingUpdate() + "\n");
+
+            ObservableCollection<Datum> tmp = await UserFacade.getTrendingList();
+            Double time = UserFacade.getLastTrendingUpdate();
+            if ((time > 0 && time <= 500) && tmp != null)
+            {
+                Debug.WriteLine("Using cached trending list!");
+                return tmp;
+            }
+
             HttpClient http = new HttpClient();
 
             String url = String.Format("http://api.giphy.com/v1/gifs/trending?api_key={0}&limit={1}", apikey, UserFacade.getLimit());
@@ -47,7 +58,9 @@ namespace GifSearch
 
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.data.Count);
-            await Task.Delay(5000);
+
+            UserFacade.setTrendingList(data.data);
+
             return data.data;
         }
 
