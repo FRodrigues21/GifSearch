@@ -72,6 +72,7 @@
                               Label="Save" />
                 <AppBarButton x:Name="play"
                               HorizontalAlignment="Right"
+                              Click="play_Click"
                               Icon="Play"
                               Label="Play / Pause" />
             </StackPanel>

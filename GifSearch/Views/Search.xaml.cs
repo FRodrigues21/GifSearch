@@ -164,12 +164,15 @@ namespace GifSearch.Views
 
         private async void save_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\nYou may try to download the GIF as .mp4 in order to share it!\n\nIf you only wan't to store it to view later, select .gif");
-            mydial.Title = "Downloading gif";
+            MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\n\nYou may try to download the GIF as .mp4 in order to share it!\nIf you only wan't to store it to view later, select .gif");
+            mydial.Title = "Downloading a gif";
             mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
             mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
+            mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
             await mydial.ShowAsync();
         }
+
+        private void CommandInvokedHandler_continueclick(IUICommand command) { }
 
         private async void downloadMediaGif(IUICommand command)
         {
@@ -260,6 +263,14 @@ namespace GifSearch.Views
             {
                 loaded_count++;
             }
+        }
+
+        private void play_Click(object sender, RoutedEventArgs e)
+        {
+            if (!selected_gif.state)
+                selected_gif.play();
+            else
+                selected_gif.pause();
         }
     }
 }
