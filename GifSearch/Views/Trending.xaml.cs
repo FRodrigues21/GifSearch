@@ -41,10 +41,9 @@ namespace GifSearch.Views
             navigation_caused = false;
         }
 
-        private async void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             appbar.IsOpen = true;
-            //await App.status_bar.ProgressIndicator.HideAsync();
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 playGifAnimation((ListView)sender, ((ListView)sender).SelectedItem);
             else

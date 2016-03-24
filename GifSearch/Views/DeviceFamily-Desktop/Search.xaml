@@ -5,8 +5,6 @@
       xmlns:gif="using:GifImage"
       xmlns:local="using:GifSearch.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      FontFamily="Segoe UI"
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -25,30 +23,31 @@
                             QuerySubmitted="search_QuerySubmitted"
                             Text="Search by keyword, text or tag" />
 
-            <ListView x:Name="gif_list"
+            <GridView x:Name="gif_list"
                       Grid.Row="1"
                       SelectionChanged="gif_list_SelectionChanged"
-                      SelectionMode="Single">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
+                      SelectionMode="Single"
+                      SizeChanged="gif_list_SizeChanged">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         <Setter Property="HorizontalAlignment" Value="Stretch" />
                         <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         <Setter Property="VerticalAlignment" Value="Stretch" />
                     </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,6,0,6">
                             <Image x:Name="gif_image"
-                                   Loaded="gif_image_Loaded"
+                                   HorizontalAlignment="Center"
                                    Stretch="UniformToFill"
                                    gif:AnimationBehavior.AutoStart="False"
                                    gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />
                         </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </GridView.ItemTemplate>
+            </GridView>
 
         </Grid>
     </Grid>
@@ -78,5 +77,4 @@
             </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
-
 </Page>

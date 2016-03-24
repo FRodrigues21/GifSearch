@@ -168,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DeviceFamily-Desktop\Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DeviceFamily-Desktop\Trending.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
