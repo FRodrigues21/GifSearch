@@ -1,4 +1,5 @@
-﻿using GifSearch.Views;
+﻿using GifSearch.Controllers;
+using GifSearch.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,9 +30,25 @@ namespace GifSearch
             this.loadChangeLog();
         }
 
-        private void loadChangeLog()
+        private async void loadChangeLog()
         {
+            int count = UserFacade.getLogged();
+            if(count == 1)
+            {
+                string content = String.Format("{0}\n\n- New and improved UI design!\n- Save your favorites GIF's!\n- Added cache to Trending List (loads faster now)\n", App.version);
+                MessageDialog mydial = new MessageDialog(content);
+                mydial.Title = "What's new in gif Search?";
+                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_reviewclick)));
+                await mydial.ShowAsync();
+            }
+        }
 
+        private void CommandInvokedHandler_continueclick(IUICommand command) { }
+
+        private async void CommandInvokedHandler_reviewclick(IUICommand command)
+        {
+            await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }
 
         private void pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GifSearch.Controllers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace GifSearch
     sealed partial class App : Application
     {
         public static StatusBar status_bar { get; set; }
-        public static string version = "1.4.0.0";
+        public static string version = "1.5.0.0";
         public static bool changed { get; set; }
         public static string source { get; set; }
         public static int limit { get; set; }
@@ -36,23 +37,9 @@ namespace GifSearch
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            loadVariablesFromStorage();
+            UserFacade.setLogged((UserFacade.getLogged() + 1));
         }
-
-        private void loadVariablesFromStorage()
-        {
-            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (settings.Values.ContainsKey("provider"))
-                source = (string)settings.Values["provider"];
-            else
-                source = "giphy";
-            if (settings.Values.ContainsKey("number"))
-                limit = (int)settings.Values["number"];
-            else
-                limit = 10;
-            changed = true;
-        }
-
+        
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 

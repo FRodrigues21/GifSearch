@@ -18,6 +18,30 @@ namespace GifSearch.Controllers
 
         private static ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
 
+        // LOGGED INFO
+        public static int getLogged()
+        {
+            Debug.WriteLine("ACTIVATED: getLogged()\n");
+            var tmp = getValue("logged");
+            try
+            {
+                if (tmp != null)
+                    return (int)tmp;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting user limit!");
+            }
+            setLogged(0);
+            return 0;
+        }
+
+        public static void setLogged(int n)
+        {
+            Debug.WriteLine("ACTIVATED: setLogged()\n");
+            setValue("logged", n);
+        }
+
         // LAST TRENDING UPDATE
         public static void setLastTrendingUpdate()
         {
