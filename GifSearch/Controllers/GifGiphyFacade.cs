@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 using Windows.Web.Http;
 
 namespace GifSearch
@@ -18,8 +19,19 @@ namespace GifSearch
 
         private static string apikey = "dc6zaTOxFJmzC";
 
+        public static Boolean checkInternet()
+        {
+            var connectionProfile = NetworkInformation.GetInternetConnectionProfile();
+            return (connectionProfile != null && connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
+        }
+
         public static async Task<ObservableCollection<Datum>> searchGif(string search)
         {
+            if (!checkInternet())
+            {
+                NotificationBarFacade.displayStatusBarMessage("Check your internet connection...", true);
+                return null;
+            }
 
             HttpClient http = new HttpClient();
 
@@ -37,9 +49,18 @@ namespace GifSearch
 
         public static async Task<ObservableCollection<Datum>> getTrending()
         {
+
             Debug.WriteLine("Last update: " + UserFacade.getLastTrendingUpdate() + "\n");
 
             ObservableCollection<Datum> tmp = await UserFacade.getTrendingList();
+            if (!checkInternet())
+            {
+                NotificationBarFacade.displayStatusBarMessage("Check your internet connection...", true);
+                if (tmp != null)
+                    return tmp;
+                return null;
+            }
+
             Double time = UserFacade.getLastTrendingUpdate();
             if ((time > 0 && time <= 500) && tmp != null)
             {

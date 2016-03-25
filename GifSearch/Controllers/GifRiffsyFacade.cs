@@ -1,4 +1,5 @@
-﻿using GifSearch.Models;
+﻿using GifSearch.Controllers;
+using GifSearch.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace GifSearch
         {
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, App.limit);
+            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, UserFacade.getLimit());
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;
@@ -38,7 +39,7 @@ namespace GifSearch
         {
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, App.limit);
+            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, UserFacade.getLimit());
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;

@@ -2,6 +2,7 @@
 using GifSearch.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,13 +34,23 @@ namespace GifSearch
         private async void loadChangeLog()
         {
             int count = UserFacade.getLogged();
+            Debug.WriteLine("Logged: " + count);
             if(count <= 1)
             {
-                string content = String.Format("{0}\n\n- New and improved UI design!\n- Lots of perfomance improvements\n- Added cache to Trending List (loads faster now)\n", App.version);
+                string content = String.Format("{0}\n\n- Now an universal app!\n- New and improved UI design!\n- Keep your favorite GIF's organized\n- Lots of performance improvements\n- Added cache to Trending List (loads faster now)\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
                 mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_reviewclick)));
+                await mydial.ShowAsync();
+            }
+            else if((count > 1 && count % 5 == 0) && (UserFacade.getReviewed() == 0))
+            {
+                string content = String.Format("Feedback really matters, so...\n\nWould you like to give some time to rate and review this application to help us improve?");
+                MessageDialog mydial = new MessageDialog(content);
+                mydial.Title = "Thank you very much!";
+                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_reviewclick)));
+                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
                 await mydial.ShowAsync();
             }
         }
@@ -48,6 +59,7 @@ namespace GifSearch
 
         private async void CommandInvokedHandler_reviewclick(IUICommand command)
         {
+            UserFacade.setReviewed(1);
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }
 
@@ -58,12 +70,15 @@ namespace GifSearch
                 switch(((Pivot)sender).SelectedIndex)
                 {
                     case 0:
+                        App.pivot_index = 0;
                         frame_1.Navigate(typeof(Trending));
                         break;
                     case 1:
+                        App.pivot_index = 1;
                         frame_2.Navigate(typeof(Search));
                         break;
                     case 2:
+                        App.pivot_index = 2;
                         frame_3.Navigate(typeof(Favorites));
                         break;
                 }

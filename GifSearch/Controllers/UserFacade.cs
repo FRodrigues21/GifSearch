@@ -18,6 +18,30 @@ namespace GifSearch.Controllers
 
         private static ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
 
+        // REVIEW INFO
+        public static int getReviewed()
+        {
+            Debug.WriteLine("ACTIVATED: getReviewed()\n");
+            var tmp = getValue("review");
+            try
+            {
+                if (tmp != null)
+                    return (int)tmp;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting user limit!");
+            }
+            setLogged(0);
+            return 0;
+        }
+
+        public static void setReviewed(int n)
+        {
+            Debug.WriteLine("ACTIVATED: setReviewed()\n");
+            setValue("review", n);
+        }
+
         // LOGGED INFO
         public static int getLogged()
         {
@@ -159,6 +183,27 @@ namespace GifSearch.Controllers
         }
 
         // USER FAVORITES
+
+        public async static Task<Boolean> hasFavorite(String id)
+        {
+            ObservableCollection<Datum> tmp = await getFavorites();
+            foreach (Datum d in tmp)
+            {
+                if (d.id == id)
+                    return true;
+            }
+            return false;
+        }
+
+        public async static void removeFavorite(Datum obj)
+        {
+            ObservableCollection<Datum> tmp = await getFavorites();
+            ObservableCollection<Datum> it = new ObservableCollection<Datum>(tmp);
+            foreach (Datum d in it)
+                if (d.id == obj.id)
+                    tmp.Remove(d);
+            setFavorites(tmp);
+        }
 
         public async static void addFavorite(Datum obj)
         {

@@ -49,13 +49,19 @@ namespace GifSearch.Views
                 playGifAnimation((GridView)sender, ((GridView)sender).SelectedItem);
         }
 
-        private void playGifAnimation(Object list, Object item)
+        private async void playGifAnimation(Object list, Object item)
         {
             if (item != null)
             {
                 selected_gif.instance = item;
                 if (selected_gif != null)
                     selected_gif.pause();
+
+                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)selected_gif.instance).id);
+                if (isFavorite)
+                    favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
+                else
+                    favorite.Icon = new SymbolIcon(Symbol.Favorite);
 
                 GifImageSource _gif;
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -99,7 +105,17 @@ namespace GifSearch.Views
         private async void loadGifList()
         {
             NotificationBarFacade.displayStatusBarMessage("Loading gif list...", false);
-            gif_list.ItemsSource = await UserFacade.getFavorites();
+            if(App.pivot_index == 2)
+            {
+                var list = await UserFacade.getFavorites();
+                if (list == null)
+                {
+                    await Task.Delay(8000);
+                    loadGifList();
+                }
+                else
+                    gif_list.ItemsSource = list;
+            }
         }
 
         private async void copy_Click(object sender, RoutedEventArgs e)
@@ -110,17 +126,9 @@ namespace GifSearch.Views
             var dataPackage = new DataPackage();
             string text = "";
 
-            if (App.source.Equals("riffsy"))
-            {
-                Result result = selected_gif.instance as Result;
-                text = result.image_link;
-            }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = selected_gif.instance as Datum;
-                text = datum.image_link;
-            }
-
+            Datum datum = selected_gif.instance as Datum;
+            text = datum.image_link;
+            
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
 
@@ -130,8 +138,20 @@ namespace GifSearch.Views
 
         private async void favorite_Click(object sender, RoutedEventArgs e)
         {
-            NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
-            UserFacade.addFavorite((Datum)selected_gif.instance);
+            Boolean isFavorite = await UserFacade.hasFavorite(((Datum)selected_gif.instance).id);
+            if (isFavorite)
+            {
+                favorite.Icon = new SymbolIcon(Symbol.Favorite);
+                NotificationBarFacade.displayStatusBarMessage("GIF removed from the favorites list!", true);
+                UserFacade.removeFavorite((Datum)selected_gif.instance);
+            }
+            else
+            {
+                favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
+                NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
+                UserFacade.addFavorite((Datum)selected_gif.instance);
+            }
+
             await Task.Delay(3000);
             NotificationBarFacade.hideStatusBar();
         }
@@ -150,30 +170,13 @@ namespace GifSearch.Views
 
         private async void downloadMediaGif(IUICommand command)
         {
-            if (App.source == "giphy")
-
-
-                downloadFromSource("gif");
-            else
-            {
-                NotificationBarFacade.displayStatusBarMessage("Can't download Riffsy GIF's at the moment!", true);
-                await Task.Delay(3000);
-                NotificationBarFacade.hideStatusBar();
-            }
+            downloadFromSource("gif");
 
         }
 
         private async void downloadMediaMp4(IUICommand command)
         {
-            if (App.source == "giphy")
-                downloadFromSource("mp4");
-            else
-            {
-                NotificationBarFacade.displayStatusBarMessage("Can't download Riffsy GIF's at the moment!", true);
-                await Task.Delay(3000);
-                NotificationBarFacade.hideStatusBar();
-            }
-
+            downloadFromSource("mp4");
         }
 
         private async void downloadFromSource(string type)
@@ -184,18 +187,11 @@ namespace GifSearch.Views
             string url_image = "";
             string url_video = "";
             string url = "";
-            if (App.source.Equals("riffsy"))
-            {
-                Result result = selected_gif.instance as Result;
-                url_image = result.image_link;
-                url_video = result.image_video;
-            }
-            else if (App.source.Equals("giphy"))
-            {
-                Datum datum = selected_gif.instance as Datum;
-                url_image = datum.image_link;
-                url_video = datum.image_video;
-            }
+
+            Datum datum = selected_gif.instance as Datum;
+            url_image = datum.image_link;
+            url_video = datum.image_video;
+
             if (type == "gif")
                 url = url_image;
             else

@@ -24,11 +24,10 @@ namespace GifSearch
 
     sealed partial class App : Application
     {
-        public static StatusBar status_bar { get; set; }
-        public static string version = "1.5.0.0";
-        public static bool changed { get; set; }
-        public static string source { get; set; }
-        public static int limit { get; set; }
+
+        public static string version = "2.0.0.0";
+        public static int pivot_index = 0;
+
 
         public App()
         {

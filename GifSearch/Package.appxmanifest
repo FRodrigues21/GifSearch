@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="30472FranciscoRodrigues.14392819EE0CF" Publisher="CN=4B3CBB97-04DF-4897-8143-2AF4BFDD1653" Version="1.4.0.0" />
+  <Identity Name="30472FranciscoRodrigues.14392819EE0CF" Publisher="CN=4B3CBB97-04DF-4897-8143-2AF4BFDD1653" Version="2.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="2d967953-b71e-4438-bba0-53118bd0e73c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>gif Search</DisplayName>

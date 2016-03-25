@@ -23,6 +23,17 @@ namespace GifSearch.Controllers
                 _bar.ProgressIndicator.Text = message;
                 await _bar.ProgressIndicator.ShowAsync();
             }
+            else
+            {
+                if(last)
+                {
+                    string content = String.Format("\n" + message);
+                    MessageDialog mydial = new MessageDialog(content);
+                    mydial.Title = "gifSearch";
+                    mydial.Commands.Add(new UICommand("Dismiss", new UICommandInvokedHandler(CommandInvokedHandler_noclick)));
+                    await mydial.ShowAsync();
+                }
+            }
         }
 
         private static void CommandInvokedHandler_noclick(IUICommand command) { }
