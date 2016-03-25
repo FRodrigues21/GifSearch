@@ -39,7 +39,7 @@ namespace GifSearch
             UserFacade.setLogged((UserFacade.getLogged() + 1));
         }
         
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG

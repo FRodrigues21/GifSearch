@@ -168,13 +168,13 @@ namespace GifSearch.Views
 
         private void CommandInvokedHandler_continueclick(IUICommand command) { }
 
-        private async void downloadMediaGif(IUICommand command)
+        private void downloadMediaGif(IUICommand command)
         {
             downloadFromSource("gif");
 
         }
 
-        private async void downloadMediaMp4(IUICommand command)
+        private void downloadMediaMp4(IUICommand command)
         {
             downloadFromSource("mp4");
         }
