@@ -43,6 +43,28 @@
             </GridView.ItemTemplate>
         </GridView>
 
+        <Grid x:Name="error_presenter"
+              Grid.Row="0"
+              Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="refresh"
+                        Margin="0,0,0,6"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content="&#xE72C;"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="50"
+                        Tapped="refresh_Tapped" />
+                <TextBlock FontWeight="Bold"
+                           Text="Seems like you have no Internet connection..."
+                           TextAlignment="Center" />
+                <TextBlock FontWeight="Light"
+                           Text="Fix the problem then hit refresh!"
+                           TextAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
         <Universal:AdMediatorControl x:Name="microsoft_ad_desktop_trending"
                                      Grid.Row="1"
                                      Width="728"

@@ -53,12 +53,19 @@ namespace GifSearch
                 mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
                 await mydial.ShowAsync();
             }
+            else
+            {
+                UserFacade.setLogged((UserFacade.getLogged() + 1));
+            }
         }
 
-        private void CommandInvokedHandler_continueclick(IUICommand command) { }
+        private void CommandInvokedHandler_continueclick(IUICommand command) {
+            UserFacade.setLogged((UserFacade.getLogged() + 1));
+        }
 
         private async void CommandInvokedHandler_reviewclick(IUICommand command)
         {
+            UserFacade.setLogged((UserFacade.getLogged() + 1));
             UserFacade.setReviewed(1);
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }

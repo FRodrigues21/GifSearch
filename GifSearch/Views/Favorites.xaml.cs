@@ -3,6 +3,7 @@ using GifSearch.Controllers;
 using GifSearch.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -12,6 +13,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Networking.Connectivity;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -102,19 +104,30 @@ namespace GifSearch.Views
             return controls;
         }
 
+        public static Boolean checkInternet()
+        {
+            var connectionProfile = NetworkInformation.GetInternetConnectionProfile();
+            return (connectionProfile != null && connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
+        }
+
         private async void loadGifList()
         {
             NotificationBarFacade.displayStatusBarMessage("Loading gif list...", false);
             if(App.pivot_index == 2)
             {
                 var list = await UserFacade.getFavorites();
-                if (list == null)
+                var filled = await UserFacade.hasFavorites();
+                if (list == null || !filled)
                 {
-                    await Task.Delay(8000);
-                    loadGifList();
+                    NotificationBarFacade.hideStatusBar();
+                    if(!checkInternet())
+                        error_presenter.Visibility = Visibility.Visible;
                 }
                 else
+                {
                     gif_list.ItemsSource = list;
+                    error_presenter.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -235,5 +248,10 @@ namespace GifSearch.Views
                 selected_gif.pause();
         }
 
+        private void refresh_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Debug.WriteLine("Refresh Tapped!");
+            loadGifList();
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace GifSearch.Controllers
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Exception: Getting user limit!");
+                Debug.WriteLine("Exception: Getting user reviewed!");
             }
             setLogged(0);
             return 0;
@@ -184,13 +184,24 @@ namespace GifSearch.Controllers
 
         // USER FAVORITES
 
+        public async static Task<Boolean> hasFavorites()
+        {
+            ObservableCollection<Datum> tmp = await getFavorites();
+            if(tmp != null)
+                return tmp.Count >= 1;
+            return false;
+        }
+
         public async static Task<Boolean> hasFavorite(String id)
         {
             ObservableCollection<Datum> tmp = await getFavorites();
-            foreach (Datum d in tmp)
+            if(tmp != null)
             {
-                if (d.id == id)
-                    return true;
+                foreach (Datum d in tmp)
+                {
+                    if (d.id == id)
+                        return true;
+                }
             }
             return false;
         }
@@ -214,6 +225,7 @@ namespace GifSearch.Controllers
 
         public async static Task<ObservableCollection<Datum>> getFavorites()
         {
+            Debug.WriteLine("ACTIVATED: getFavorites()\n");
             var data = await readStringFromLocalFile("favorites.txt");
             try
             {
@@ -225,7 +237,7 @@ namespace GifSearch.Controllers
                 Debug.WriteLine("Exception: Reading favorites list.");
             }
             setFavorites(new ObservableCollection<Datum>());
-            return new ObservableCollection<Datum>();
+            return null;
         }
 
         public async static void setFavorites(ObservableCollection<Datum> list)
@@ -279,7 +291,8 @@ namespace GifSearch.Controllers
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Exception: File Writing!");
+                Debug.WriteLine("Exception: File Reading!");
+                return null;
             }
             return text;
         }

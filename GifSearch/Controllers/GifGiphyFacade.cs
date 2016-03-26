@@ -29,7 +29,6 @@ namespace GifSearch
         {
             if (!checkInternet())
             {
-                NotificationBarFacade.displayStatusBarMessage("Check your internet connection...", true);
                 return null;
             }
 
@@ -55,7 +54,6 @@ namespace GifSearch
             ObservableCollection<Datum> tmp = await UserFacade.getTrendingList();
             if (!checkInternet())
             {
-                NotificationBarFacade.displayStatusBarMessage("Check your internet connection...", true);
                 if (tmp != null)
                     return tmp;
                 return null;

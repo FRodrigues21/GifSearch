@@ -42,13 +42,35 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <Grid x:Name="error_presenter"
+              Grid.Row="0"
+              Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="refresh"
+                        Margin="0,0,0,6"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content="&#xE72C;"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="50"
+                        Tapped="refresh_Tapped" />
+                <TextBlock FontWeight="Bold"
+                           Text="Seems like you have no Internet connection..."
+                           TextAlignment="Center" />
+                <TextBlock FontWeight="Light"
+                           Text="Fix the problem then hit refresh!"
+                           TextAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
         <Universal:AdMediatorControl x:Name="microsoft_ad_mobile_favorites"
                                      Grid.Row="1"
                                      Width="480"
                                      Height="80"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Id="ad-1-e4806489-9159-49f8-a390-416b847888c0" />
+                                     Id="ad-3-e4806489-9159-49f8-a390-416b847888c0" />
 
     </Grid>
 

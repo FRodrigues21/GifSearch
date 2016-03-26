@@ -3,6 +3,7 @@ using GifSearch.Controllers;
 using GifSearch.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -47,18 +48,7 @@ namespace GifSearch.Views
 
         private async void search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if(search.Text != null && App.pivot_index == 1)
-            {
-                NotificationBarFacade.displayStatusBarMessage("Loading search gif list...", false);
-                var list = await GifGiphyFacade.searchGif(search.Text);
-                if (list == null)
-                {
-                    await Task.Delay(8000);
-                    search_QuerySubmitted(sender, args);
-                }
-                else
-                    gif_list.ItemsSource = list;
-            }
+            searchQuery(search.Text);
         }
 
         private void search_KeyUp(object sender, KeyRoutedEventArgs e)
@@ -247,7 +237,7 @@ namespace GifSearch.Views
 
         private void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (loaded_count > 10)
+            if (loaded_count >= UserFacade.getLimit()/2)
             {
                 NotificationBarFacade.hideStatusBar();
                 loaded_count = 0;
@@ -264,6 +254,30 @@ namespace GifSearch.Views
                 selected_gif.play();
             else
                 selected_gif.pause();
+        }
+
+        private async void searchQuery(String text)
+        {
+            if (search.Text != null && App.pivot_index == 1)
+            {
+                NotificationBarFacade.displayStatusBarMessage("Loading search gif list...", false);
+                var list = await GifGiphyFacade.searchGif(text);
+                if (list == null)
+                {
+                    error_presenter.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    gif_list.ItemsSource = list;
+                    error_presenter.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void refresh_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Debug.WriteLine("Refresh Tapped!");
+            searchQuery(search.Text);
         }
     }
 }

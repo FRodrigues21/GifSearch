@@ -112,11 +112,13 @@ namespace GifSearch.Views
                 var list = await GifGiphyFacade.getTrending();
                 if (list == null)
                 {
-                    await Task.Delay(8000);
-                    loadGifList();
+                    error_presenter.Visibility = Visibility.Visible;
                 }
                 else
+                {
                     gif_list.ItemsSource = list;
+                    error_presenter.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -226,7 +228,7 @@ namespace GifSearch.Views
 
         private void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if(loaded_count > 8)
+            if (loaded_count >= UserFacade.getLimit()/2)
             {
                 NotificationBarFacade.hideStatusBar();
                 loaded_count = 0;
@@ -245,5 +247,10 @@ namespace GifSearch.Views
                 selected_gif.pause();
         }
 
+        private void refresh_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Debug.WriteLine("Refresh Tapped!");
+            loadGifList();
+        }
     }
 }
