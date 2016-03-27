@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="GifSearch.Views.Support"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GifSearch.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Background="{ThemeResource SystemChromeMediumColor}" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="back" Click="back_Click" Width="50" Height="50" FontSize="20" Background="Transparent" FontFamily="Segoe MDL2 Assets" Grid.Column="0" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Content="" />
+                <TextBlock Margin="6,0,0,0" Grid.Column="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Text="SUPPORT" />
+            </Grid>
+            <StackPanel Margin="12" Grid.Row="1">
+                <TextBlock TextAlignment="Justify" Margin="6" TextWrapping="Wrap" Text="Feedback really matters, so if you have any suggestion or you have encountered any problem use the form below! You can also use it to contact the developer." />
+                <TextBlock FontWeight="SemiBold" Margin="6" Text="Name"  />
+                <TextBox Margin="6" TextWrapping="Wrap" AcceptsReturn="False"/>
+                <TextBlock FontWeight="SemiBold" Margin="6" Text="Contact Email"  />
+                <TextBox Margin="6" TextWrapping="Wrap" AcceptsReturn="False"/>
+                <TextBlock FontWeight="SemiBold" Margin="6" Text="Subject"  />
+                <ComboBox Margin="6" SelectedIndex="0">
+                    <ComboBoxItem>Suggestion</ComboBoxItem>
+                    <ComboBoxItem>Bug / Problem</ComboBoxItem>
+                    <ComboBoxItem>Contact</ComboBoxItem>
+                </ComboBox>
+                <TextBlock FontWeight="SemiBold" Margin="6" Text="Message" />
+                <TextBox Margin="6" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <Button Margin="6" Content="Submit" />
+                <TextBlock FontStyle="Italic" TextAlignment="Justify" Margin="6" TextWrapping="Wrap" Text="After clicking submit you will be redirected to your default email app." />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

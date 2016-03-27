@@ -33,39 +33,33 @@ namespace GifSearch
 
         private async void loadChangeLog()
         {
-            int count = UserFacade.getLogged();
-            Debug.WriteLine("Logged: " + count);
-            if(count <= 1)
+            Debug.WriteLine("Logged: " + App.user_logged);
+            if(App.user_logged == 1 && !App.user_showed)
             {
+                App.user_showed = true;
                 string content = String.Format("{0}\n\n- Now an universal app!\n- New and improved UI design!\n- Keep your favorite GIF's organized\n- Lots of performance improvements\n- Added cache to Trending List (loads faster now)\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "What's new in gif Search?";
-                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
-                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_reviewclick)));
+                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
                 await mydial.ShowAsync();
             }
-            else if((count > 1 && count % 5 == 0) && (UserFacade.getReviewed() == 0))
+            else if(App.user_logged > 1 && App.user_logged % 5 == 0 && UserFacade.getReviewed() == 0 && !App.user_showed)
             {
+                App.user_showed = true;
                 string content = String.Format("Feedback really matters, so...\n\nWould you like to give some time to rate and review this application to help us improve?");
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "Thank you very much!";
-                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(this.CommandInvokedHandler_reviewclick)));
-                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
+                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
                 await mydial.ShowAsync();
-            }
-            else
-            {
-                UserFacade.setLogged((UserFacade.getLogged() + 1));
             }
         }
 
-        private void CommandInvokedHandler_continueclick(IUICommand command) {
-            UserFacade.setLogged((UserFacade.getLogged() + 1));
-        }
+        private void CommandInvokedHandler_continueclick(IUICommand command) { }
 
         private async void CommandInvokedHandler_reviewclick(IUICommand command)
         {
-            UserFacade.setLogged((UserFacade.getLogged() + 1));
             UserFacade.setReviewed(1);
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }

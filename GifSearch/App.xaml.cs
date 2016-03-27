@@ -27,6 +27,10 @@ namespace GifSearch
 
         public static string version = "2.0.2.0";
         public static int pivot_index = 0;
+        public static Frame rootFrame;
+
+        public static Boolean user_showed { get; set; }
+        public static int user_logged { get; set; }
 
 
         public App()
@@ -41,7 +45,7 @@ namespace GifSearch
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)
             {
@@ -59,7 +63,9 @@ namespace GifSearch
 
             if (rootFrame.Content == null)
             {
-
+                user_showed = false;
+                user_logged = (UserFacade.getLogged() + 1);
+                UserFacade.setLogged(user_logged);
                 rootFrame.Navigate(typeof(Tabs), e.Arguments);
             }
 

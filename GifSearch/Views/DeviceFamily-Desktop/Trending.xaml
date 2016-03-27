@@ -100,11 +100,11 @@
                               Label="Play / Pause" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="settings"
+                <AppBarButton x:Name="support"
                               HorizontalAlignment="Right"
-                              Click="favorite_Click"
-                              Icon="Setting"
-                              Label="Settings" />
+                              Click="support_Click"
+                              Background="Transparent"
+                              Label="Support" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <!--<AppBar x:Name="appbar" ClosedDisplayMode="Compact" IsOpen="False">
