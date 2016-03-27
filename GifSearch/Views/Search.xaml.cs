@@ -287,5 +287,10 @@ namespace GifSearch.Views
             Debug.WriteLine("Refresh Tapped!");
             searchQuery(search.Text);
         }
+
+        private void support_Click(object sender, RoutedEventArgs e)
+        {
+            App.rootFrame.Navigate(typeof(Support));
+        }
     }
 }
