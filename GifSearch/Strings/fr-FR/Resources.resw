@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_Copy.Label" xml:space="preserve">
+    <value>Copier</value>  </data>
+  <data name="Appbar_Favorite.Label" xml:space="preserve">
+    <value>préféré; favori</value>  </data>
+  <data name="Appbar_Play.Label" xml:space="preserve">
+    <value>Lecture / Pause</value>  </data>
+  <data name="Appbar_Rate.Label" xml:space="preserve">
+    <value>Évaluer l'application</value>  </data>
+  <data name="Appbar_Save.Label" xml:space="preserve">
+    <value>Sauvegarder</value>  </data>
+  <data name="Appbar_Support.Label" xml:space="preserve">
+    <value>Support</value>  </data>
+  <data name="DialogFirst_Button1" xml:space="preserve">
+    <value>Vers l'app! Vite!</value>  </data>
+  <data name="DialogFirst_Button2" xml:space="preserve">
+    <value>Donnez votre avis maintenant!</value>  </data>
+  <data name="DialogFirst_Title" xml:space="preserve">
+    <value>Quoi de neuf dans la recherche de gif?</value>  </data>
+  <data name="DialogSecond_Content" xml:space="preserve">
+    <value>J'espère que vous aimer utiliser l'app...
+
+Souhaitez-vous prendre un peu de temps pour noter et évaluer cette application pour nous aidez à l'améliorer?</value>  </data>
+  <data name="DialogSecond_Title" xml:space="preserve">
+    <value>Merci beaucoup!</value>  </data>
+  <data name="DialogThird_Button3" xml:space="preserve">
+    <value>Annuler</value>  </data>
+  <data name="DialogThird_Content" xml:space="preserve">
+    <value>Beaucoup d'apps Windows Phone ne supportent pas les images GIF actuellement
+
+Vous devriez essayer de télécharger le GIF en format .mp4 pour le partager!
+Si vous voulez juste le stocker pour le regarder plus tard, sélectionnez .gif</value>  </data>
+  <data name="DialogThird_Title" xml:space="preserve">
+    <value>Téléchargement d'un gif</value>  </data>
+  <data name="Error_description.Text" xml:space="preserve">
+    <value>Il semblerait que vous n'avez pas de connexion Internet...</value>  </data>
+  <data name="Error_solution.Text" xml:space="preserve">
+    <value>Réglez le problème, puis rafraîchissez!</value>  </data>
+  <data name="FavoritesMessage_Loading" xml:space="preserve">
+    <value>Chargement de votre liste de GIF favoris...</value>  </data>
+  <data name="Favorites_Tab.Label" xml:space="preserve">
+    <value>Favoris</value>  </data>
+  <data name="SearchMessage_Loading" xml:space="preserve">
+    <value>Chargement de la liste de recherche de GIF</value>  </data>
+  <data name="Search_Box.Text" xml:space="preserve">
+    <value>Chercher par mot-clé, texte ou tag</value>  </data>
+  <data name="Search_Tab.Label" xml:space="preserve">
+    <value>Chercher</value>  </data>
+  <data name="Support_Description.Text" xml:space="preserve">
+    <value>Donner un feedback compte vraiment, si vous avez une suggestion ou que vous rencontrez un problème, utilisez le formulaire ci-dessous! Vous pouvez aussi l'utiliser pour contacter le développeur.</value>  </data>
+  <data name="Support_Email.Text" xml:space="preserve">
+    <value>Contacter par email</value>  </data>
+  <data name="Support_Message.Text" xml:space="preserve">
+    <value>Message</value>  </data>
+  <data name="Support_Name.Text" xml:space="preserve">
+    <value>Nom</value>  </data>
+  <data name="Support_Note.Text" xml:space="preserve">
+    <value>Après avoir cliqué soumettre, vous serez redirigé vers votre application de mail par défaut</value>  </data>
+  <data name="Support_Subject.Text" xml:space="preserve">
+    <value>Sujet</value>  </data>
+  <data name="Support_Submit.Content" xml:space="preserve">
+    <value>Soumettre</value>  </data>
+  <data name="Support_Title.Text" xml:space="preserve">
+    <value>SUPPORT</value>  </data>
+  <data name="TrendingMessage_CopySuccess" xml:space="preserve">
+    <value>Lien copié vers le presse-papier, partagez le!</value>  </data>
+  <data name="TrendingMessage_FavAdd" xml:space="preserve">
+    <value>GIF ajouté à la liste de favoris!</value>  </data>
+  <data name="TrendingMessage_FavRem" xml:space="preserve">
+    <value>GIF supprimé de la liste de favoris!</value>  </data>
+  <data name="TrendingMessage_Loading" xml:space="preserve">
+    <value>Chargement de la liste de GIF Populaires</value>  </data>
+  <data name="Trending_Tab.Label" xml:space="preserve">
+    <value>Populaires</value>  </data>
+</root>
