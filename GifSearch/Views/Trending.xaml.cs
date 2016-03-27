@@ -166,10 +166,13 @@ namespace GifSearch.Views
         {
             if (selected_gif.instance != null)
             {
+                Datum datum = (Datum)selected_gif.instance;
                 MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\n\nYou may try to download the GIF as .mp4 in order to share it!\nIf you only wan't to store it to view later, select .gif");
                 mydial.Title = "Downloading a gif";
-                mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(downloadMediaGif)));
-                mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(downloadMediaMp4)));
+                string gif = String.Format(".gif ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_link));
+                string mp4 = String.Format(".mp4 ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_video));
+                mydial.Commands.Add(new UICommand(gif, new UICommandInvokedHandler(downloadMediaGif)));
+                mydial.Commands.Add(new UICommand(mp4, new UICommandInvokedHandler(downloadMediaMp4)));
                 if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(cancelClick)));
                 await mydial.ShowAsync();
@@ -182,14 +185,20 @@ namespace GifSearch.Views
         {
             Datum datum = selected_gif.instance as Datum;
             if (datum != null)
-                await DownloadFacade.downloadFromSource(datum.image_link, "image");
+            {
+                String filename = String.Format("giphy_{0}.gif", datum.id);
+                await DownloadFacade.downloadFromSource(filename, datum.image_link, "image");
+            }
         }
 
         private async void downloadMediaMp4(IUICommand command)
         {
             Datum datum = selected_gif.instance as Datum;
             if (datum != null)
-                await DownloadFacade.downloadFromSource(datum.image_video, "video");
+            {
+                String filename = String.Format("giphy_{0}.mp4", datum.id);
+                await DownloadFacade.downloadFromSource(filename, datum.image_video, "video");
+            }
         }
 
         private void gif_list_SizeChanged(object sender, SizeChangedEventArgs e)

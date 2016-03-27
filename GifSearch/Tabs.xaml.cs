@@ -37,7 +37,7 @@ namespace GifSearch
             if(App.user_logged == 1 && !App.user_showed)
             {
                 App.user_showed = true;
-                string content = String.Format("{0}\n\n- Now an universal app!\n- New and improved UI design!\n- Keep your favorite GIF's organized\n- Lots of performance improvements\n- Added cache to Trending List (loads faster now)\n", App.version);
+                string content = String.Format("{0}\n\n- Added filesize to download message\n- Added Support page\n- Fixed download bugs on mobile\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "What's new in gif Search?";
                 mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
@@ -47,7 +47,7 @@ namespace GifSearch
             else if(App.user_logged > 1 && App.user_logged % 5 == 0 && UserFacade.getReviewed() == 0 && !App.user_showed)
             {
                 App.user_showed = true;
-                string content = String.Format("Feedback really matters, so...\n\nWould you like to give some time to rate and review this application to help us improve?");
+                string content = String.Format("I hope you are enjoying using the app...\n\nWould you like to give some time to rate and review this application to help us improve?");
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = "Thank you very much!";
                 mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
