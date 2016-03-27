@@ -52,7 +52,7 @@ namespace GifSearch.Controllers
                 byte[] file = await message.Content.ReadAsByteArrayAsync();
                 await FileIO.WriteBytesAsync(SampleFile, file);
                 var files = await myfolder.GetFilesAsync();
-                NotificationBarFacade.displayStatusBarMessage("Media was succesfly downloaded to storage!", true);
+                NotificationBarFacade.displayStatusBarMessage("Media was successfully downloaded to storage!", true);
                 await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
                 return true;

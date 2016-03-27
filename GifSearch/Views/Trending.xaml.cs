@@ -35,6 +35,7 @@ namespace GifSearch.Views
         private int loaded_count = 0;
         private PlayingItem selected_gif = null;
         private Boolean navigation_caused = true;
+        private static Boolean download_started = false;
         private static ResourceLoader res { get; set; }
 
         public Trending()
@@ -167,8 +168,9 @@ namespace GifSearch.Views
 
         private async void save_Click(object sender, RoutedEventArgs e)
         {
-            if (selected_gif.instance != null)
+            if (selected_gif.instance != null && !download_started)
             {
+                download_started = true;
                 Datum datum = (Datum)selected_gif.instance;
                 MessageDialog mydial = new MessageDialog(res.GetString("DialogThird_Content"));
                 mydial.Title = res.GetString("DialogThird_Title");
@@ -179,6 +181,7 @@ namespace GifSearch.Views
                 if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     mydial.Commands.Add(new UICommand(res.GetString("DialogThird_Button3"), new UICommandInvokedHandler(cancelClick)));
                 await mydial.ShowAsync();
+                download_started = false;
             }
         }
 
