@@ -113,6 +113,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\DownloadFacade.cs" />
     <Compile Include="Controllers\GifGiphyFacade.cs" />
     <Compile Include="Controllers\GifRiffsyFacade.cs" />
     <Compile Include="Controllers\NotificationBarFacade.cs" />
@@ -136,9 +137,6 @@
     </Compile>
     <Compile Include="Views\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Support.xaml.cs">
       <DependentUpon>Support.xaml</DependentUpon>
@@ -193,10 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Search.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

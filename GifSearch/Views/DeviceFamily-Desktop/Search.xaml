@@ -104,6 +104,11 @@
                               Click="support_Click"
                               Background="Transparent"
                               Label="Support" />
+                <AppBarButton x:Name="rate"
+                              HorizontalAlignment="Right"
+                              Click="rate_Click"
+                              Background="Transparent"
+                              Label="Rate the app" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

@@ -52,8 +52,10 @@ namespace GifSearch.Views
 
             _email.Subject = String.Format("{0} - {1}", tmp_type, name.Text);
             _email.Body = String.Format("Message:\n{0}\n\nContact Email:\n{1}\n\n", message.Text, email.Text); ;
-            NotificationBarFacade.displayStatusBarMessage("Sending support message...", false);
-            await EmailManager.ShowComposeNewEmailAsync(_email);
+            if(tmp_type != null&& name.Text != null && message.Text != null && email.Text != null) {
+                NotificationBarFacade.displayStatusBarMessage("Sending support message...", false);
+                await EmailManager.ShowComposeNewEmailAsync(_email);
+            }
         }
     }
 }
