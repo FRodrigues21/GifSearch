@@ -25,7 +25,7 @@ namespace GifSearch
     sealed partial class App : Application
     {
 
-        public static string version = "2.0.0.1";
+        public static string version = "2.0.2.0";
         public static int pivot_index = 0;
 
 
@@ -40,13 +40,6 @@ namespace GifSearch
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = false;
-            }
-#endif
 
             Frame rootFrame = Window.Current.Content as Frame;
 

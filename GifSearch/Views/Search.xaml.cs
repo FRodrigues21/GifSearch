@@ -46,7 +46,7 @@ namespace GifSearch.Views
             search.Text = "";
         }
 
-        private async void search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             searchQuery(search.Text);
         }
@@ -72,7 +72,6 @@ namespace GifSearch.Views
 
         private void gif_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            appbar.IsOpen = true;
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 playGifAnimation((ListView)sender, ((ListView)sender).SelectedItem);
             else
@@ -134,49 +133,55 @@ namespace GifSearch.Views
 
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
-            NotificationBarFacade.displayStatusBarMessage("Link copied to clipboard, go share it!", true);
-
-            var dataPackage = new DataPackage();
-            string text = "";
-
             Datum datum = selected_gif.instance as Datum;
-            text = datum.image_link;
-
-            dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
-
-            await Task.Delay(3000);
-            NotificationBarFacade.hideStatusBar();
+            if (datum != null)
+            {
+                var dataPackage = new DataPackage();
+                string text = "";
+                text = datum.image_link;
+                dataPackage.SetText(text);
+                Clipboard.SetContent(dataPackage);
+                NotificationBarFacade.displayStatusBarMessage("Link copied to clipboard, go share it!", true);
+                await Task.Delay(3000);
+                NotificationBarFacade.hideStatusBar();
+            }
         }
 
         private async void favorite_Click(object sender, RoutedEventArgs e)
         {
-            Boolean isFavorite = await UserFacade.hasFavorite(((Datum)selected_gif.instance).id);
-            if (isFavorite)
+            var item = selected_gif.instance;
+            if (item != null)
             {
-                favorite.Icon = new SymbolIcon(Symbol.Favorite);
-                NotificationBarFacade.displayStatusBarMessage("GIF removed from the favorites list!", true);
-                UserFacade.removeFavorite((Datum)selected_gif.instance);
-            }
-            else
-            {
-                favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
-                NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
-                UserFacade.addFavorite((Datum)selected_gif.instance);
-            }
+                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)item).id);
+                if (isFavorite)
+                {
+                    favorite.Icon = new SymbolIcon(Symbol.Favorite);
+                    NotificationBarFacade.displayStatusBarMessage("GIF removed from the favorites list!", true);
+                    UserFacade.removeFavorite((Datum)selected_gif.instance);
+                }
+                else
+                {
+                    favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
+                    NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
+                    UserFacade.addFavorite((Datum)selected_gif.instance);
+                }
 
-            await Task.Delay(3000);
-            NotificationBarFacade.hideStatusBar();
+                await Task.Delay(3000);
+                NotificationBarFacade.hideStatusBar();
+            }
         }
 
         private async void save_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\n\nYou may try to download the GIF as .mp4 in order to share it!\nIf you only wan't to store it to view later, select .gif");
-            mydial.Title = "Downloading a gif";
-            mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
-            mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
-            mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
-            await mydial.ShowAsync();
+            if (selected_gif.instance != null)
+            {
+                MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\n\nYou may try to download the GIF as .mp4 in order to share it!\nIf you only wan't to store it to view later, select .gif");
+                mydial.Title = "Downloading a gif";
+                mydial.Commands.Add(new UICommand("Download as .gif", new UICommandInvokedHandler(this.downloadMediaGif)));
+                mydial.Commands.Add(new UICommand("Download as .mp4", new UICommandInvokedHandler(this.downloadMediaMp4)));
+                mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(this.CommandInvokedHandler_continueclick)));
+                await mydial.ShowAsync();
+            }
         }
 
         private void CommandInvokedHandler_continueclick(IUICommand command) { }
@@ -193,40 +198,40 @@ namespace GifSearch.Views
 
         private async void downloadFromSource(string type)
         {
-
-            NotificationBarFacade.displayStatusBarMessage("Downloading media to storage...", false);
-
-            string url_image = "";
-            string url_video = "";
-            string url = "";
-
             Datum datum = selected_gif.instance as Datum;
-            url_image = datum.image_link;
-            url_video = datum.image_video;
+            if (datum != null)
+            {
+                NotificationBarFacade.displayStatusBarMessage("Downloading media to storage...", false);
 
-            if (type == "gif")
-                url = url_image;
-            else
-                url = url_video;
+                string url_image = "";
+                string url_video = "";
+                string url = "";
+                url_image = datum.image_link;
+                url_video = datum.image_video;
 
-            string FileName = Path.GetFileName(url);
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage message = await httpClient.GetAsync(url);
-            StorageFolder myfolder = null;
+                if (type == "gif")
+                    url = url_image;
+                else
+                    url = url_video;
+                string FileName = Path.GetFileName(url);
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage message = await httpClient.GetAsync(url);
+                StorageFolder myfolder = null;
 
-            if (type == "gif")
-                myfolder = KnownFolders.SavedPictures;
-            else
-                myfolder = KnownFolders.VideosLibrary;
+                if (type == "gif")
+                    myfolder = KnownFolders.SavedPictures;
+                else
+                    myfolder = KnownFolders.VideosLibrary;
 
-            StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-            byte[] file = await message.Content.ReadAsByteArrayAsync();
-            await FileIO.WriteBytesAsync(SampleFile, file);
-            var files = await myfolder.GetFilesAsync();
+                StorageFile SampleFile = await myfolder.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
+                byte[] file = await message.Content.ReadAsByteArrayAsync();
+                await FileIO.WriteBytesAsync(SampleFile, file);
+                var files = await myfolder.GetFilesAsync();
 
-            NotificationBarFacade.displayStatusBarMessage("Media was succesfly downloaded to storage!", true);
-            await Task.Delay(2000);
-            NotificationBarFacade.hideStatusBar();
+                NotificationBarFacade.displayStatusBarMessage("Media was succesfly downloaded to storage!", true);
+                await Task.Delay(2000);
+                NotificationBarFacade.hideStatusBar();
+            }
         }
 
         private void gif_list_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -250,10 +255,13 @@ namespace GifSearch.Views
 
         private void play_Click(object sender, RoutedEventArgs e)
         {
-            if (!selected_gif.state)
-                selected_gif.play();
-            else
-                selected_gif.pause();
+            if (selected_gif != null)
+            {
+                if (!selected_gif.state)
+                    selected_gif.play();
+                else
+                    selected_gif.pause();
+            }
         }
 
         private async void searchQuery(String text)

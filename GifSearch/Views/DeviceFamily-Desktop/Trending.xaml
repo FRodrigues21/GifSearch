@@ -76,7 +76,38 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <AppBar x:Name="appbar" IsOpen="False">
+        <CommandBar x:Name="appbar">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="favorite"
+                              HorizontalAlignment="Right"
+                              Click="favorite_Click"
+                              Icon="Favorite"
+                              Label="Favorite" />
+                <AppBarButton x:Name="copy"
+                              HorizontalAlignment="Right"
+                              Click="copy_Click"
+                              Icon="Copy"
+                              Label="Copy" />
+                <AppBarButton x:Name="save"
+                              HorizontalAlignment="Right"
+                              Click="save_Click"
+                              Icon="Save"
+                              Label="Save" />
+                <AppBarButton x:Name="play"
+                              HorizontalAlignment="Right"
+                              Click="play_Click"
+                              Icon="Play"
+                              Label="Play / Pause" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="settings"
+                              HorizontalAlignment="Right"
+                              Click="favorite_Click"
+                              Icon="Setting"
+                              Label="Settings" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+        <!--<AppBar x:Name="appbar" ClosedDisplayMode="Compact" IsOpen="False">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <AppBarButton x:Name="favorite"
                               HorizontalAlignment="Right"
@@ -99,6 +130,6 @@
                               Icon="Play"
                               Label="Play / Pause" />
             </StackPanel>
-        </AppBar>
+        </AppBar>-->
     </Page.BottomAppBar>
 </Page>

@@ -75,8 +75,8 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <AppBar x:Name="appbar" IsOpen="False">
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+        <CommandBar x:Name="appbar">
+            <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="favorite"
                               HorizontalAlignment="Right"
                               Click="favorite_Click"
@@ -97,7 +97,14 @@
                               Click="play_Click"
                               Icon="Play"
                               Label="Play / Pause" />
-            </StackPanel>
-        </AppBar>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="settings"
+                              HorizontalAlignment="Right"
+                              Click="favorite_Click"
+                              Icon="Setting"
+                              Label="Settings" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
     </Page.BottomAppBar>
 </Page>
