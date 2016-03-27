@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 
 namespace GifSearch.Controllers
 {
@@ -19,6 +21,7 @@ namespace GifSearch.Controllers
         {
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
+                _bar.BackgroundColor = (Color)Application.Current.Resources["SystemChromeMediumColor"];
                 _bar.BackgroundOpacity = 1;
                 _bar.ProgressIndicator.Text = message;
                 await _bar.ProgressIndicator.ShowAsync();

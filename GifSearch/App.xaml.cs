@@ -25,7 +25,7 @@ namespace GifSearch
     sealed partial class App : Application
     {
 
-        public static string version = "2.0.2.0";
+        public static string version = "2.1.0.0";
         public static int pivot_index = 0;
         public static Frame rootFrame;
 
