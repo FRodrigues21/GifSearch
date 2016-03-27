@@ -108,6 +108,7 @@
     <None Include="GifSearch_StoreKey.pfx" />
     <None Include="GifSearch_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

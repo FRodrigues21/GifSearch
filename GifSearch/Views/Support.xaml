@@ -20,24 +20,24 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="back" Click="back_Click" Width="50" Height="50" FontSize="20" Background="Transparent" FontFamily="Segoe MDL2 Assets" Grid.Column="0" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Content="" />
-                <TextBlock Margin="6,0,0,0" Grid.Column="1" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Text="SUPPORT" />
+                <TextBlock x:Uid="Support_Title" Margin="6,0,0,0" Grid.Column="1" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Text="SUPPORT" />
             </Grid>
             <StackPanel Margin="12" Grid.Row="1">
-                <TextBlock TextAlignment="Justify" Margin="6" TextWrapping="Wrap" Text="Feedback really matters, so if you have any suggestion or you have encountered any problem use the form below! You can also use it to contact the developer." />
-                <TextBlock FontWeight="SemiBold" Margin="6" Text="Name"  />
+                <TextBlock x:Uid="Support_Description" TextAlignment="Justify" Margin="6" TextWrapping="Wrap" />
+                <TextBlock x:Uid="Support_Name" FontWeight="SemiBold" Margin="6" Text="Name"  />
                 <TextBox x:Name="name" Margin="6" TextWrapping="Wrap" AcceptsReturn="False"/>
-                <TextBlock FontWeight="SemiBold" Margin="6" Text="Contact Email"  />
+                <TextBlock x:Uid="Support_Email" FontWeight="SemiBold" Margin="6" Text="Contact Email"  />
                 <TextBox x:Name="email" InputScope="EmailNameOrAddress" Margin="6" TextWrapping="Wrap" AcceptsReturn="False"/>
-                <TextBlock FontWeight="SemiBold" Margin="6" Text="Subject"  />
+                <TextBlock x:Uid="Support_Subject" FontWeight="SemiBold" Margin="6" Text="Subject"  />
                 <ComboBox x:Name="type" Margin="6" SelectedIndex="0">
                     <ComboBoxItem>Suggestion</ComboBoxItem>
                     <ComboBoxItem>Bug / Problem</ComboBoxItem>
                     <ComboBoxItem>Contact</ComboBoxItem>
                 </ComboBox>
-                <TextBlock FontWeight="SemiBold" Margin="6" Text="Message" />
+                <TextBlock x:Uid="Support_Message" FontWeight="SemiBold" Margin="6" Text="Message" />
                 <TextBox x:Name="message" Margin="6" TextWrapping="Wrap" AcceptsReturn="True"/>
-                <Button x:Name="submit" Click="submit_Click" Margin="6" Content="Submit" />
-                <TextBlock FontStyle="Italic" TextAlignment="Justify" Margin="6" TextWrapping="Wrap" Text="After clicking submit you will be redirected to your default email app." />
+                <Button x:Uid="Support_Submit" x:Name="submit" Click="submit_Click" Margin="6" Content="Submit" />
+                <TextBlock x:Uid="Support_Note" FontStyle="Italic" TextAlignment="Justify" Margin="6" TextWrapping="Wrap" Text="After clicking submit you will be redirected to your default email app." />
             </StackPanel>
         </Grid>
     </Grid>

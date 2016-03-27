@@ -353,19 +353,19 @@
                    Style="{StaticResource TabsStylePivotStyle}">
                 <PivotItem Margin="-10,0,-10,0">
                     <PivotItem.Header>
-                        <local:TabHeader Glyph="&#xE909;" Label="Trending" />
+                        <local:TabHeader x:Uid="Trending_Tab" Glyph="&#xE909;" Label="Trending" />
                     </PivotItem.Header>
                     <Frame x:Name="frame_1" />
                 </PivotItem>
                 <PivotItem Margin="-10,0,-10,0">
                     <PivotItem.Header>
-                        <local:TabHeader Glyph="&#xE71E;" Label="Search" />
+                        <local:TabHeader x:Uid="Search_Tab" Glyph="&#xE71E;" Label="Search" />
                     </PivotItem.Header>
                     <Frame x:Name="frame_2" />
                 </PivotItem>
                 <PivotItem Margin="-10,0,-10,0">
                     <PivotItem.Header>
-                        <local:TabHeader Glyph="&#xE734;" Label="Favorites" />
+                        <local:TabHeader x:Uid="Favorites_Tab" Glyph="&#xE734;" Label="Favorites" />
                     </PivotItem.Header>
                     <Frame x:Name="frame_3" />
                 </PivotItem>

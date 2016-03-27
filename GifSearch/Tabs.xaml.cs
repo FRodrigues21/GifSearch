@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -24,34 +25,34 @@ namespace GifSearch
     {
 
         private static Boolean code_caused = false;
+        private static ResourceLoader res { get; set; }
 
         public Tabs()
         {
             this.InitializeComponent();
+            res = ResourceLoader.GetForCurrentView();
             this.loadChangeLog();
         }
 
         private async void loadChangeLog()
         {
-            Debug.WriteLine("Logged: " + App.user_logged);
             if(App.user_logged == 1 && !App.user_showed)
             {
                 App.user_showed = true;
                 string content = String.Format("{0}\n\n- Added filesize to download message\n- Added Support page\n- Fixed download bugs on mobile\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
-                mydial.Title = "What's new in gif Search?";
-                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
-                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
+                mydial.Title = res.GetString("DialogFirst_Title");
+                mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
+                mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button2"), new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
                 await mydial.ShowAsync();
             }
             else if(App.user_logged > 1 && App.user_logged % 5 == 0 && UserFacade.getReviewed() == 0 && !App.user_showed)
             {
                 App.user_showed = true;
-                string content = String.Format("I hope you are enjoying using the app...\n\nWould you like to give some time to rate and review this application to help us improve?");
-                MessageDialog mydial = new MessageDialog(content);
-                mydial.Title = "Thank you very much!";
-                mydial.Commands.Add(new UICommand("Review the app now!", new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
-                mydial.Commands.Add(new UICommand("To the app! Quickly!", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
+                MessageDialog mydial = new MessageDialog(res.GetString("DialogSecond_Content"));
+                mydial.Title = res.GetString("DialogSecond_Title");
+                mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button2"), new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
+                mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
                 await mydial.ShowAsync();
             }
         }

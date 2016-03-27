@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
@@ -33,10 +34,12 @@ namespace GifSearch.Views
         private int loaded_count = 0;
         private PlayingItem selected_gif = null;
         private Boolean navigation_caused = true;
+        private static ResourceLoader res { get; set; }
 
         public Search()
         {
             this.InitializeComponent();
+            res = ResourceLoader.GetForCurrentView();
             selected_gif = new PlayingItem();
             navigation_caused = false;
         }
@@ -141,7 +144,7 @@ namespace GifSearch.Views
                 text = datum.image_link;
                 dataPackage.SetText(text);
                 Clipboard.SetContent(dataPackage);
-                NotificationBarFacade.displayStatusBarMessage("Link copied to clipboard, go share it!", true);
+                NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_CopySuccess"), true);
                 await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
             }
@@ -156,13 +159,13 @@ namespace GifSearch.Views
                 if (isFavorite)
                 {
                     favorite.Icon = new SymbolIcon(Symbol.Favorite);
-                    NotificationBarFacade.displayStatusBarMessage("GIF removed from the favorites list!", true);
+                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavAdd"), true);
                     UserFacade.removeFavorite((Datum)selected_gif.instance);
                 }
                 else
                 {
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
-                    NotificationBarFacade.displayStatusBarMessage("GIF added to the favorites list!", true);
+                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavRem"), true);
                     UserFacade.addFavorite((Datum)selected_gif.instance);
                 }
 
@@ -176,14 +179,14 @@ namespace GifSearch.Views
             if (selected_gif.instance != null)
             {
                 Datum datum = (Datum)selected_gif.instance;
-                MessageDialog mydial = new MessageDialog("Most Windows Phone apps don't support GIF images at the moment\n\nYou may try to download the GIF as .mp4 in order to share it!\nIf you only wan't to store it to view later, select .gif");
-                mydial.Title = "Downloading a gif";
+                MessageDialog mydial = new MessageDialog(res.GetString("DialogThird_Content"));
+                mydial.Title = res.GetString("DialogThird_Title");
                 string gif = String.Format(".gif ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_link));
                 string mp4 = String.Format(".mp4 ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_video));
                 mydial.Commands.Add(new UICommand(gif, new UICommandInvokedHandler(downloadMediaGif)));
                 mydial.Commands.Add(new UICommand(mp4, new UICommandInvokedHandler(downloadMediaMp4)));
                 if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                    mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(cancelClick)));
+                    mydial.Commands.Add(new UICommand(res.GetString("DialogThird_Button3"), new UICommandInvokedHandler(cancelClick)));
                 await mydial.ShowAsync();
             }
         }
@@ -244,7 +247,7 @@ namespace GifSearch.Views
         {
             if (search.Text != null && App.pivot_index == 1)
             {
-                NotificationBarFacade.displayStatusBarMessage("Loading search gif list...", false);
+                NotificationBarFacade.displayStatusBarMessage(res.GetString("SearchMessage_Loading"), false);
                 var list = await GifGiphyFacade.searchGif(text);
                 if (list == null)
                 {
@@ -260,7 +263,6 @@ namespace GifSearch.Views
 
         private void refresh_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Debug.WriteLine("Refresh Tapped!");
             searchQuery(search.Text);
         }
 
