@@ -105,9 +105,15 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Fonts\Stilu.ttf" />
     <Content Include="AdMediator.config" />
+    <PRIResource Include="Strings\nl-BL\Resources.resw" />
+    <PRIResource Include="Strings\nl-NL\Resources.resw" />
+    <PRIResource Include="Strings\pt-PT\Resources.resw" />
+    <PRIResource Include="Strings\pt-BR\Resources.resw" />
+    <PRIResource Include="Strings\cs-CZ\Resources.resw" />
     <None Include="GifSearch_StoreKey.pfx" />
     <None Include="GifSearch_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\de-DE\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +224,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
