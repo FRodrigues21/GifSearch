@@ -60,7 +60,7 @@ namespace GifSearch
             }
 
             Double time = UserFacade.getLastTrendingUpdate();
-            if ((time > 0 && time <= 500) && tmp != null)
+            if ((time > 0 && time <= 800) && tmp != null)
             {
                 Debug.WriteLine("Using cached trending list!");
                 return tmp;

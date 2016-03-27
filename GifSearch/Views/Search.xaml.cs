@@ -159,13 +159,13 @@ namespace GifSearch.Views
                 if (isFavorite)
                 {
                     favorite.Icon = new SymbolIcon(Symbol.Favorite);
-                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavAdd"), true);
+                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavRem"), true);
                     UserFacade.removeFavorite((Datum)selected_gif.instance);
                 }
                 else
                 {
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
-                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavRem"), true);
+                    NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavAdd"), true);
                     UserFacade.addFavorite((Datum)selected_gif.instance);
                 }
 

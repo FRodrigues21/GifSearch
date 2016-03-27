@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="back" Click="back_Click" Width="50" Height="50" FontSize="20" Background="Transparent" FontFamily="Segoe MDL2 Assets" Grid.Column="0" Foreground="{ThemeResource SystemControlBackgroundAccentBrush}" Content="" />
-                <TextBlock x:Uid="Support_Title" Margin="6,0,0,0" Grid.Column="1" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Text="SUPPORT" />
+                <TextBlock x:Uid="Support_Title" Margin="6,-3,0,0" Grid.Column="1" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Text="SUPPORT" />
             </Grid>
             <StackPanel Margin="12" Grid.Row="1">
                 <TextBlock x:Uid="Support_Description" TextAlignment="Justify" Margin="6" TextWrapping="Wrap" />
