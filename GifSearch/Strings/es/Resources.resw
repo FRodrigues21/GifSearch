@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_Copy.Label" xml:space="preserve">
+    <value>Copiar link</value>
+  </data>
+  <data name="Appbar_Favorite.Label" xml:space="preserve">
+    <value>Favorito</value>
+  </data>
+  <data name="Appbar_Play.Label" xml:space="preserve">
+    <value>Reproducir / Pausar</value>
+  </data>
+  <data name="Appbar_Rate.Label" xml:space="preserve">
+    <value>Evalúar la aplicación</value>
+  </data>
+  <data name="Appbar_Save.Label" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Appbar_Support.Label" xml:space="preserve">
+    <value>Soporte</value>
+  </data>
+  <data name="DialogFirst_Button1" xml:space="preserve">
+    <value>A la aplicación! Rápido!</value>
+  </data>
+  <data name="DialogFirst_Button2" xml:space="preserve">
+    <value>Evaluar la aplicación ahora!</value>
+  </data>
+  <data name="DialogFirst_Title" xml:space="preserve">
+    <value>Qué hay de nuevo en gif Search?</value>
+  </data>
+  <data name="DialogSecond_Content" xml:space="preserve">
+    <value>Espero que usted está disfrutando de la aplicación...
+
+¿Te gustaría dar algún tiempo para calificar y calificar esta aplicación para ayudarnos a mejorar?</value>
+  </data>
+  <data name="DialogSecond_Title" xml:space="preserve">
+    <value>Muchas gracias!</value>
+  </data>
+  <data name="DialogThird_Button3" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="DialogThird_Content" xml:space="preserve">
+    <value>La mayoría de las apps de Windows Phone no admiten imágenes GIF.
+
+En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo quieres almacenar la imagen para ver más adelante, selecciona gif.</value>
+  </data>
+  <data name="DialogThird_Title" xml:space="preserve">
+    <value>Descargando un GIF</value>
+  </data>
+  <data name="Error_solution.Text" xml:space="preserve">
+    <value>Soluciona el problema después prime actualizar!</value>
+  </data>
+  <data name="FavoritesMessage_Loading" xml:space="preserve">
+    <value>Cargando tus GIF favoritos...</value>
+  </data>
+  <data name="Favorites_Tab.Label" xml:space="preserve">
+    <value>Favoritos</value>
+  </data>
+  <data name="SearchMessage_Loading" xml:space="preserve">
+    <value>Cargando tus GIF favoritos...</value>
+  </data>
+  <data name="Search_Box.Text" xml:space="preserve">
+    <value>Búsqueda por palabra clave, texto o tag</value>
+  </data>
+  <data name="Search_Tab.Label" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="Support_Description.Text" xml:space="preserve">
+    <value>Tus comentarios realmente importan, así que si tienes cualquier sugerencia o si has encontrado cualquier problema usa el siguiente formulario! También contactarte con el desarrollador.</value>
+  </data>
+  <data name="Support_Email.Text" xml:space="preserve">
+    <value>Email de contacto</value>
+  </data>
+  <data name="Support_Message.Text" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="Support_Name.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Support_Note.Text" xml:space="preserve">
+    <value>Una vez pulsado enviar será redirigido para su aplicación de email.</value>
+  </data>
+  <data name="Support_Subject.Text" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Support_Submit.Content" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Support_Title.Text" xml:space="preserve">
+    <value>SOPORTE</value>
+  </data>
+  <data name="TrendingMessage_CopySuccess" xml:space="preserve">
+    <value>Link copiado para el portapapeles, compártelo!</value>
+  </data>
+  <data name="TrendingMessage_FavAdd" xml:space="preserve">
+    <value>GIF añadido a tus favoritos!</value>
+  </data>
+  <data name="TrendingMessage_FavRem" xml:space="preserve">
+    <value>GIF eliminado de tus favoritos!</value>
+  </data>
+  <data name="TrendingMessage_Loading" xml:space="preserve">
+    <value>Cargando los GIF populares...</value>
+  </data>
+  <data name="Trending_Tab.Label" xml:space="preserve">
+    <value>Popular</value>
+  </data>
+</root>

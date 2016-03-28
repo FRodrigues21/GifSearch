@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_Copy.Label" xml:space="preserve">
+    <value>Kopírovat link</value>
+  </data>
+  <data name="Appbar_Favorite.Label" xml:space="preserve">
+    <value>Oblíbit</value>
+  </data>
+  <data name="Appbar_Play.Label" xml:space="preserve">
+    <value>Přehrát / Zastavit</value>
+  </data>
+  <data name="Appbar_Rate.Label" xml:space="preserve">
+    <value>Ohodnotit aplikaci</value>
+  </data>
+  <data name="Appbar_Support.Label" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
+  <data name="DialogFirst_Button1" xml:space="preserve">
+    <value>Do aplikace! Rychle!</value>
+  </data>
+  <data name="DialogFirst_Button2" xml:space="preserve">
+    <value>Ohodnoťte aplikaci nyní!</value>
+  </data>
+  <data name="DialogFirst_Title" xml:space="preserve">
+    <value>Co je nového v gif Search?</value>
+  </data>
+  <data name="DialogSecond_Content" xml:space="preserve">
+    <value>Doufám, že se Vám líbí tato aplikace...
+
+Nechtěli byste ji ohodnotit a pomoci nám ji zlepšit?</value>
+  </data>
+  <data name="DialogSecond_Title" xml:space="preserve">
+    <value>Děkuji mnohokrát!</value>
+  </data>
+  <data name="DialogThird_Button3" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
+  <data name="DialogThird_Content" xml:space="preserve">
+    <value>Většina aplikací pro Windows Phone nyní nepodporuje GIF obrázky.
+
+Můžete zkusit stáhnout tento GIF jako .mp4 abyste to mohli sdílet!
+Pokud to pouze chcete uložit k prohlédnutí později, vyberte ".gif".</value>
+  </data>
+  <data name="DialogThird_Title" xml:space="preserve">
+    <value>Stahuji gif</value>
+  </data>
+  <data name="Error_description.Text" xml:space="preserve">
+    <value>Zdá se, že nejste připojený k internetu...</value>
+  </data>
+  <data name="Error_solution.Text" xml:space="preserve">
+    <value>Vyřešte problém a stiskněte obnovit!</value>
+  </data>
+  <data name="FavoritesMessage_Loading" xml:space="preserve">
+    <value>Načítám seznam Vašich oblíbených GIFů...</value>
+  </data>
+  <data name="Favorites_Tab.Label" xml:space="preserve">
+    <value>Oblíbené</value>
+  </data>
+  <data name="SearchMessage_Loading" xml:space="preserve">
+    <value>Načítám...</value>
+  </data>
+  <data name="Search_Box.Text" xml:space="preserve">
+    <value>Hledejte dle klíčového slova, textu nebo tagu</value>
+  </data>
+  <data name="Search_Tab.Label" xml:space="preserve">
+    <value>Hledat</value>
+  </data>
+  <data name="Support_Description.Text" xml:space="preserve">
+    <value>Zpětná vazba je opravdu důležitá, pokud máte nějáké náměty na zlepšení nebo jste narazili na jakákoli problém, použijte prosím formulář dole. Můžete ho také použít pro kontaktování vývojaře.</value>
+  </data>
+  <data name="Support_Email.Text" xml:space="preserve">
+    <value>Kontaktní Email</value>
+  </data>
+  <data name="Support_Message.Text" xml:space="preserve">
+    <value>Zpráva</value>
+  </data>
+  <data name="Support_Name.Text" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="Support_Note.Text" xml:space="preserve">
+    <value>Po kliknutí na odeslat budete přesměrováni do Vašeho výchozího emailového klienta.</value>
+  </data>
+  <data name="Support_Subject.Text" xml:space="preserve">
+    <value>Předmět</value>
+  </data>
+  <data name="Support_Submit.Content" xml:space="preserve">
+    <value>Odeslat</value>
+  </data>
+  <data name="Support_Title.Text" xml:space="preserve">
+    <value>PODPORA</value>
+  </data>
+  <data name="TrendingMessage_CopySuccess" xml:space="preserve">
+    <value>Odkaz zkopírováný do schránky, běžte ho sdílet!</value>
+  </data>
+  <data name="TrendingMessage_FavAdd" xml:space="preserve">
+    <value>GIF byl přidán do Vašeho seznamu oblíbených.</value>
+  </data>
+  <data name="TrendingMessage_FavRem" xml:space="preserve">
+    <value>GIF byl odstraněn ze seznamu oblíbených.</value>
+  </data>
+  <data name="TrendingMessage_Loading" xml:space="preserve">
+    <value>Načítám Trendy GIFy...</value>
+  </data>
+  <data name="Trending_Tab.Label" xml:space="preserve">
+    <value>Trendy</value>
+  </data>
+</root>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="tr" original="GIFSEARCH/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="GIFSEARCH/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="Appbar_Copy.Label" translate="yes" xml:space="preserve">
+          <source>Copy link</source>
+          <target state="translated">Kopyala link</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Favorite.Label" translate="yes" xml:space="preserve">
+          <source>Favorite</source>
+          <target state="translated">Favori</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Play.Label" translate="yes" xml:space="preserve">
+          <source>Play / Pause</source>
+          <target state="translated">Oynat / Duraklat</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Rate.Label" translate="yes" xml:space="preserve">
+          <source>Rate the app</source>
+          <target state="translated">Uygulamayı derecelendir</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Save.Label" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">Kaydet</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Support.Label" translate="yes" xml:space="preserve">
+          <source>Support</source>
+          <target state="translated">Destek</target>
+        </trans-unit>
+        <trans-unit id="DialogFirst_Button1" translate="yes" xml:space="preserve">
+          <source>To the app! Quickly!</source>
+          <target state="translated">Uygulamaya! Hemen!</target>
+        </trans-unit>
+        <trans-unit id="DialogFirst_Button2" translate="yes" xml:space="preserve">
+          <source>Review the app now!</source>
+          <target state="translated">Uygulamayı şimdi değerlendir!</target>
+        </trans-unit>
+        <trans-unit id="DialogFirst_Title" translate="yes" xml:space="preserve">
+          <source>What's new in gif Search?</source>
+          <target state="translated">Gif Arama'da yeni ne var?</target>
+        </trans-unit>
+        <trans-unit id="DialogSecond_Content" translate="yes" xml:space="preserve">
+          <source>I hope you are enjoying using the app...
+
+Would you like to give some time to rate and review this application to help us improve?</source>
+          <target state="translated">Umarım uygulamayı beğenmişsinizdir. 
+
+Uygulamayı geliştirmemize yardımcı olmak için derecelendirip yorum yazmaya zaman ayırmak ister misiniz?</target>
+        </trans-unit>
+        <trans-unit id="DialogSecond_Title" translate="yes" xml:space="preserve">
+          <source>Thank you very much!</source>
+          <target state="translated">Çok teşekkür ederiz!</target>
+        </trans-unit>
+        <trans-unit id="DialogThird_Button3" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">İptal</target>
+        </trans-unit>
+        <trans-unit id="DialogThird_Content" translate="yes" xml:space="preserve">
+          <source>Most Windows Phone apps don't support GIF images at the moment
+
+
+You may try to download the GIF as .mp4 in order to share it!
+If you only wan't to store it to view later, select .gif"</source>
+          <target state="translated">Şu anda çoğu Windows Phone uygulaması GIF resimleri desteklemiyor
+
+
+You may try to download the GIF as .mp4 in order to share it!
+If you only wan't to store it to view later, select .gif"</target>
+        </trans-unit>
+        <trans-unit id="DialogThird_Title" translate="yes" xml:space="preserve">
+          <source>Downloading a gif</source>
+          <target state="translated">Bir gif indiriliyor</target>
+        </trans-unit>
+        <trans-unit id="Error_description.Text" translate="yes" xml:space="preserve">
+          <source>Seems like you have no Internet connection...</source>
+          <target state="translated">İnternet bağlantınız yok gibi görünüyor...</target>
+        </trans-unit>
+        <trans-unit id="Error_solution.Text" translate="yes" xml:space="preserve">
+          <source>Fix the problem then hit refresh!</source>
+          <target state="translated">Favoriler</target>
+        </trans-unit>
+        <trans-unit id="FavoritesMessage_Loading" translate="yes" xml:space="preserve">
+          <source>Loading your Favorites GIF list...</source>
+          <target state="translated">Favori GIF'ler listeniz yükleniyor...</target>
+        </trans-unit>
+        <trans-unit id="Favorites_Tab.Label" translate="yes" xml:space="preserve">
+          <source>Favorites</source>
+          <target state="translated">Favoriler</target>
+        </trans-unit>
+        <trans-unit id="SearchMessage_Loading" translate="yes" xml:space="preserve">
+          <source>Loading Search GIF list...</source>
+          <target state="translated">GIF Arama listesi yükleniyor...</target>
+        </trans-unit>
+        <trans-unit id="Search_Box.Text" translate="yes" xml:space="preserve">
+          <source>Search by keyword, text or tag</source>
+          <target state="translated">Anahtar kelime, metin veya etiket ile ara...</target>
+        </trans-unit>
+        <trans-unit id="Search_Tab.Label" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">Ara</target>
+        </trans-unit>
+        <trans-unit id="Support_Description.Text" translate="yes" xml:space="preserve">
+          <source>Feedback really matters, so if you have any suggestion or you have encountered any problem use the form below! You can also use it to contact the developer.</source>
+          <target state="translated">Geri bildirim gerçekten önemlidir, bu yüzden herhangi bir öneriniz varsa veya herhangi bir sorunla karşılaştıysanız aşağıdaki formu kullanın! Bu formu geliştirici ile iletişime geçmek için de kullanabilirsiniz.</target>
+        </trans-unit>
+        <trans-unit id="Support_Email.Text" translate="yes" xml:space="preserve">
+          <source>Contact Email</source>
+          <target state="translated">İletişim Eposta</target>
+        </trans-unit>
+        <trans-unit id="Support_Message.Text" translate="yes" xml:space="preserve">
+          <source>Message</source>
+          <target state="translated">Mesaj</target>
+        </trans-unit>
+        <trans-unit id="Support_Name.Text" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated">İsim</target>
+        </trans-unit>
+        <trans-unit id="Support_Note.Text" translate="yes" xml:space="preserve">
+          <source>After clicking submit you will be redirected to your default email app.</source>
+          <target state="translated">Gönder'i tıklattıktan sonra varsayılan eposta uygulamanıza yönlendirileceksiniz.</target>
+        </trans-unit>
+        <trans-unit id="Support_Subject.Text" translate="yes" xml:space="preserve">
+          <source>Subject</source>
+          <target state="translated">Konu</target>
+        </trans-unit>
+        <trans-unit id="Support_Submit.Content" translate="yes" xml:space="preserve">
+          <source>Submit</source>
+          <target state="translated">Gönder</target>
+        </trans-unit>
+        <trans-unit id="Support_Title.Text" translate="yes" xml:space="preserve">
+          <source>SUPPORT</source>
+          <target state="translated">DESTEK</target>
+        </trans-unit>
+        <trans-unit id="TrendingMessage_CopySuccess" translate="yes" xml:space="preserve">
+          <source>Link copied to clipboard, go share it!</source>
+          <target state="translated">Bağlantı panoya kopyalandı, gidin paylaşın!</target>
+        </trans-unit>
+        <trans-unit id="TrendingMessage_FavAdd" translate="yes" xml:space="preserve">
+          <source>GIF added to the favorites list!</source>
+          <target state="translated">GIF favoriler listesine eklendi!</target>
+        </trans-unit>
+        <trans-unit id="TrendingMessage_FavRem" translate="yes" xml:space="preserve">
+          <source>GIF removed from the favorites list!</source>
+          <target state="translated">GIF favoriler listesinden kaldırıldı!</target>
+        </trans-unit>
+        <trans-unit id="TrendingMessage_Loading" translate="yes" xml:space="preserve">
+          <source>Loading Trending GIF list...</source>
+          <target state="translated">Gündemdeki GIF'ler listesi yükleniyor...</target>
+        </trans-unit>
+        <trans-unit id="Trending_Tab.Label" translate="yes" xml:space="preserve">
+          <source>Trending</source>
+          <target state="translated">Gündem</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

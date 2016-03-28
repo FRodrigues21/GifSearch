@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_Copy.Label" xml:space="preserve">
+    <value>Kopyala link</value>
+  </data>
+  <data name="Appbar_Favorite.Label" xml:space="preserve">
+    <value>Favori</value>
+  </data>
+  <data name="Appbar_Play.Label" xml:space="preserve">
+    <value>Oynat / Duraklat</value>
+  </data>
+  <data name="Appbar_Rate.Label" xml:space="preserve">
+    <value>Uygulamayı derecelendir</value>
+  </data>
+  <data name="Appbar_Save.Label" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Appbar_Support.Label" xml:space="preserve">
+    <value>Destek</value>
+  </data>
+  <data name="DialogFirst_Button1" xml:space="preserve">
+    <value>Uygulamaya! Hemen!</value>
+  </data>
+  <data name="DialogFirst_Button2" xml:space="preserve">
+    <value>Uygulamayı şimdi değerlendir!</value>
+  </data>
+  <data name="DialogFirst_Title" xml:space="preserve">
+    <value>Gif Arama'da yeni ne var?</value>
+  </data>
+  <data name="DialogSecond_Content" xml:space="preserve">
+    <value>Umarım uygulamayı beğenmişsinizdir. 
+
+Uygulamayı geliştirmemize yardımcı olmak için derecelendirip yorum yazmaya zaman ayırmak ister misiniz?</value>
+  </data>
+  <data name="DialogSecond_Title" xml:space="preserve">
+    <value>Çok teşekkür ederiz!</value>
+  </data>
+  <data name="DialogThird_Button3" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="DialogThird_Content" xml:space="preserve">
+    <value>Şu anda çoğu Windows Phone uygulaması GIF resimleri desteklemiyor
+
+
+You may try to download the GIF as .mp4 in order to share it!
+If you only wan't to store it to view later, select .gif"</value>
+  </data>
+  <data name="DialogThird_Title" xml:space="preserve">
+    <value>Bir gif indiriliyor</value>
+  </data>
+  <data name="Error_description.Text" xml:space="preserve">
+    <value>İnternet bağlantınız yok gibi görünüyor...</value>
+  </data>
+  <data name="Error_solution.Text" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="FavoritesMessage_Loading" xml:space="preserve">
+    <value>Favori GIF'ler listeniz yükleniyor...</value>
+  </data>
+  <data name="Favorites_Tab.Label" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="SearchMessage_Loading" xml:space="preserve">
+    <value>GIF Arama listesi yükleniyor...</value>
+  </data>
+  <data name="Search_Box.Text" xml:space="preserve">
+    <value>Anahtar kelime, metin veya etiket ile ara...</value>
+  </data>
+  <data name="Search_Tab.Label" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="Support_Description.Text" xml:space="preserve">
+    <value>Geri bildirim gerçekten önemlidir, bu yüzden herhangi bir öneriniz varsa veya herhangi bir sorunla karşılaştıysanız aşağıdaki formu kullanın! Bu formu geliştirici ile iletişime geçmek için de kullanabilirsiniz.</value>
+  </data>
+  <data name="Support_Email.Text" xml:space="preserve">
+    <value>İletişim Eposta</value>
+  </data>
+  <data name="Support_Message.Text" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Support_Name.Text" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="Support_Note.Text" xml:space="preserve">
+    <value>Gönder'i tıklattıktan sonra varsayılan eposta uygulamanıza yönlendirileceksiniz.</value>
+  </data>
+  <data name="Support_Subject.Text" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="Support_Submit.Content" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="Support_Title.Text" xml:space="preserve">
+    <value>DESTEK</value>
+  </data>
+  <data name="TrendingMessage_CopySuccess" xml:space="preserve">
+    <value>Bağlantı panoya kopyalandı, gidin paylaşın!</value>
+  </data>
+  <data name="TrendingMessage_FavAdd" xml:space="preserve">
+    <value>GIF favoriler listesine eklendi!</value>
+  </data>
+  <data name="TrendingMessage_FavRem" xml:space="preserve">
+    <value>GIF favoriler listesinden kaldırıldı!</value>
+  </data>
+  <data name="TrendingMessage_Loading" xml:space="preserve">
+    <value>Gündemdeki GIF'ler listesi yükleniyor...</value>
+  </data>
+  <data name="Trending_Tab.Label" xml:space="preserve">
+    <value>Gündem</value>
+  </data>
+</root>
