@@ -48,6 +48,9 @@ namespace GifSearch.Views
                 case 2:
                     tmp_type = "Contact";
                     break;
+                case 3:
+                    tmp_type = "Translation";
+                    break;
             }
 
             _email.Subject = String.Format("{0} - {1}", tmp_type, name.Text);

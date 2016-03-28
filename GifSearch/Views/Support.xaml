@@ -31,8 +31,9 @@
                 <TextBlock x:Uid="Support_Subject" FontWeight="SemiBold" Margin="6" Text="Subject"  />
                 <ComboBox x:Name="type" Margin="6" SelectedIndex="0">
                     <ComboBoxItem>Suggestion</ComboBoxItem>
-                    <ComboBoxItem>Bug / Problem</ComboBoxItem>
+                    <ComboBoxItem>Problem / Bug</ComboBoxItem>
                     <ComboBoxItem>Contact</ComboBoxItem>
+                    <ComboBoxItem>Translation Problem</ComboBoxItem>
                 </ComboBox>
                 <TextBlock x:Uid="Support_Message" FontWeight="SemiBold" Margin="6" Text="Message" />
                 <TextBox x:Name="message" Margin="6" TextWrapping="Wrap" AcceptsReturn="True"/>

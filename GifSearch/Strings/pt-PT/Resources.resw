@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Copiar</value>
+    <value>Copiar link</value>
   </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
     <value>Favorito</value>
@@ -219,9 +219,9 @@ Se apenas queres guardá-lo para ver depois, seleciona .gif!</value>
     <value>GIF removido da tua lista de favoritos!</value>
   </data>
   <data name="TrendingMessage_Loading" xml:space="preserve">
-    <value>A carregar a lista de GIF na moda...</value>
+    <value>A carregar a lista de GIF populares...</value>
   </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
-    <value>Trending</value>
+    <value>Popular</value>
   </data>
 </root>
