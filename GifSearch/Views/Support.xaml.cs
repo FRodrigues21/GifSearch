@@ -1,6 +1,7 @@
 ﻿using GifSearch.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -49,15 +50,20 @@ namespace GifSearch.Views
                     tmp_type = "Contact";
                     break;
                 case 3:
-                    tmp_type = "Translation";
+                    tmp_type = "Translation Problem";
                     break;
             }
 
             _email.Subject = String.Format("{0} - {1}", tmp_type, name.Text);
-            _email.Body = String.Format("Message:\n{0}\n\nContact Email:\n{1}\n\n", message.Text, email.Text); ;
-            if(tmp_type != null&& name.Text != null && message.Text != null && email.Text != null) {
+            CultureInfo ci = new CultureInfo(Windows.System.UserProfile.GlobalizationPreferences.Languages[0]);
+            _email.Body = String.Format("Message:\n{0}\n\n_____\nContact Email:\n{1}\n\n_____\nApp details:\n> Version: {2}\n> Language: {3}\n ", message.Text, email.Text, App.version, ci.Name); ;
+            if(tmp_type.Length >= 1 && name.Text.Length >= 1 && message.Text.Length >= 1 && email.Text.Length >= 1) {
                 NotificationBarFacade.displayStatusBarMessage("Sending support message...", false);
                 await EmailManager.ShowComposeNewEmailAsync(_email);
+            }
+            else
+            {
+                NotificationBarFacade.displayStatusBarMessage("Some of the fields are empty!", true);
             }
         }
     }
