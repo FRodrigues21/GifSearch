@@ -118,111 +118,113 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Kopieren</value>
+    <value>Copiar</value>
   </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
-    <value>Favorisieren</value>
+    <value>Favorito</value>
   </data>
   <data name="Appbar_Play.Label" xml:space="preserve">
-    <value>Abspielen / Pause</value>
+    <value>Reasumir / Pausar</value>
   </data>
   <data name="Appbar_Rate.Label" xml:space="preserve">
-    <value>App bewerten</value>
+    <value>Evalúar la aplicación</value>
   </data>
   <data name="Appbar_Save.Label" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Salvar</value>
   </data>
   <data name="Appbar_Support.Label" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>Apoyo</value>
   </data>
   <data name="DialogFirst_Button1" xml:space="preserve">
-    <value>Zur App! Schnell!</value>
+    <value>Continuar! De prisa!</value>
   </data>
   <data name="DialogFirst_Button2" xml:space="preserve">
-    <value>App jetzt bewerten!</value>
+    <value>Evaluar la aplicación ahora!</value>
   </data>
   <data name="DialogFirst_Title" xml:space="preserve">
-    <value>Was gibt's neues in gif Search?</value>
+    <value>¿Que hay de nuevo en gif Search?</value>
   </data>
   <data name="DialogSecond_Content" xml:space="preserve">
-    <value>Ich hoffe dir gefällt die App. 
+    <value>Espero que usted está disfrutando de la aplicación...
 
-Hättest du einen Moment Zeit, um eine Bewertung zu hinterlassen?</value>
+¿Te gustaría dar algún tiempo para calificar y revisar esta aplicación para ayudarnos a mejorar?</value>
   </data>
   <data name="DialogSecond_Title" xml:space="preserve">
-    <value>Vielen Dank!</value>
+    <value>Muchas gracias!</value>
   </data>
   <data name="DialogThird_Button3" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Cancelar</value>
   </data>
   <data name="DialogThird_Content" xml:space="preserve">
-    <value>Die meisten Windows Phone Apps unterstützen im Moment keine GIF Grafiken</value>
+    <value>La maioria de las apps de Windows Phone no admiten imágenes GIF. 
+
+En el momento puedes probar descargar el GIF como .mp4 para compartir! 
+Si sólo quieres almacenar la imagen e ver más adelante, selecciona gif</value>
   </data>
   <data name="DialogThird_Title" xml:space="preserve">
-    <value>GIF herunterladen</value>
+    <value>Descargando un gif</value>
   </data>
   <data name="Error_description.Text" xml:space="preserve">
-    <value>Sieht so aus als hättest du keine Internet-Verbindung…</value>
+    <value>Parece que no tienes una conexión con Internet...</value>
   </data>
   <data name="Error_solution.Text" xml:space="preserve">
-    <value>Bitte behebe die Fehler und klicke Aktualisieren!</value>
+    <value>Soluciona el problem e prime actualizar!</value>
   </data>
   <data name="FavoritesMessage_Loading" xml:space="preserve">
-    <value>Lade deine Favoriten GIF-Liste…</value>
+    <value>Cargando tu lista de GIF favoritos...</value>
   </data>
   <data name="Favorites_Tab.Label" xml:space="preserve">
-    <value>Favoriten</value>
+    <value>Favoritos</value>
   </data>
   <data name="SearchMessage_Loading" xml:space="preserve">
-    <value>Lade GIF-Liste…</value>
+    <value>Cargando la lista de la búsqueda de GIF...</value>
   </data>
   <data name="Search_Box.Text" xml:space="preserve">
-    <value>Suche nach Stichwort, Text oder Tag</value>
+    <value>Búsqueda por palabra clave, texto ó tag</value>
   </data>
   <data name="Search_Tab.Label" xml:space="preserve">
-    <value>Suche</value>
+    <value>Busqueda</value>
   </data>
   <data name="Support_Description.Text" xml:space="preserve">
-    <value>Feedback ist wirklich wichtig. Wenn du also irgendwelche Vorschläge oder Probleme hast dann lass es uns wissen! 
-Du kannst dadurch auch den Entwickler kontaktieren.</value>
+    <value>Comentarios realmente importan, así que si tienes cualquier sugerencia o si has encontrado cualquier problema usa el siguiente formulario! También puedes utilizar para hablar con el desarrollador.</value>
   </data>
   <data name="Support_Email.Text" xml:space="preserve">
-    <value>Email Adresse</value>
+    <value>Email de contacto</value>
   </data>
   <data name="Support_Message.Text" xml:space="preserve">
-    <value>Nachricht</value>
+    <value>Mensage</value>
   </data>
   <data name="Support_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Nombre</value>
   </data>
   <data name="Support_Note.Text" xml:space="preserve">
-    <value>Nach dem Klick auf Senden wird die Standard E-Mail App geöffnet.</value>
+    <value>Una vez pulsado enviar será redirigido para su aplicación de email.</value>
   </data>
   <data name="Support_Subject.Text" xml:space="preserve">
-    <value>Betreff</value>
+    <value>Tema</value>
   </data>
   <data name="Support_Submit.Content" xml:space="preserve">
-    <value>Senden</value>
+    <value>Enviar</value>
   </data>
   <data name="Support_Title.Text" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>APOYO</value>
   </data>
   <data name="TranslatorName" xml:space="preserve">
-    <value>Majid Iqbal and Bingo90909</value>
+    <value>gifSearch</value>
   </data>
   <data name="TrendingMessage_CopySuccess" xml:space="preserve">
-    <value>Link in Ziwschenablage kopiert, du kannst ihn jetzt teilen!</value>
+    <value>Link copiado para el clipboard, compártelo</value>
   </data>
   <data name="TrendingMessage_FavAdd" xml:space="preserve">
-    <value>GIF zu Favoriten hinzugefügt!</value>
+    <value>GIF añadido à tu lista de favoritos</value>
   </data>
   <data name="TrendingMessage_FavRem" xml:space="preserve">
-    <value>GIF von Favoriten entfernt!</value>
+    <value>GIF eliminado de tu lista de favoritos</value>
   </data>
   <data name="TrendingMessage_Loading" xml:space="preserve">
-    <value>Lade angesagte GIFs...</value>
+    <value>Cargando la lista de GIF's de moda</value>
   </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
-    <value>Angesagt</value>
+    <value>Trending</value>
   </data>
 </root>

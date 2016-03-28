@@ -105,6 +105,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Fonts\Stilu.ttf" />
     <Content Include="AdMediator.config" />
+    <PRIResource Include="Strings\es-ES\Resources.resw" />
     <PRIResource Include="Strings\hu-HU\Resources.resw" />
     <PRIResource Include="Strings\fr-FR\Resources.resw" />
     <PRIResource Include="Strings\nl-BL\Resources.resw" />
