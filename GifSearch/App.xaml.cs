@@ -1,6 +1,7 @@
 ﻿using GifSearch.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -69,6 +70,19 @@ namespace GifSearch
                 rootFrame.Navigate(typeof(Tabs), e.Arguments);
             }
 
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+            {
+                Windows.Phone.UI.Input.HardwareButtons.BackPressed += (s, a) =>
+                {
+                    Debug.WriteLine("BackPressed");
+                    if (rootFrame.CanGoBack)
+                    {
+                        rootFrame.GoBack();
+                        a.Handled = true;
+                    }
+                };
+            }
+
             Window.Current.Activate();
         }
 
@@ -82,5 +96,6 @@ namespace GifSearch
             var deferral = e.SuspendingOperation.GetDeferral();
             deferral.Complete();
         }
+
     }
 }
