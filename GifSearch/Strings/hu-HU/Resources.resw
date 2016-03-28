@@ -118,113 +118,110 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Kopírovat</value>
+    <value>Másolás</value>
   </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
-    <value>Oblíbit</value>
+    <value>Kedvenc</value>
   </data>
   <data name="Appbar_Play.Label" xml:space="preserve">
-    <value>Přehrát / Zastavit</value>
+    <value>Lejátszás / Szünet</value>
   </data>
   <data name="Appbar_Rate.Label" xml:space="preserve">
-    <value>Ohodnotit aplikaci</value>
+    <value>Az alkalmazás értékelése</value>
   </data>
   <data name="Appbar_Save.Label" xml:space="preserve">
-    <value>Uložit</value>
+    <value>Mentés</value>
   </data>
   <data name="Appbar_Support.Label" xml:space="preserve">
-    <value>Podpora</value>
+    <value>Támogatás</value>
   </data>
   <data name="DialogFirst_Button1" xml:space="preserve">
-    <value>Do aplikace! Rychle!</value>
+    <value>Az alkalmazáshoz! Gyorsan!</value>
   </data>
   <data name="DialogFirst_Button2" xml:space="preserve">
-    <value>Ohodnoťte aplikaci nyní!</value>
+    <value>Értékeld az alkalmazást most!</value>
   </data>
   <data name="DialogFirst_Title" xml:space="preserve">
-    <value>Co je nového v gif Search?</value>
+    <value>Mik a gif Search újdonságai?</value>
   </data>
   <data name="DialogSecond_Content" xml:space="preserve">
-    <value>Doufám, že se Vám líbí tato aplikace...
+    <value>Reméljük örömöd leled az alkalmazás használatában... 
 
-Nechtěli byste ji ohodnotit a pomoci nám ji zlepšit?</value>
+Szeretnél visszajelzést küldeni, hogy tovább tudjuk fejleszteni az alkalmazást?</value>
   </data>
   <data name="DialogSecond_Title" xml:space="preserve">
-    <value>Děkuji mnohokrát!</value>
+    <value>Köszönjük szépen!</value>
   </data>
   <data name="DialogThird_Button3" xml:space="preserve">
-    <value>Zavřít</value>
+    <value>Mégsem</value>
   </data>
   <data name="DialogThird_Content" xml:space="preserve">
-    <value>Většina aplikací pro Windows Phone nyní nepodporuje GIF obrázky.
-
-Můžete zkusit stáhnout tento GIF jako .mp4 abyste to mohli sdílet!
-Pokud to pouze chcete uložit k prohlédnutí později, vyberte ".gif".</value>
+    <value>A legtöbb Windows Phone alkalmazás nem támogat GIF képeket jelenleg</value>
   </data>
   <data name="DialogThird_Title" xml:space="preserve">
-    <value>Stahuji gif</value>
+    <value>GIF letöltése</value>
   </data>
   <data name="Error_description.Text" xml:space="preserve">
-    <value>Zdá se, že nejste připojený k internetu...</value>
+    <value>Úgy tűnik nincs internetkapcsolatod</value>
   </data>
   <data name="Error_solution.Text" xml:space="preserve">
-    <value>Vyřešte problém a stiskněte obnovit!</value>
+    <value>Oldd meg a problémát és kattints a frissítésre!</value>
   </data>
   <data name="FavoritesMessage_Loading" xml:space="preserve">
-    <value>Načítám seznam Vašich oblíbených GIFů...</value>
+    <value>Kedvenc GIF-ek listájának letöltése...</value>
   </data>
   <data name="Favorites_Tab.Label" xml:space="preserve">
-    <value>Oblíbené</value>
+    <value>Kedvencek</value>
   </data>
   <data name="SearchMessage_Loading" xml:space="preserve">
-    <value>Načítám...</value>
+    <value>Kereseti találatok listájának letöltése...</value>
   </data>
   <data name="Search_Box.Text" xml:space="preserve">
-    <value>Hledejte dle klíčového slova, textu nebo tagu</value>
+    <value>Keresés kulcsszó, szöveg vagy címke alapján</value>
   </data>
   <data name="Search_Tab.Label" xml:space="preserve">
-    <value>Hledat</value>
+    <value>Keresés</value>
   </data>
   <data name="Support_Description.Text" xml:space="preserve">
-    <value>Zpětná vazba je opravdu důležitá, pokud máte nějáké náměty na zlepšení nebo jste narazili na jakákoli problém, použijte prosím formulář dole. Můžete ho také použít pro kontaktování vývojaře.</value>
+    <value>A visszajelzéseid fontosak számunkra, ha bármi ötleted van, vagy problémával találkoztál, használd az alábbi űrlapot hogy kapcsolatba lépj a fejlesztővel!</value>
   </data>
   <data name="Support_Email.Text" xml:space="preserve">
-    <value>Kontaktní Email</value>
+    <value>Kapcsolattartási emailcím</value>
   </data>
   <data name="Support_Message.Text" xml:space="preserve">
-    <value>Zpráva</value>
+    <value>Üzenet</value>
   </data>
   <data name="Support_Name.Text" xml:space="preserve">
-    <value>Jméno</value>
+    <value>Név</value>
   </data>
   <data name="Support_Note.Text" xml:space="preserve">
-    <value>Po kliknutí na odeslat budete přesměrováni do Vašeho výchozího emailového klienta.</value>
+    <value>Az Elküldre kattintva átirányítunk az alapértelmezett email kliensedre.</value>
   </data>
   <data name="Support_Subject.Text" xml:space="preserve">
-    <value>Předmět</value>
+    <value>Tárgy</value>
   </data>
   <data name="Support_Submit.Content" xml:space="preserve">
-    <value>Odeslat</value>
+    <value>Elküld</value>
   </data>
   <data name="Support_Title.Text" xml:space="preserve">
-    <value>PODPORA</value>
+    <value>TÁMOGATÁS</value>
   </data>
   <data name="TranslatorName" xml:space="preserve">
-    <value>kachna96</value>
+    <value>Haskó Kristóf</value>
   </data>
   <data name="TrendingMessage_CopySuccess" xml:space="preserve">
-    <value>Odkaz zkopírováný do schránky, běžte ho sdílet!</value>
+    <value>A link a vágólapra másolva, gyerünk osszd meg!</value>
   </data>
   <data name="TrendingMessage_FavAdd" xml:space="preserve">
-    <value>GIF byl přidán do Vašeho seznamu oblíbených.</value>
+    <value>A GIF hozzáadva a kedvencekhez!</value>
   </data>
   <data name="TrendingMessage_FavRem" xml:space="preserve">
-    <value>GIF byl odstraněn ze seznamu oblíbených.</value>
+    <value>A GIF eltávolítva a kedvencek közül!</value>
   </data>
   <data name="TrendingMessage_Loading" xml:space="preserve">
-    <value>Načítám Trendy GIFy</value>
+    <value>Felkapott GIF-ek listájának letöltése...</value>
   </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
-    <value>Trendy</value>
+    <value>Felkapott</value>
   </data>
 </root>

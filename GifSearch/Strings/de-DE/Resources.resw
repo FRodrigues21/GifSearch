@@ -209,6 +209,9 @@ Du kannst dadurch auch den Entwickler kontaktieren.</value>
   <data name="Support_Title.Text" xml:space="preserve">
     <value>Hilfe</value>
   </data>
+  <data name="TranslatorName" xml:space="preserve">
+    <value>Majid Iqbal and Bingo90909</value>
+  </data>
   <data name="TrendingMessage_CopySuccess" xml:space="preserve">
     <value>Link in Ziwschenablage kopiert, du kannst ihn jetzt teilen!</value>
   </data>

@@ -118,76 +118,113 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Kopieer</value>  </data>
+    <value>Kopieer</value>
+  </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
-    <value>Favoriet</value>  </data>
+    <value>Favoriet</value>
+  </data>
   <data name="Appbar_Play.Label" xml:space="preserve">
-    <value>Afspelen / Pauzeren</value>  </data>
+    <value>Afspelen / Pauzeren</value>
+  </data>
   <data name="Appbar_Rate.Label" xml:space="preserve">
-    <value>Beoordeel de app</value>  </data>
+    <value>Beoordeel de app</value>
+  </data>
   <data name="Appbar_Save.Label" xml:space="preserve">
-    <value>Opslaan</value>  </data>
+    <value>Opslaan</value>
+  </data>
   <data name="Appbar_Support.Label" xml:space="preserve">
-    <value>Ondersteuning</value>  </data>
+    <value>Ondersteuning</value>
+  </data>
   <data name="DialogFirst_Button1" xml:space="preserve">
-    <value>Naar de app! Snel!</value>  </data>
+    <value>Naar de app! Snel!</value>
+  </data>
   <data name="DialogFirst_Button2" xml:space="preserve">
-    <value>Schrijf nu een review over de app!</value>  </data>
+    <value>Schrijf nu een review over de app!</value>
+  </data>
   <data name="DialogFirst_Title" xml:space="preserve">
-    <value>Wat is er nieuw in gif Search?</value>  </data>
+    <value>Wat is er nieuw in gif Search?</value>
+  </data>
   <data name="DialogSecond_Content" xml:space="preserve">
     <value>Ik hoop dat je geniet van het gebruiken van de app...
 
-Zou u willen helpen met de app nog beter te maken door de app te beoordelen?</value>  </data>
+Zou u willen helpen met de app nog beter te maken door de app te beoordelen?</value>
+  </data>
   <data name="DialogSecond_Title" xml:space="preserve">
-    <value>Hartstikke bedankt!</value>  </data>
+    <value>Hartstikke bedankt!</value>
+  </data>
   <data name="DialogThird_Button3" xml:space="preserve">
-    <value>Annuleren</value>  </data>
+    <value>Annuleren</value>
+  </data>
   <data name="DialogThird_Content" xml:space="preserve">
     <value>De meeste Windows Phone apps ondersteunen geen GIF plaatjes op het moment.
 
 Je kan de GIF proberen te downloaden als .mp4 om hem te delen!
-Als je hem alleen wilt opslaan om later terug te kijken selecteer dan ".gif"</value>  </data>
+Als je hem alleen wilt opslaan om later terug te kijken selecteer dan ".gif"</value>
+  </data>
   <data name="DialogThird_Title" xml:space="preserve">
-    <value>GIF downloaden</value>  </data>
+    <value>GIF downloaden</value>
+  </data>
   <data name="Error_description.Text" xml:space="preserve">
-    <value>Oeps, het lijkt er op dat je geen internet verbinding hebt...</value>  </data>
+    <value>Oeps, het lijkt er op dat je geen internet verbinding hebt...</value>
+  </data>
   <data name="Error_solution.Text" xml:space="preserve">
-    <value>Herstel het probleem en klik dan op verversen!</value>  </data>
+    <value>Herstel het probleem en klik dan op verversen!</value>
+  </data>
   <data name="FavoritesMessage_Loading" xml:space="preserve">
-    <value>Je Favoriete GIF lijst laden...</value>  </data>
+    <value>Je Favoriete GIF lijst laden...</value>
+  </data>
   <data name="Favorites_Tab.Label" xml:space="preserve">
-    <value>Favorieten</value>  </data>
+    <value>Favorieten</value>
+  </data>
   <data name="SearchMessage_Loading" xml:space="preserve">
-    <value>Zoek GIF lijst laden...</value>  </data>
+    <value>Zoek GIF lijst laden...</value>
+  </data>
   <data name="Search_Box.Text" xml:space="preserve">
-    <value>Zoek naar trefwoord, tekst of label</value>  </data>
+    <value>Zoek naar trefwoord, tekst of label</value>
+  </data>
   <data name="Search_Tab.Label" xml:space="preserve">
-    <value>Zoeken</value>  </data>
+    <value>Zoeken</value>
+  </data>
   <data name="Support_Description.Text" xml:space="preserve">
-    <value>Feedback is voor ons enorm behulpzaam, dus als je suggesties of een probleem hebt ondervonden vul dan het formulier hier beneden in! Je kan het ook gebruiken om de ontwikkelaar te bereiken.</value>  </data>
+    <value>Feedback is voor ons enorm behulpzaam, dus als je suggesties of een probleem hebt ondervonden vul dan het formulier hier beneden in! Je kan het ook gebruiken om de ontwikkelaar te bereiken.</value>
+  </data>
   <data name="Support_Email.Text" xml:space="preserve">
-    <value>Contact Email</value>  </data>
+    <value>Contact Email</value>
+  </data>
   <data name="Support_Message.Text" xml:space="preserve">
-    <value>Bericht</value>  </data>
+    <value>Bericht</value>
+  </data>
   <data name="Support_Name.Text" xml:space="preserve">
-    <value>Naam</value>  </data>
+    <value>Naam</value>
+  </data>
   <data name="Support_Note.Text" xml:space="preserve">
-    <value>Na het klikken op verzenden wordt je doorgestuurd naar je standaard email app.</value>  </data>
+    <value>Na het klikken op verzenden wordt je doorgestuurd naar je standaard email app.</value>
+  </data>
   <data name="Support_Subject.Text" xml:space="preserve">
-    <value>Onderwerp</value>  </data>
+    <value>Onderwerp</value>
+  </data>
   <data name="Support_Submit.Content" xml:space="preserve">
-    <value>Verzenden</value>  </data>
+    <value>Verzenden</value>
+  </data>
   <data name="Support_Title.Text" xml:space="preserve">
-    <value>Ondersteuning</value>  </data>
+    <value>Ondersteuning</value>
+  </data>
+  <data name="TranslatorName" xml:space="preserve">
+    <value>Bollepoes</value>
+  </data>
   <data name="TrendingMessage_CopySuccess" xml:space="preserve">
-    <value>Link gekopieerd naar klembord, deel het nu!</value>  </data>
+    <value>Link gekopieerd naar klembord, deel het nu!</value>
+  </data>
   <data name="TrendingMessage_FavAdd" xml:space="preserve">
-    <value>GIF toegevoegd aan de favorieten lijst!</value>  </data>
+    <value>GIF toegevoegd aan de favorieten lijst!</value>
+  </data>
   <data name="TrendingMessage_FavRem" xml:space="preserve">
-    <value>GIF verwijderd van de favorieten lijst!</value>  </data>
+    <value>GIF verwijderd van de favorieten lijst!</value>
+  </data>
   <data name="TrendingMessage_Loading" xml:space="preserve">
-    <value>Trending GIF lijst laden...</value>  </data>
+    <value>Trending GIF lijst laden...</value>
+  </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
-    <value>Trending</value>  </data>
+    <value>Trending</value>
+  </data>
 </root>

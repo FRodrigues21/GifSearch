@@ -118,76 +118,113 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Copier</value>  </data>
+    <value>Copier</value>
+  </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
-    <value>préféré; favori</value>  </data>
+    <value>préféré; favori</value>
+  </data>
   <data name="Appbar_Play.Label" xml:space="preserve">
-    <value>Lecture / Pause</value>  </data>
+    <value>Lecture / Pause</value>
+  </data>
   <data name="Appbar_Rate.Label" xml:space="preserve">
-    <value>Évaluer l'application</value>  </data>
+    <value>Évaluer l'application</value>
+  </data>
   <data name="Appbar_Save.Label" xml:space="preserve">
-    <value>Sauvegarder</value>  </data>
+    <value>Sauvegarder</value>
+  </data>
   <data name="Appbar_Support.Label" xml:space="preserve">
-    <value>Support</value>  </data>
+    <value>Support</value>
+  </data>
   <data name="DialogFirst_Button1" xml:space="preserve">
-    <value>Vers l'app! Vite!</value>  </data>
+    <value>Vers l'app! Vite!</value>
+  </data>
   <data name="DialogFirst_Button2" xml:space="preserve">
-    <value>Donnez votre avis maintenant!</value>  </data>
+    <value>Donnez votre avis maintenant!</value>
+  </data>
   <data name="DialogFirst_Title" xml:space="preserve">
-    <value>Quoi de neuf dans la recherche de gif?</value>  </data>
+    <value>Quoi de neuf dans la recherche de gif?</value>
+  </data>
   <data name="DialogSecond_Content" xml:space="preserve">
     <value>J'espère que vous aimer utiliser l'app...
 
-Souhaitez-vous prendre un peu de temps pour noter et évaluer cette application pour nous aidez à l'améliorer?</value>  </data>
+Souhaitez-vous prendre un peu de temps pour noter et évaluer cette application pour nous aidez à l'améliorer?</value>
+  </data>
   <data name="DialogSecond_Title" xml:space="preserve">
-    <value>Merci beaucoup!</value>  </data>
+    <value>Merci beaucoup!</value>
+  </data>
   <data name="DialogThird_Button3" xml:space="preserve">
-    <value>Annuler</value>  </data>
+    <value>Annuler</value>
+  </data>
   <data name="DialogThird_Content" xml:space="preserve">
     <value>Beaucoup d'apps Windows Phone ne supportent pas les images GIF actuellement
 
 Vous devriez essayer de télécharger le GIF en format .mp4 pour le partager!
-Si vous voulez juste le stocker pour le regarder plus tard, sélectionnez .gif</value>  </data>
+Si vous voulez juste le stocker pour le regarder plus tard, sélectionnez .gif</value>
+  </data>
   <data name="DialogThird_Title" xml:space="preserve">
-    <value>Téléchargement d'un gif</value>  </data>
+    <value>Téléchargement d'un gif</value>
+  </data>
   <data name="Error_description.Text" xml:space="preserve">
-    <value>Il semblerait que vous n'avez pas de connexion Internet...</value>  </data>
+    <value>Il semblerait que vous n'avez pas de connexion Internet...</value>
+  </data>
   <data name="Error_solution.Text" xml:space="preserve">
-    <value>Réglez le problème, puis rafraîchissez!</value>  </data>
+    <value>Réglez le problème, puis rafraîchissez!</value>
+  </data>
   <data name="FavoritesMessage_Loading" xml:space="preserve">
-    <value>Chargement de votre liste de GIF favoris...</value>  </data>
+    <value>Chargement de votre liste de GIF favoris...</value>
+  </data>
   <data name="Favorites_Tab.Label" xml:space="preserve">
-    <value>Favoris</value>  </data>
+    <value>Favoris</value>
+  </data>
   <data name="SearchMessage_Loading" xml:space="preserve">
-    <value>Chargement de la liste de recherche de GIF</value>  </data>
+    <value>Chargement de la liste de recherche de GIF</value>
+  </data>
   <data name="Search_Box.Text" xml:space="preserve">
-    <value>Chercher par mot-clé, texte ou tag</value>  </data>
+    <value>Chercher par mot-clé, texte ou tag</value>
+  </data>
   <data name="Search_Tab.Label" xml:space="preserve">
-    <value>Chercher</value>  </data>
+    <value>Chercher</value>
+  </data>
   <data name="Support_Description.Text" xml:space="preserve">
-    <value>Donner un feedback compte vraiment, si vous avez une suggestion ou que vous rencontrez un problème, utilisez le formulaire ci-dessous! Vous pouvez aussi l'utiliser pour contacter le développeur.</value>  </data>
+    <value>Donner un feedback compte vraiment, si vous avez une suggestion ou que vous rencontrez un problème, utilisez le formulaire ci-dessous! Vous pouvez aussi l'utiliser pour contacter le développeur.</value>
+  </data>
   <data name="Support_Email.Text" xml:space="preserve">
-    <value>Contacter par email</value>  </data>
+    <value>Contacter par email</value>
+  </data>
   <data name="Support_Message.Text" xml:space="preserve">
-    <value>Message</value>  </data>
+    <value>Message</value>
+  </data>
   <data name="Support_Name.Text" xml:space="preserve">
-    <value>Nom</value>  </data>
+    <value>Nom</value>
+  </data>
   <data name="Support_Note.Text" xml:space="preserve">
-    <value>Après avoir cliqué soumettre, vous serez redirigé vers votre application de mail par défaut</value>  </data>
+    <value>Après avoir cliqué soumettre, vous serez redirigé vers votre application de mail par défaut</value>
+  </data>
   <data name="Support_Subject.Text" xml:space="preserve">
-    <value>Sujet</value>  </data>
+    <value>Sujet</value>
+  </data>
   <data name="Support_Submit.Content" xml:space="preserve">
-    <value>Soumettre</value>  </data>
+    <value>Soumettre</value>
+  </data>
   <data name="Support_Title.Text" xml:space="preserve">
-    <value>SUPPORT</value>  </data>
+    <value>SUPPORT</value>
+  </data>
+  <data name="TranslatorName" xml:space="preserve">
+    <value>vitaliluca</value>
+  </data>
   <data name="TrendingMessage_CopySuccess" xml:space="preserve">
-    <value>Lien copié vers le presse-papier, partagez le!</value>  </data>
+    <value>Lien copié vers le presse-papier, partagez le!</value>
+  </data>
   <data name="TrendingMessage_FavAdd" xml:space="preserve">
-    <value>GIF ajouté à la liste de favoris!</value>  </data>
+    <value>GIF ajouté à la liste de favoris!</value>
+  </data>
   <data name="TrendingMessage_FavRem" xml:space="preserve">
-    <value>GIF supprimé de la liste de favoris!</value>  </data>
+    <value>GIF supprimé de la liste de favoris!</value>
+  </data>
   <data name="TrendingMessage_Loading" xml:space="preserve">
-    <value>Chargement de la liste de GIF Populaires</value>  </data>
+    <value>Chargement de la liste de GIF Populaires</value>
+  </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
-    <value>Populaires</value>  </data>
+    <value>Populaires</value>
+  </data>
 </root>
