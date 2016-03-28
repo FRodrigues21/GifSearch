@@ -26,10 +26,12 @@ namespace GifSearch.Controllers
             {
                 HttpResponseMessage message = await httpClient.GetAsync(source);
                 long bytes = long.Parse(message.Content.Headers.First(h => h.Key.Equals("Content-Length")).Value.First());
+                NotificationBarFacade.hideStatusBar();
                 return Math.Round(ConvertBytesToMegabytes(bytes));
             }
             catch(Exception e)
             {
+                NotificationBarFacade.hideStatusBar();
                 return 0;
             }
         }

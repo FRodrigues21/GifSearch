@@ -180,6 +180,7 @@ namespace GifSearch.Views
             if (selected_gif.instance != null && !download_started)
             {
                 download_started = true;
+                NotificationBarFacade.displayStatusBarMessage("Starting media download...", false);
                 Datum datum = (Datum)selected_gif.instance;
                 MessageDialog mydial = new MessageDialog(res.GetString("DialogThird_Content"));
                 mydial.Title = res.GetString("DialogThird_Title");

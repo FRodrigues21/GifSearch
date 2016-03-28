@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Appbar_Copy.Label" xml:space="preserve">
-    <value>Kopieer</value>
+    <value>Kopieer link</value>
   </data>
   <data name="Appbar_Favorite.Label" xml:space="preserve">
     <value>Favoriet</value>
