@@ -1,6 +1,7 @@
 ﻿using GifImage;
 using GifSearch.Controllers;
 using GifSearch.Models;
+using GifSearch.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -110,17 +111,17 @@ namespace GifSearch.Views
 
         private async void loadGifList()
         {
-            NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_Loading"), false);
             if(App.pivot_index == 0)
             {
-                var list = await GifGiphyFacade.getTrending();
-                if (list == null)
+                NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_Loading"), false);
+                App.trending = await GifGiphyFacade.getTrending();
+                if (App.trending == null)
                 {
                     error_presenter.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    gif_list.ItemsSource = list;
+                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.trending, 99);
                     error_presenter.Visibility = Visibility.Collapsed;
                 }
             }

@@ -33,13 +33,11 @@ namespace GifSearch
             }
 
             HttpClient http = new HttpClient();
-
-            String url = String.Format("http://api.giphy.com/v1/gifs/search?q={1}&api_key={0}&limit={2}", apikey, search, UserFacade.getLimit());
+            String url = String.Format("http://api.giphy.com/v1/gifs/search?q={1}&api_key={0}&limit={2}", apikey, search, 50);
             Uri uri = new Uri(url);
             var response = (HttpResponseMessage)null;
             response = await http.GetAsync(uri);
             var body = await response.Content.ReadAsStringAsync();
-
             RootObject_Giphy data = JsonConvert.DeserializeObject<RootObject_Giphy>(body);
             Debug.WriteLine("Search Gifs downloaded: " + data.data.Count);
 
@@ -68,7 +66,7 @@ namespace GifSearch
 
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.giphy.com/v1/gifs/trending?api_key={0}&limit={1}", apikey, UserFacade.getLimit());
+            String url = String.Format("http://api.giphy.com/v1/gifs/trending?api_key={0}&limit={1}", apikey, 100);
             Uri uri = new Uri(url);
 
             var response = (HttpResponseMessage)null;

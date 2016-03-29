@@ -1,6 +1,8 @@
 ﻿using GifSearch.Controllers;
+using GifSearch.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -32,6 +34,9 @@ namespace GifSearch
 
         public static Boolean user_showed { get; set; }
         public static int user_logged { get; set; }
+
+        public static ObservableCollection<Datum> trending { get; set; }
+        public static ObservableCollection<Datum> search { get; set; }
 
 
         public App()

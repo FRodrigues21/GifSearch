@@ -1,6 +1,7 @@
 ﻿using GifImage;
 using GifSearch.Controllers;
 using GifSearch.Models;
+using GifSearch.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -251,15 +252,16 @@ namespace GifSearch.Views
         {
             if (search.Text != null && App.pivot_index == 1)
             {
+                Debug.WriteLine("Entrou search");
                 NotificationBarFacade.displayStatusBarMessage(res.GetString("SearchMessage_Loading"), false);
-                var list = await GifGiphyFacade.searchGif(text);
-                if (list == null)
+                App.search = await GifGiphyFacade.searchGif(text);
+                if (App.search == null)
                 {
                     error_presenter.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    gif_list.ItemsSource = list;
+                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.search, 49);
                     error_presenter.Visibility = Visibility.Collapsed;
                 }
             }
