@@ -14,18 +14,20 @@ using Windows.UI.Xaml.Data;
 
 namespace GifSearch.ViewModels
 {
-    class TrendingToShow : ObservableCollection<Datum>, ISupportIncrementalLoading
+    class TrendingToShow : ObservableCollection<Result>, ISupportIncrementalLoading
     {
         public int lastItem = 0;
         private int limit { get; set; }
+        private uint each { get; set; }
         private ProgressBar progressBar { get; set; }
-        private ObservableCollection<Datum> source { get; set; }
+        private ObservableCollection<Result> source { get; set; }
 
-        public TrendingToShow(ProgressBar progressBar, ObservableCollection<Datum> source, int limit)
+        public TrendingToShow(ProgressBar progressBar, ObservableCollection<Result> source, int limit, int each)
         {
             this.progressBar = progressBar;
             this.source = source;
             this.limit = limit;
+            this.each = (uint)each;
         }
 
         public bool HasMoreItems
@@ -58,8 +60,8 @@ namespace GifSearch.ViewModels
                         progressBar.Visibility = Visibility.Visible;
                     });
 
-                List<Datum> list = new List<Datum>();
-                for (int i = 0; i < count; i++)
+                List<Result> list = new List<Result>();
+                for (int i = 0; i < each; i++)
                 {
                     list.Add(source.ElementAt(lastItem));
                     lastItem++;
@@ -70,7 +72,7 @@ namespace GifSearch.ViewModels
                 await coreDispatcher.RunAsync(CoreDispatcherPriority.Normal,
                    () =>
                    {
-                       foreach (Datum datum in list)
+                       foreach(Result datum in list)
                        {
                            this.Add(datum);
                        }
@@ -78,7 +80,7 @@ namespace GifSearch.ViewModels
                        progressBar.IsIndeterminate = false;
                    });
 
-                return new LoadMoreItemsResult() { Count = count };
+                return new LoadMoreItemsResult() { Count = each };
             }).AsAsyncOperation<LoadMoreItemsResult>();
         }
     }

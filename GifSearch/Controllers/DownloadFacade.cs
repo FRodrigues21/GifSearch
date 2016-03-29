@@ -43,6 +43,7 @@ namespace GifSearch.Controllers
             try
             {
                 HttpResponseMessage message = await httpClient.GetAsync(source);
+            
                 StorageFolder myfolder = null;
 
                 if (type == "image")

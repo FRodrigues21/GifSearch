@@ -99,7 +99,7 @@ namespace GifSearch.Controllers
             return 0;
         }
 
-        public async static void setTrendingList(ObservableCollection<Datum> list)
+        public async static void setTrendingList(ObservableCollection<Result> list)
         {
             Debug.WriteLine("ACTIVATED: setTrendingList()\n");
             try
@@ -114,7 +114,7 @@ namespace GifSearch.Controllers
             }
         }
 
-        public async static Task<ObservableCollection<Datum>> getTrendingList()
+        public async static Task<ObservableCollection<Result>> getTrendingList()
         {
             Debug.WriteLine("ACTIVATED: getTrendingList()\n");
             var data = await readStringFromLocalFile("trending.txt");
@@ -122,7 +122,7 @@ namespace GifSearch.Controllers
             {
                 if (data != null)
                 {
-                    ObservableCollection<Datum> list = JsonConvert.DeserializeObject<ObservableCollection<Datum>>(data);
+                    ObservableCollection<Result> list = JsonConvert.DeserializeObject<ObservableCollection<Result>>(data);
                     return list;
                 }
                     
@@ -186,7 +186,7 @@ namespace GifSearch.Controllers
 
         public async static Task<Boolean> hasFavorites()
         {
-            ObservableCollection<Datum> tmp = await getFavorites();
+            ObservableCollection<Result> tmp = await getFavorites();
             if(tmp != null)
                 return tmp.Count >= 1;
             return false;
@@ -194,10 +194,10 @@ namespace GifSearch.Controllers
 
         public async static Task<Boolean> hasFavorite(String id)
         {
-            ObservableCollection<Datum> tmp = await getFavorites();
+            ObservableCollection<Result> tmp = await getFavorites();
             if(tmp != null)
             {
-                foreach (Datum d in tmp)
+                foreach (Result d in tmp)
                 {
                     if (d.id == id)
                         return true;
@@ -206,41 +206,41 @@ namespace GifSearch.Controllers
             return false;
         }
 
-        public async static void removeFavorite(Datum obj)
+        public async static void removeFavorite(Result obj)
         {
-            ObservableCollection<Datum> tmp = await getFavorites();
-            ObservableCollection<Datum> it = new ObservableCollection<Datum>(tmp);
-            foreach (Datum d in it)
+            ObservableCollection<Result> tmp = await getFavorites();
+            ObservableCollection<Result> it = new ObservableCollection<Result>(tmp);
+            foreach (Result d in it)
                 if (d.id == obj.id)
                     tmp.Remove(d);
             setFavorites(tmp);
         }
 
-        public async static void addFavorite(Datum obj)
+        public async static void addFavorite(Result obj)
         {
-            ObservableCollection<Datum> tmp = await getFavorites();
+            ObservableCollection<Result> tmp = await getFavorites();
             tmp.Add(obj);
             setFavorites(tmp);
         }
 
-        public async static Task<ObservableCollection<Datum>> getFavorites()
+        public async static Task<ObservableCollection<Result>> getFavorites()
         {
             Debug.WriteLine("ACTIVATED: getFavorites()\n");
             var data = await readStringFromLocalFile("favorites.txt");
             try
             {
                 if (data != null)
-                    return JsonConvert.DeserializeObject<ObservableCollection<Datum>>(data);
+                    return JsonConvert.DeserializeObject<ObservableCollection<Result>>(data);
             }
             catch(Exception e)
             {
                 Debug.WriteLine("Exception: Reading favorites list.");
             }
-            setFavorites(new ObservableCollection<Datum>());
+            setFavorites(new ObservableCollection<Result>());
             return null;
         }
 
-        public async static void setFavorites(ObservableCollection<Datum> list)
+        public async static void setFavorites(ObservableCollection<Result> list)
         {
             var data = JsonConvert.SerializeObject(list);
             if (data != null)

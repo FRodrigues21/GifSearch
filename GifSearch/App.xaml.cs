@@ -35,8 +35,8 @@ namespace GifSearch
         public static Boolean user_showed { get; set; }
         public static int user_logged { get; set; }
 
-        public static ObservableCollection<Datum> trending { get; set; }
-        public static ObservableCollection<Datum> search { get; set; }
+        public static ObservableCollection<Result> trending { get; set; }
+        public static ObservableCollection<Result> search { get; set; }
 
 
         public App()

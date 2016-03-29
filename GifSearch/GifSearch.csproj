@@ -127,7 +127,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controllers\DownloadFacade.cs" />
-    <Compile Include="Controllers\GifGiphyFacade.cs" />
     <Compile Include="Controllers\GifRiffsyFacade.cs" />
     <Compile Include="Controllers\NotificationBarFacade.cs" />
     <Compile Include="Controllers\UserFacade.cs" />

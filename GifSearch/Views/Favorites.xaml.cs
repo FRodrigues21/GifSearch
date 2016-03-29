@@ -63,7 +63,7 @@ namespace GifSearch.Views
                 if (selected_gif != null)
                     selected_gif.pause();
 
-                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)selected_gif.instance).id);
+                Boolean isFavorite = await UserFacade.hasFavorite(((Result)selected_gif.instance).id);
                 if (isFavorite)
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
                 else
@@ -137,7 +137,7 @@ namespace GifSearch.Views
 
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
-            Datum datum = selected_gif.instance as Datum;
+            Result datum = selected_gif.instance as Result;
             if (datum != null)
             {
                 var dataPackage = new DataPackage();
@@ -156,18 +156,18 @@ namespace GifSearch.Views
             var item = selected_gif.instance;
             if (item != null)
             {
-                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)item).id);
+                Boolean isFavorite = await UserFacade.hasFavorite(((Result)item).id);
                 if (isFavorite)
                 {
                     favorite.Icon = new SymbolIcon(Symbol.Favorite);
                     NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavRem"), true);
-                    UserFacade.removeFavorite((Datum)selected_gif.instance);
+                    UserFacade.removeFavorite((Result)selected_gif.instance);
                 }
                 else
                 {
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
                     NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavAdd"), true);
-                    UserFacade.addFavorite((Datum)selected_gif.instance);
+                    UserFacade.addFavorite((Result)selected_gif.instance);
                 }
 
                 await Task.Delay(3000);
@@ -181,7 +181,7 @@ namespace GifSearch.Views
             {
                 download_started = true;
                 NotificationBarFacade.displayStatusBarMessage("Starting media download...", false);
-                Datum datum = (Datum)selected_gif.instance;
+                Result datum = (Result)selected_gif.instance;
                 MessageDialog mydial = new MessageDialog(res.GetString("DialogThird_Content"));
                 mydial.Title = res.GetString("DialogThird_Title");
                 string gif = String.Format(".gif ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_link));
@@ -199,7 +199,7 @@ namespace GifSearch.Views
 
         private async void downloadMediaGif(IUICommand command)
         {
-            Datum datum = selected_gif.instance as Datum;
+            Result datum = selected_gif.instance as Result;
             if (datum != null)
             {
                 String filename = String.Format("giphy_{0}.gif", datum.id);
@@ -209,7 +209,7 @@ namespace GifSearch.Views
 
         private async void downloadMediaMp4(IUICommand command)
         {
-            Datum datum = selected_gif.instance as Datum;
+            Result datum = selected_gif.instance as Result;
             if (datum != null)
             {
                 String filename = String.Format("giphy_{0}.mp4", datum.id);

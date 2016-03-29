@@ -91,7 +91,7 @@ namespace GifSearch.Views
                 if (selected_gif != null)
                     selected_gif.pause();
 
-                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)selected_gif.instance).id);
+                Boolean isFavorite = await UserFacade.hasFavorite(((Result)selected_gif.instance).id);
                 if (isFavorite)
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
                 else
@@ -138,12 +138,12 @@ namespace GifSearch.Views
 
         private async void copy_Click(object sender, RoutedEventArgs e)
         {
-            Datum datum = selected_gif.instance as Datum;
-            if (datum != null)
+            Result Result = selected_gif.instance as Result;
+            if (Result != null)
             {
                 var dataPackage = new DataPackage();
                 string text = "";
-                text = datum.image_link;
+                text = Result.image_link;
                 dataPackage.SetText(text);
                 Clipboard.SetContent(dataPackage);
                 NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_CopySuccess"), true);
@@ -157,18 +157,18 @@ namespace GifSearch.Views
             var item = selected_gif.instance;
             if (item != null)
             {
-                Boolean isFavorite = await UserFacade.hasFavorite(((Datum)item).id);
+                Boolean isFavorite = await UserFacade.hasFavorite(((Result)item).id);
                 if (isFavorite)
                 {
                     favorite.Icon = new SymbolIcon(Symbol.Favorite);
                     NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavRem"), true);
-                    UserFacade.removeFavorite((Datum)selected_gif.instance);
+                    UserFacade.removeFavorite((Result)selected_gif.instance);
                 }
                 else
                 {
                     favorite.Icon = new SymbolIcon(Symbol.UnFavorite);
                     NotificationBarFacade.displayStatusBarMessage(res.GetString("TrendingMessage_FavAdd"), true);
-                    UserFacade.addFavorite((Datum)selected_gif.instance);
+                    UserFacade.addFavorite((Result)selected_gif.instance);
                 }
 
                 await Task.Delay(3000);
@@ -182,11 +182,11 @@ namespace GifSearch.Views
             {
                 download_started = true;
                 NotificationBarFacade.displayStatusBarMessage("Starting media download...", false);
-                Datum datum = (Datum)selected_gif.instance;
+                Result Result = (Result)selected_gif.instance;
                 MessageDialog mydial = new MessageDialog(res.GetString("DialogThird_Content"));
                 mydial.Title = res.GetString("DialogThird_Title");
-                string gif = String.Format(".gif ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_link));
-                string mp4 = String.Format(".mp4 ({0} KB)", await DownloadFacade.getSizeFromSource(datum.image_video));
+                string gif = String.Format(".gif ({0} KB)", await DownloadFacade.getSizeFromSource(Result.image_link));
+                string mp4 = String.Format(".mp4 ({0} KB)", await DownloadFacade.getSizeFromSource(Result.image_video));
                 mydial.Commands.Add(new UICommand(gif, new UICommandInvokedHandler(downloadMediaGif)));
                 mydial.Commands.Add(new UICommand(mp4, new UICommandInvokedHandler(downloadMediaMp4)));
                 if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -200,21 +200,21 @@ namespace GifSearch.Views
 
         private async void downloadMediaGif(IUICommand command)
         {
-            Datum datum = selected_gif.instance as Datum;
-            if (datum != null)
+            Result Result = selected_gif.instance as Result;
+            if (Result != null)
             {
-                String filename = String.Format("giphy_{0}.gif", datum.id);
-                await DownloadFacade.downloadFromSource(filename, datum.image_link, "image");
+                String filename = String.Format("giphy_{0}.gif", Result.id);
+                await DownloadFacade.downloadFromSource(filename, Result.image_link, "image");
             }
         }
 
         private async void downloadMediaMp4(IUICommand command)
         {
-            Datum datum = selected_gif.instance as Datum;
-            if (datum != null)
+            Result Result = selected_gif.instance as Result;
+            if (Result != null)
             {
-                String filename = String.Format("giphy_{0}.mp4", datum.id);
-                await DownloadFacade.downloadFromSource(filename, datum.image_video, "video");
+                String filename = String.Format("giphy_{0}.mp4", Result.id);
+                await DownloadFacade.downloadFromSource(filename, Result.image_video, "video");
             }
         }
 
@@ -254,14 +254,14 @@ namespace GifSearch.Views
             {
                 Debug.WriteLine("Entrou search");
                 NotificationBarFacade.displayStatusBarMessage(res.GetString("SearchMessage_Loading"), false);
-                App.search = await GifGiphyFacade.searchGif(text);
+                App.search = await GifRiffsyFacade.searchGif(text);
                 if (App.search == null)
                 {
                     error_presenter.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.search, 49);
+                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.search, App.search.Count, 5);
                     error_presenter.Visibility = Visibility.Collapsed;
                 }
             }
@@ -280,6 +280,11 @@ namespace GifSearch.Views
         private async void rate_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
+        }
+
+        private void gif_image_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Opened");
         }
     }
 }
