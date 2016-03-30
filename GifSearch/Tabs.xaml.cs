@@ -39,7 +39,7 @@ namespace GifSearch
             if(App.user_logged == 1 && !App.user_showed)
             {
                 App.user_showed = true;
-                string content = String.Format("{0}\n\n- Almost infinite scrolling (may lag a bit on mobile)\n- Multiple translations added (may have typos)!\n- Added filesize to download message\n- Added Technical Support page (click 3 dots in bar)\n- Fixed critical bugs on mobile\n", App.version);
+                string content = String.Format("{0}\n\n- More gifs per view\n- Added filesize to download message\n- Added Technical Support page (click 3 dots in bar)\n- Fixed critical bugs on mobile\n", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));

@@ -32,7 +32,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,6,0,6">
-                        <Image x:Name="gif_image"
+                       <Image x:Name="gif_image"
                                Loaded="gif_image_Loaded"
                                Stretch="UniformToFill"
                                gif:AnimationBehavior.AutoStart="False"
@@ -74,7 +74,7 @@
                                      Height="50"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Id="ad-1-e4806489-9159-49f8-a390-416b847888c0" />
+                                     Id="AdMediator-Id-2001" />
 
     </Grid>
 

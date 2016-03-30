@@ -42,8 +42,6 @@
                     <DataTemplate>
                         <Grid Margin="0,6,0,6">
                             <Image x:Name="gif_image"
-                                   ImageOpened="gif_image_ImageOpened"
-                                   Loaded="gif_image_Loaded"
                                    Stretch="UniformToFill"
                                    gif:AnimationBehavior.AutoStart="False"
                                    gif:AnimationBehavior.ImageUriSource="{Binding image_url}" />

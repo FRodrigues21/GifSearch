@@ -80,7 +80,7 @@ namespace GifSearch.ViewModels
                        progressBar.IsIndeterminate = false;
                    });
 
-                return new LoadMoreItemsResult() { Count = each };
+                return new LoadMoreItemsResult() { Count = count };
             }).AsAsyncOperation<LoadMoreItemsResult>();
         }
     }

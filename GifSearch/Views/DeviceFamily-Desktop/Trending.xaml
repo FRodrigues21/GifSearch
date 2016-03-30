@@ -75,7 +75,7 @@
                                      Height="90"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Id="ad-2-cab88a62-e4ab-4754-9ece-807a804d7b87" />
+                                     Id="AdMediator-Id-2003" />
 
     </Grid>
 

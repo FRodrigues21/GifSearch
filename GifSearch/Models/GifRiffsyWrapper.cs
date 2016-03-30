@@ -101,27 +101,11 @@ namespace GifSearch.Models
         public Uri image_url {
             get {
                 string url = "";
-                foreach(Medium m in media)
-                {
-                    Debug.WriteLine(m.tinygif.url);
-                    url = m.tinygif.url;   
-                }
+                foreach (Medium m in media)
+                    url = m.nanogif.url;
                 return new Uri(url);
             }
         }
-        /*public string image_url
-        {
-            get
-            {
-                string url = "";
-                foreach (Medium m in media)
-                {
-                    Debug.WriteLine(m.tinygif.url);
-                    url = m.tinygif.url;
-                }
-                return url;
-            }
-        }*/
         public string image_link
         {
             get
@@ -129,7 +113,7 @@ namespace GifSearch.Models
                 string url = "";
                 foreach (Medium m in media)
                 {
-                    url = m.gif.url;
+                    url = m.tinygif.url;
                 }
                 return url;
             }

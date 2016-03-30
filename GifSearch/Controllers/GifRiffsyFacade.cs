@@ -35,11 +35,10 @@ namespace GifSearch
 
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, 50);
+            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, 30);
             Uri uri = new Uri(url);
 
-            var response = (HttpResponseMessage)null;
-            response = await http.GetAsync(uri);
+            var response = await http.GetAsync(uri);
             var body = await response.Content.ReadAsStringAsync();
 
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
@@ -67,11 +66,10 @@ namespace GifSearch
 
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, 50);
+            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, 40);
             Uri uri = new Uri(url);
 
-            var response = (HttpResponseMessage)null;
-            response = await http.GetAsync(uri);
+            var response = await http.GetAsync(uri);
             Debug.WriteLine(response);
             var body = await response.Content.ReadAsStringAsync();
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
