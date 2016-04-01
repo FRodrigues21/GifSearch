@@ -253,5 +253,10 @@ namespace GifSearch.Views
         {
             await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
         }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+            App.rootFrame.Navigate(typeof(Settings));
+        }
     }
 }

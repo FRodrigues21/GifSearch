@@ -286,5 +286,10 @@ namespace GifSearch.Views
         {
             Debug.WriteLine("Opened");
         }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+            App.rootFrame.Navigate(typeof(Settings));
+        }
     }
 }

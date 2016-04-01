@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GifSearch.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -25,6 +26,7 @@ namespace GifSearch.Models
 
     public class Tinygif
     {
+        public int value = 1;
         public string url { get; set; }
         public List<int> dims { get; set; }
         public string preview { get; set; }
@@ -54,6 +56,7 @@ namespace GifSearch.Models
 
     public class Gif
     {
+        public int value = 2;
         public string url { get; set; }
         public List<int> dims { get; set; }
         public string preview { get; set; }
@@ -69,6 +72,7 @@ namespace GifSearch.Models
 
     public class Nanogif
     {
+        public int value = 0;
         public string url { get; set; }
         public List<int> dims { get; set; }
         public string preview { get; set; }
@@ -102,7 +106,21 @@ namespace GifSearch.Models
             get {
                 string url = "";
                 foreach (Medium m in media)
-                    url = m.nanogif.url;
+                {
+                    switch(UserFacade.getDisplayQuality())
+                    {
+                        case 0:
+                            url = m.nanogif.url;
+                            break;
+                        case 1:
+                            url = m.tinygif.url;
+                            break;
+                        case 2:
+                            url = m.gif.url;
+                            break;
+                    }
+                }
+                    
                 return new Uri(url);
             }
         }
@@ -113,7 +131,18 @@ namespace GifSearch.Models
                 string url = "";
                 foreach (Medium m in media)
                 {
-                    url = m.tinygif.url;
+                    switch (UserFacade.getDownloadQuality())
+                    {
+                        case 0:
+                            url = m.nanogif.url;
+                            break;
+                        case 1:
+                            url = m.tinygif.url;
+                            break;
+                        case 2:
+                            url = m.gif.url;
+                            break;
+                    }
                 }
                 return url;
             }

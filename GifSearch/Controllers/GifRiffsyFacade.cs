@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.Networking.Connectivity;
 using Windows.Web.Http;
 
@@ -35,7 +36,12 @@ namespace GifSearch
 
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, 30);
+            int limit = 0;
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                limit = 20;
+            else
+                limit = 30;
+            String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, limit);
             Uri uri = new Uri(url);
 
             var response = await http.GetAsync(uri);
@@ -66,7 +72,12 @@ namespace GifSearch
 
             HttpClient http = new HttpClient();
 
-            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, 40);
+            int limit = 0;
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                limit = 30;
+            else
+                limit = 50;
+            String url = String.Format("http://api.riffsy.com/v1/trending?key={0}&limit={1}", apikey, limit);
             Uri uri = new Uri(url);
 
             var response = await http.GetAsync(uri);
@@ -74,6 +85,7 @@ namespace GifSearch
             var body = await response.Content.ReadAsStringAsync();
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.results.Count);
+            UserFacade.setLastTrendingUpdate();
             return data.results;
         }
 

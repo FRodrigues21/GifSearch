@@ -15,8 +15,75 @@ namespace GifSearch.Controllers
     class UserFacade
     {
 
-
         private static ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+
+        public static int getDownloadQuality()
+        {
+            Debug.WriteLine("ACTIVATED: getDownloadQuality()\n");
+            var tmp = getValue("download");
+            try
+            {
+                if (tmp != null)
+                    return (int)tmp;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting user download quality!");
+            }
+            setLogged(2);
+            return 2;
+        }
+
+        public static void setDownloadQuality(int quality)
+        {
+            setValue("download", quality);
+        }
+
+        public static int getDisplayQuality()
+        {
+            Debug.WriteLine("ACTIVATED: getDisplayQuality()\n");
+            var tmp = getValue("display");
+            try
+            {
+                if (tmp != null)
+                    return (int)tmp;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting user display quality!");
+            }
+            setLogged(1);
+            return 1;
+        }
+
+        public static void setDisplayQuality(int quality)
+        {
+            setValue("display", quality);
+        }
+
+        public static string getVersion()
+        {
+            Debug.WriteLine("ACTIVATED: getVersion()\n");
+            var tmp = getValue("version");
+            try
+            {
+                if (tmp != null)
+                    return (string)tmp;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting user version!");
+            }
+            setVersion(App.version);
+            return null;
+        }
+
+        public static void setVersion(string version)
+        {
+            Debug.WriteLine("ACTIVATED: setVersion()\n");
+            setValue("version", version);
+        }
+
 
         // REVIEW INFO
         public static int getReviewed()

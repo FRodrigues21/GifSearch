@@ -186,6 +186,18 @@ If you only wan't to store it to view later, select .gif"</value>
   <data name="Search_Tab.Label" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="Settings_DisplayResolutionDescription.Text" xml:space="preserve">
+    <value>Resolution affects loading time on mobile</value>
+  </data>
+  <data name="Settings_DisplayResolutionTitle.Text" xml:space="preserve">
+    <value>GIF Display Quality</value>
+  </data>
+  <data name="Settings_DownloadResolutionTitle.Text" xml:space="preserve">
+    <value>GIF Download Quality</value>
+  </data>
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
   <data name="Support_Description.Text" xml:space="preserve">
     <value>Feedback really matters, so if you have any suggestion or you have encountered any problem use the form below! You can also use it to contact the developer.</value>
   </data>

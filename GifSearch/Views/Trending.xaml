@@ -99,12 +99,6 @@
                               Click="save_Click"
                               Icon="Save"
                               Label="Save" />
-                <AppBarButton x:Name="play"
-                              x:Uid="Appbar_Play"
-                              HorizontalAlignment="Right"
-                              Click="play_Click"
-                              Icon="Play"
-                              Label="Play / Pause" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="support"
@@ -113,6 +107,12 @@
                               Click="support_Click"
                               Background="Transparent"
                               Label="Support" />
+                <AppBarButton x:Name="settings"
+                              x:Uid="Appbar_Settings"
+                              HorizontalAlignment="Right"
+                              Click="settings_Click"
+                              Background="Transparent"
+                              Label="Settings" />
                 <AppBarButton x:Name="rate"
                               x:Uid="Appbar_Rate"
                               HorizontalAlignment="Right"

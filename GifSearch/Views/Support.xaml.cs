@@ -24,6 +24,7 @@ namespace GifSearch.Views
         public Support()
         {
             this.InitializeComponent();
+            NotificationBarFacade.hideStatusBar();
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

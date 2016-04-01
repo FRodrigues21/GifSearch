@@ -114,6 +114,12 @@
                               Click="support_Click"
                               Background="Transparent"
                               Label="Support" />
+                <AppBarButton x:Name="settings"
+                              x:Uid="Appbar_Settings"
+                              HorizontalAlignment="Right"
+                              Click="settings_Click"
+                              Background="Transparent"
+                              Label="Settings" />
                 <AppBarButton x:Name="rate"
                               x:Uid="Appbar_Rate"
                               HorizontalAlignment="Right"

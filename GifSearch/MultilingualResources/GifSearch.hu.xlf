@@ -154,6 +154,22 @@ If you only wan't to store it to view later, select .gif"</target>
           <source>Trending</source>
           <target state="new">Trending</target>
         </trans-unit>
+        <trans-unit id="Settings_Title.Text" translate="yes" xml:space="preserve">
+          <source>SETTINGS</source>
+          <target state="new">SETTINGS</target>
+        </trans-unit>
+        <trans-unit id="Settings_DisplayResolutionDescription.Text" translate="yes" xml:space="preserve">
+          <source>Resolution affects loading time on mobile</source>
+          <target state="new">Resolution affects loading time on mobile</target>
+        </trans-unit>
+        <trans-unit id="Settings_DisplayResolutionTitle.Text" translate="yes" xml:space="preserve">
+          <source>GIF Display Quality</source>
+          <target state="new">GIF Display Quality</target>
+        </trans-unit>
+        <trans-unit id="Settings_DownloadResolutionTitle.Text" translate="yes" xml:space="preserve">
+          <source>GIF Download Quality</source>
+          <target state="new">GIF Download Quality</target>
+        </trans-unit>
       </group>
     </body>
   </file>
