@@ -168,6 +168,10 @@ En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo 
           <source>GIF Download Quality</source>
           <target state="new">GIF Download Quality</target>
         </trans-unit>
+        <trans-unit id="Settings_DownloadResolutionDescription.Text" translate="yes" xml:space="preserve">
+          <source>Some applications may not support medium resolution GIF because their size is to big</source>
+          <target state="new">Some applications may not support medium resolution GIF because their size is to big</target>
+        </trans-unit>
       </group>
     </body>
   </file>

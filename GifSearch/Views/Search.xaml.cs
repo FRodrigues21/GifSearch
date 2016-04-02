@@ -41,6 +41,7 @@ namespace GifSearch.Views
         public Search()
         {
             this.InitializeComponent();
+            NotificationBarFacade.hideStatusBar();
             res = ResourceLoader.GetForCurrentView();
             selected_gif = new PlayingItem();
             navigation_caused = false;
@@ -224,10 +225,11 @@ namespace GifSearch.Views
             panel.ItemWidth = panel.ItemHeight = e.NewSize.Width / 4;
         }
 
-        private void gif_image_Loaded(object sender, RoutedEventArgs e)
+        private async void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (loaded_count >= UserFacade.getLimit()/2)
+            if (loaded_count >= 15)
             {
+                await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
                 loaded_count = 0;
             }
@@ -252,7 +254,6 @@ namespace GifSearch.Views
         {
             if (search.Text != null && App.pivot_index == 1)
             {
-                Debug.WriteLine("Entrou search");
                 NotificationBarFacade.displayStatusBarMessage(res.GetString("SearchMessage_Loading"), false);
                 App.search = await GifRiffsyFacade.searchGif(text);
                 if (App.search == null)
@@ -261,7 +262,10 @@ namespace GifSearch.Views
                 }
                 else
                 {
-                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.search, App.search.Count, 5);
+                    if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                        gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.search, App.search.Count, 5);
+                    else
+                        gif_list.ItemsSource = App.search;
                     error_presenter.Visibility = Visibility.Collapsed;
                 }
             }

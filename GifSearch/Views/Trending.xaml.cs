@@ -42,6 +42,7 @@ namespace GifSearch.Views
         public Trending()
         {
             this.InitializeComponent();
+            NotificationBarFacade.hideStatusBar();
             res = ResourceLoader.GetForCurrentView();
             this.loadGifList();
             selected_gif = new PlayingItem();
@@ -121,7 +122,10 @@ namespace GifSearch.Views
                 }
                 else
                 {
-                    gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.trending, App.trending.Count, 5);
+                    if (!ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                        gif_list.ItemsSource = new TrendingToShow(ProgressBar, App.trending, App.trending.Count, 5);
+                    else
+                        gif_list.ItemsSource = App.trending;
                     error_presenter.Visibility = Visibility.Collapsed;
                 }
             }
@@ -215,10 +219,11 @@ namespace GifSearch.Views
             panel.ItemWidth = panel.ItemHeight = e.NewSize.Width / 4;
         }
 
-        private void gif_image_Loaded(object sender, RoutedEventArgs e)
+        private async void gif_image_Loaded(object sender, RoutedEventArgs e)
         {
-            if (loaded_count >= UserFacade.getLimit()/2)
+            if (loaded_count >= 20)
             {
+                await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
                 loaded_count = 0;
             }

@@ -39,9 +39,11 @@ namespace GifSearch
             string version = UserFacade.getVersion();
             if ((App.user_logged == 1 || version == null || !version.Equals(App.version)) && !App.user_showed)
             {
+                UserFacade.setDisplayQuality(1);
+                UserFacade.setDownloadQuality(2);
                 App.user_showed = true;
                 UserFacade.setVersion(App.version);
-                string content = String.Format("{0}\n\n- Re-added Settings page (3 dots in bar)\n- Display/Download quality picker in settings\n- Performance tweaks added (may improve loading times)\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
+                string content = String.Format("{0}\n\n- Fixed search not loading on mobile\n- Display/Download description and types changed\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));

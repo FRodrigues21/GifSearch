@@ -41,6 +41,7 @@ namespace GifSearch.Views
         public Favorites()
         {
             this.InitializeComponent();
+            NotificationBarFacade.hideStatusBar();
             res = ResourceLoader.GetForCurrentView();
             this.loadGifList();
             selected_gif = new PlayingItem();

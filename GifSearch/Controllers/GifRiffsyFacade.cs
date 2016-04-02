@@ -38,9 +38,9 @@ namespace GifSearch
 
             int limit = 0;
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                limit = 20;
-            else
                 limit = 30;
+            else
+                limit = 50;
             String url = String.Format("http://api.riffsy.com/v1/search?key={0}&tag={1}&limit={2}", apikey, search, limit);
             Uri uri = new Uri(url);
 
@@ -85,6 +85,7 @@ namespace GifSearch
             var body = await response.Content.ReadAsStringAsync();
             RootObject_Riffsy data = JsonConvert.DeserializeObject<RootObject_Riffsy>(body);
             Debug.WriteLine("Trending Gifs downloaded: " + data.results.Count);
+            UserFacade.setTrendingList(data.results);
             UserFacade.setLastTrendingUpdate();
             return data.results;
         }

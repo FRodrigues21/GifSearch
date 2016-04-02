@@ -27,15 +27,16 @@
                 <TextBlock x:Uid="Settings_DisplayResolutionTitle" FontWeight="SemiBold" Margin="6" Text="GIF Display resolution"  />
                 <TextBlock Margin="6" x:Uid="Settings_DisplayResolutionDescription" FontWeight="Light" />
                 <ComboBox SelectionChanged="display_type_SelectionChanged" x:Name="display_type" Margin="6">
-                    <ComboBoxItem>Very Low</ComboBoxItem>
-                    <ComboBoxItem>Low (Default)</ComboBoxItem>
-                    <ComboBoxItem>Normal</ComboBoxItem>
-                </ComboBox>
-                <TextBlock x:Uid="Settings_DownloadResolutionTitle" FontWeight="SemiBold" Margin="6" Text="GIF Download resolution"  />
-                <ComboBox SelectionChanged="download_type_SelectionChanged" x:Name="download_type" Margin="6">
-                    <ComboBoxItem>Very Low</ComboBoxItem>
                     <ComboBoxItem>Low</ComboBoxItem>
                     <ComboBoxItem>Normal (Default)</ComboBoxItem>
+                    <ComboBoxItem>Medium</ComboBoxItem>
+                </ComboBox>
+                <TextBlock x:Uid="Settings_DownloadResolutionTitle" FontWeight="SemiBold" Margin="6" Text="GIF Download resolution"  />
+                <TextBlock TextWrapping="Wrap" Margin="6" x:Uid="Settings_DownloadResolutionDescription" FontWeight="Light" />
+                <ComboBox SelectionChanged="download_type_SelectionChanged" x:Name="download_type" Margin="6">
+                    <ComboBoxItem>Low</ComboBoxItem>
+                    <ComboBoxItem>Normal</ComboBoxItem>
+                    <ComboBoxItem>Medium (Default)</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
         </Grid>

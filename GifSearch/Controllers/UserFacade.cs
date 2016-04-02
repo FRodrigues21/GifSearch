@@ -30,7 +30,7 @@ namespace GifSearch.Controllers
             {
                 Debug.WriteLine("Exception: Getting user download quality!");
             }
-            setLogged(2);
+            setDownloadQuality(2);
             return 2;
         }
 
@@ -52,7 +52,7 @@ namespace GifSearch.Controllers
             {
                 Debug.WriteLine("Exception: Getting user display quality!");
             }
-            setLogged(1);
+            setDisplayQuality(1);
             return 1;
         }
 
