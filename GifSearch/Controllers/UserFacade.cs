@@ -17,6 +17,50 @@ namespace GifSearch.Controllers
 
         private static ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
 
+        public async static Task<StorageFolder> getVideoFolderPath()
+        {
+            Debug.WriteLine("ACTIVATED: getVideoFolderPath()\n");
+            var tmp = getValue("video_folder");
+            try
+            {
+                if (tmp != null)
+                    return await StorageFolder.GetFolderFromPathAsync((string)tmp);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting video folder!");
+            }
+            setVideoFolderPath(KnownFolders.VideosLibrary.Path);
+            return KnownFolders.VideosLibrary;
+        }
+
+        public static void setVideoFolderPath(string path)
+        {
+            setValue("video_folder", path);
+        }
+
+        public async static Task<StorageFolder> getImageFolderPath()
+        {
+            Debug.WriteLine("ACTIVATED: getImageFolderPath()\n");
+            var tmp = getValue("image_folder");
+            try
+            {
+                if (tmp != null)
+                    return await StorageFolder.GetFolderFromPathAsync((string)tmp);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception: Getting img folder!");
+            }
+            setImageFolderPath(KnownFolders.PicturesLibrary.Path);
+            return KnownFolders.PicturesLibrary;
+        }
+
+        public static void setImageFolderPath(string path)
+        {
+            setValue("image_folder", path);
+        }
+
         public static int getDownloadQuality()
         {
             Debug.WriteLine("ACTIVATED: getDownloadQuality()\n");

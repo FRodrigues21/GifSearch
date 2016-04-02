@@ -173,6 +173,18 @@ Si vous voulez juste le stocker pour le regarder plus tard, sélectionnez .gif</
           <source>Some applications may not support medium resolution GIF because their size is to big</source>
           <target state="new">Some applications may not support medium resolution GIF because their size is to big</target>
         </trans-unit>
+        <trans-unit id="Appbar_Settings.Label" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="new">Settings</target>
+        </trans-unit>
+        <trans-unit id="Settings_DisplayResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .gif to</source>
+          <target state="new">Save .gif to</target>
+        </trans-unit>
+        <trans-unit id="Settings_DownloadResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .mp4 to</source>
+          <target state="new">Save .mp4 to</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -156,23 +156,35 @@ If you only wan't to store it to view later, select .gif"</target>
         </trans-unit>
         <trans-unit id="Settings_Title.Text" translate="yes" xml:space="preserve">
           <source>SETTINGS</source>
-          <target state="new">SETTINGS</target>
+          <target state="translated">DEFINIÇÕES</target>
         </trans-unit>
         <trans-unit id="Settings_DisplayResolutionDescription.Text" translate="yes" xml:space="preserve">
           <source>Resolution affects loading time on mobile</source>
-          <target state="new">Resolution affects loading time on mobile</target>
+          <target state="translated">A resolução pode afectar o tempo de carregamento no smartphone</target>
         </trans-unit>
         <trans-unit id="Settings_DisplayResolutionTitle.Text" translate="yes" xml:space="preserve">
           <source>GIF Display Quality</source>
-          <target state="new">GIF Display Quality</target>
+          <target state="translated">Qualidade de visualização do GIF</target>
         </trans-unit>
         <trans-unit id="Settings_DownloadResolutionTitle.Text" translate="yes" xml:space="preserve">
           <source>GIF Download Quality</source>
-          <target state="new">GIF Download Quality</target>
+          <target state="translated">Qualidade de download do GIF</target>
         </trans-unit>
         <trans-unit id="Settings_DownloadResolutionDescription.Text" translate="yes" xml:space="preserve">
           <source>Some applications may not support medium resolution GIF because their size is to big</source>
-          <target state="new">Some applications may not support medium resolution GIF because their size is to big</target>
+          <target state="translated">Algumas aplicações não suportam a resolução media de GIF, devido ao seu elevado tamanho</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Settings.Label" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Definições</target>
+        </trans-unit>
+        <trans-unit id="Settings_DisplayResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .gif to</source>
+          <target state="translated">Guardar .gif para</target>
+        </trans-unit>
+        <trans-unit id="Settings_DownloadResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .mp4 to</source>
+          <target state="translated">Guardar .mp4 para</target>
         </trans-unit>
       </group>
     </body>

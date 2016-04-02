@@ -43,13 +43,13 @@ namespace GifSearch.Controllers
             try
             {
                 HttpResponseMessage message = await httpClient.GetAsync(source);
-            
+
                 StorageFolder myfolder = null;
 
                 if (type == "image")
-                    myfolder = KnownFolders.PicturesLibrary;
+                    myfolder = await UserFacade.getImageFolderPath();
                 else if (type == "video")
-                    myfolder = KnownFolders.VideosLibrary;
+                    myfolder = await UserFacade.getVideoFolderPath();
 
                 StorageFile SampleFile = await myfolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
                 byte[] file = await message.Content.ReadAsByteArrayAsync();

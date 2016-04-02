@@ -38,6 +38,10 @@
                     <ComboBoxItem>Normal</ComboBoxItem>
                     <ComboBoxItem>Medium (Default)</ComboBoxItem>
                 </ComboBox>
+                <TextBlock x:Uid="Settings_DisplayResolutionFolder" FontWeight="SemiBold" Margin="6" Text="GIF .gif saving folder"  />
+                <Button x:Name="gifbutton" Click="gifbutton_Click" x:Uid="Settings_DisplayResolutionButton" Margin="6" Content="Choose" />
+                <TextBlock x:Uid="Settings_DownloadResolutionFolder" FontWeight="SemiBold" Margin="6" Text="GIF .mp4 saving folder"  />
+                <Button x:Name="mp4button" Click="mp4button_Click" x:Uid="Settings_DownloadResolutionButton" Margin="6" Content="Choose" />
             </StackPanel>
         </Grid>
     </Grid>

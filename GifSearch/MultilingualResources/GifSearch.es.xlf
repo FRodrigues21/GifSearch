@@ -74,11 +74,11 @@ En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo 
         </trans-unit>
         <trans-unit id="Error_description.Text" translate="yes" xml:space="preserve">
           <source>Seems like you have no Internet connection...</source>
-          <target state="new">Seems like you have no Internet connection...</target>
+          <target state="translated">Parece que no tienes una conexión con Internet...</target>
         </trans-unit>
         <trans-unit id="Error_solution.Text" translate="yes" xml:space="preserve">
           <source>Fix the problem then hit refresh!</source>
-          <target state="translated">Soluciona el problema después prime actualizar!</target>
+          <target state="translated">Soluciona el problema después selecciona actualizar!</target>
         </trans-unit>
         <trans-unit id="FavoritesMessage_Loading" translate="yes" xml:space="preserve">
           <source>Loading your Favorites GIF list...</source>
@@ -154,23 +154,35 @@ En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo 
         </trans-unit>
         <trans-unit id="Settings_Title.Text" translate="yes" xml:space="preserve">
           <source>SETTINGS</source>
-          <target state="new">SETTINGS</target>
+          <target state="translated">OPCIONES</target>
         </trans-unit>
         <trans-unit id="Settings_DisplayResolutionDescription.Text" translate="yes" xml:space="preserve">
           <source>Resolution affects loading time on mobile</source>
-          <target state="new">Resolution affects loading time on mobile</target>
+          <target state="translated">La calidad puede afectar el cargamiento de los GIF en el móvil</target>
         </trans-unit>
         <trans-unit id="Settings_DisplayResolutionTitle.Text" translate="yes" xml:space="preserve">
           <source>GIF Display Quality</source>
-          <target state="new">GIF Display Quality</target>
+          <target state="translated">Calidad de exhibición del GIF</target>
         </trans-unit>
         <trans-unit id="Settings_DownloadResolutionTitle.Text" translate="yes" xml:space="preserve">
           <source>GIF Download Quality</source>
-          <target state="new">GIF Download Quality</target>
+          <target state="translated">Calidad de descarga del GIF</target>
         </trans-unit>
         <trans-unit id="Settings_DownloadResolutionDescription.Text" translate="yes" xml:space="preserve">
           <source>Some applications may not support medium resolution GIF because their size is to big</source>
-          <target state="new">Some applications may not support medium resolution GIF because their size is to big</target>
+          <target state="translated">Algunas aplicaciones nó soportan la calidad média de GIF debido a su tamaño</target>
+        </trans-unit>
+        <trans-unit id="Appbar_Settings.Label" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Opciones</target>
+        </trans-unit>
+        <trans-unit id="Settings_DisplayResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .gif to</source>
+          <target state="translated">Guardar .gif para</target>
+        </trans-unit>
+        <trans-unit id="Settings_DownloadResolutionFolder.Text" translate="yes" xml:space="preserve">
+          <source>Save .mp4 to</source>
+          <target state="translated">Guardar .mp4 para</target>
         </trans-unit>
       </group>
     </body>

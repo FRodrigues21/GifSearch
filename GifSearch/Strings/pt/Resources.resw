@@ -120,4 +120,28 @@ If you only wan't to store it to view later, select .gif"</value>
   <data name="Trending_Tab.Label" xml:space="preserve">
     <value>Popular</value>
   </data>
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <value>DEFINIÇÕES</value>
+  </data>
+  <data name="Settings_DisplayResolutionDescription.Text" xml:space="preserve">
+    <value>A resolução pode afectar o tempo de carregamento no smartphone</value>
+  </data>
+  <data name="Settings_DisplayResolutionTitle.Text" xml:space="preserve">
+    <value>Qualidade de visualização do GIF</value>
+  </data>
+  <data name="Settings_DownloadResolutionTitle.Text" xml:space="preserve">
+    <value>Qualidade de download do GIF</value>
+  </data>
+  <data name="Settings_DownloadResolutionDescription.Text" xml:space="preserve">
+    <value>Algumas aplicações não suportam a resolução media de GIF, devido ao seu elevado tamanho</value>
+  </data>
+  <data name="Appbar_Settings.Label" xml:space="preserve">
+    <value>Definições</value>
+  </data>
+  <data name="Settings_DisplayResolutionFolder.Text" xml:space="preserve">
+    <value>Guardar .gif para</value>
+  </data>
+  <data name="Settings_DownloadResolutionFolder.Text" xml:space="preserve">
+    <value>Guardar .mp4 para</value>
+  </data>
 </root>

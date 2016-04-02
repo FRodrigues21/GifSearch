@@ -43,7 +43,7 @@ namespace GifSearch
                 UserFacade.setDownloadQuality(2);
                 App.user_showed = true;
                 UserFacade.setVersion(App.version);
-                string content = String.Format("{0}\n\n- Fixed search not loading on mobile\n- Display/Download description and types changed\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
+                string content = String.Format("{0}\n\n- Added Portuguese and Spanish translations\n- Added prefered saving folder picker\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));

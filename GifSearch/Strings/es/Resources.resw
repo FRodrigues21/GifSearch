@@ -58,8 +58,11 @@ En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo 
   <data name="DialogThird_Title" xml:space="preserve">
     <value>Descargando un GIF</value>
   </data>
+  <data name="Error_description.Text" xml:space="preserve">
+    <value>Parece que no tienes una conexión con Internet...</value>
+  </data>
   <data name="Error_solution.Text" xml:space="preserve">
-    <value>Soluciona el problema después prime actualizar!</value>
+    <value>Soluciona el problema después selecciona actualizar!</value>
   </data>
   <data name="FavoritesMessage_Loading" xml:space="preserve">
     <value>Cargando tus GIF favoritos...</value>
@@ -114,5 +117,29 @@ En el momento puedes probar descargar el GIF como .mp4 para compartir! Si sólo 
   </data>
   <data name="Trending_Tab.Label" xml:space="preserve">
     <value>Popular</value>
+  </data>
+  <data name="Settings_Title.Text" xml:space="preserve">
+    <value>OPCIONES</value>
+  </data>
+  <data name="Settings_DisplayResolutionDescription.Text" xml:space="preserve">
+    <value>La calidad puede afectar el cargamiento de los GIF en el móvil</value>
+  </data>
+  <data name="Settings_DisplayResolutionTitle.Text" xml:space="preserve">
+    <value>Calidad de exhibición del GIF</value>
+  </data>
+  <data name="Settings_DownloadResolutionTitle.Text" xml:space="preserve">
+    <value>Calidad de descarga del GIF</value>
+  </data>
+  <data name="Settings_DownloadResolutionDescription.Text" xml:space="preserve">
+    <value>Algunas aplicaciones nó soportan la calidad média de GIF debido a su tamaño</value>
+  </data>
+  <data name="Appbar_Settings.Label" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="Settings_DisplayResolutionFolder.Text" xml:space="preserve">
+    <value>Guardar .gif para</value>
+  </data>
+  <data name="Settings_DownloadResolutionFolder.Text" xml:space="preserve">
+    <value>Guardar .mp4 para</value>
   </data>
 </root>

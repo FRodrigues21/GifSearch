@@ -132,6 +132,9 @@
   <data name="Appbar_Save.Label" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Appbar_Settings.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="Appbar_Support.Label" xml:space="preserve">
     <value>Support</value>
   </data>
@@ -189,11 +192,17 @@ If you only wan't to store it to view later, select .gif"</value>
   <data name="Settings_DisplayResolutionDescription.Text" xml:space="preserve">
     <value>Resolution affects loading time on mobile</value>
   </data>
+  <data name="Settings_DisplayResolutionFolder.Text" xml:space="preserve">
+    <value>Save .gif to</value>
+  </data>
   <data name="Settings_DisplayResolutionTitle.Text" xml:space="preserve">
     <value>GIF Display Quality</value>
   </data>
   <data name="Settings_DownloadResolutionDescription.Text" xml:space="preserve">
     <value>Some applications may not support medium resolution GIF because their size is to big</value>
+  </data>
+  <data name="Settings_DownloadResolutionFolder.Text" xml:space="preserve">
+    <value>Save .mp4 to</value>
   </data>
   <data name="Settings_DownloadResolutionTitle.Text" xml:space="preserve">
     <value>GIF Download Quality</value>
