@@ -36,7 +36,7 @@ namespace GifSearch.Controllers
             }
         }
 
-        public async static Task<Boolean> downloadFromSource(String filename, String source, String type)
+        public async static Task<String> downloadFromSource(String filename, String source, String type)
         {
             NotificationBarFacade.displayStatusBarMessage("Downloading media to storage...", false);
             HttpClient httpClient = new HttpClient();
@@ -58,7 +58,7 @@ namespace GifSearch.Controllers
                 NotificationBarFacade.displayStatusBarMessage("Media was successfully downloaded to storage!", true);
                 await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
-                return true;
+                return SampleFile.Path;
             }
             catch(Exception e)
             {
@@ -66,7 +66,7 @@ namespace GifSearch.Controllers
                 await Task.Delay(3000);
                 NotificationBarFacade.hideStatusBar();
                 Debug.WriteLine("Exception Message: " + e.Message);
-                return false;
+                return null;
             }
         }
 

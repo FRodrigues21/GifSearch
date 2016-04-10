@@ -9,11 +9,14 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -35,10 +38,12 @@ namespace GifSearch
         private static AppBarButton _favorite { get; set; }
         private static PlayingItem selected_gif { get; set; }
         private static Boolean download_started = false;
+        private static String _path { get; set; }
 
         public Tabs()
         {
             this.InitializeComponent();
+            DataTransferManager.GetForCurrentView().DataRequested += MainPage_DataRequested;
             _appbar = appbar;
             _favorite = favorite;
             selected_gif = new PlayingItem();
@@ -216,7 +221,7 @@ namespace GifSearch
                 UserFacade.setDownloadQuality(2);
                 App.user_showed = true;
                 UserFacade.setVersion(App.version);
-                string content = String.Format("{0}\n\n- Added Portuguese and Spanish translations\n- Added prefered saving folder picker\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
+                string content = String.Format("{0}\n\n- Added Portuguese and Spanish translations (more languages are coming!)\n- You can now share directly into Twitter!\n- Added option to choose default download folders\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
@@ -263,5 +268,24 @@ namespace GifSearch
                 }
             }
         }
+
+        private void share_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
+        private void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            Result datum = selected_gif.instance as Result;
+            args.Request.GetDeferral();
+            
+            args.Request.Data.Properties.Title = "GIF " + datum.title + " from riffsy";
+
+            args.Request.Data.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(datum.image_url);
+            args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(datum.image_url));
+
+            args.Request.GetDeferral().Complete();
+        }
+
     }
 }

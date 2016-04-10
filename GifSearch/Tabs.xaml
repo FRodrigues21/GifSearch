@@ -394,12 +394,15 @@
                               Click="save_Click"
                               Icon="Save"
                               Label="Save" />
-                <AppBarButton x:Name="play"
-                              x:Uid="Appbar_Play"
-                              HorizontalAlignment="Right"
-                              Click="play_Click"
-                              Icon="Play"
-                              Label="Play / Pause" />
+                <AppBarButton x:Name="share"
+                	x:Uid="Appbar_Share"
+                	HorizontalAlignment="Right"
+                	Click="share_Click"
+                	Label="Share" >
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="support"
