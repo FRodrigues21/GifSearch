@@ -124,6 +124,7 @@ namespace GifSearch.Models
                 return new Uri(url);
             }
         }
+
         public string image_link
         {
             get

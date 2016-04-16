@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -15,6 +16,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.System;
@@ -25,6 +27,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace GifSearch
@@ -269,20 +272,40 @@ namespace GifSearch
             }
         }
 
-        private void share_Click(object sender, RoutedEventArgs e)
+        private async void share_Click(object sender, RoutedEventArgs e)
         {
+            MessageDialog mydial = new MessageDialog("Sharing a GIF it's still not support by all Windows 10 apps\n\nTwitter, Messaging (use Normal download quality) and Skype are some examples of apps that support GIF sharing!\nThe sharing it's still buggy, so it may take some time for the GIF to appear in the app you are sharing to.");
+            mydial.Title = "gif Search";
+            mydial.Commands.Add(new UICommand("Share GIF", new UICommandInvokedHandler(CommandInvokedHandler_shareclick)));
+            mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
+            await mydial.ShowAsync();
+        }
+
+        private void CommandInvokedHandler_shareclick(IUICommand command) {
             DataTransferManager.ShowShareUI();
         }
 
-        private void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        private async void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             Result datum = selected_gif.instance as Result;
             args.Request.GetDeferral();
-            
+
+            List<StorageFile> listfiles = new List<StorageFile>();
+
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage message = await httpClient.GetAsync(datum.image_url);
+            String filename = String.Format("riffsy_{0}.gif", datum.id);
+            StorageFolder myfolder = await UserFacade.getImageFolderPath();
+            StorageFile SampleFile = await myfolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            byte[] file = await message.Content.ReadAsByteArrayAsync();
+            await FileIO.WriteBytesAsync(SampleFile, file);
+            var files = await myfolder.GetFilesAsync();
+
+            listfiles.Add(SampleFile);
+
             args.Request.Data.Properties.Title = "GIF " + datum.title + " from riffsy";
 
-            args.Request.Data.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(datum.image_url);
-            args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(datum.image_url));
+            args.Request.Data.SetStorageItems(listfiles);
 
             args.Request.GetDeferral().Complete();
         }

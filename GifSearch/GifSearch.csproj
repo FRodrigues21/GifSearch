@@ -126,7 +126,6 @@
     <PRIResource Include="Strings\fr\Resources.resw" />
     <PRIResource Include="Strings\nl\Resources.resw" />
     <PRIResource Include="Strings\cs\Resources.resw" />
-    <PRIResource Include="Strings\de\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\GifSearch.cs.xlf" />
-    <XliffResource Include="MultilingualResources\GifSearch.de.xlf" />
     <XliffResource Include="MultilingualResources\GifSearch.es.xlf" />
     <XliffResource Include="MultilingualResources\GifSearch.fr.xlf" />
     <XliffResource Include="MultilingualResources\GifSearch.hu.xlf" />
