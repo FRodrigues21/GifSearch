@@ -1,0 +1,1 @@
+MainPackage=C:\Users\fxpro\Source\Repos\GifSearch\GifSearch\bin\x86\Release\Upload\GifSearch_2.4.0.0_x86.appx

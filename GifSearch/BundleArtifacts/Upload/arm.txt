@@ -1,0 +1,2 @@
+MainPackage=C:\Users\fxpro\Source\Repos\GifSearch\GifSearch\bin\ARM\Release\Upload\GifSearch_2.4.0.0_ARM.appx
+ResourcePack=C:\Users\fxpro\Source\Repos\GifSearch\GifSearch\_scale-400.appx

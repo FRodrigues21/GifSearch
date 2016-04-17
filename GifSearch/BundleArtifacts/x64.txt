@@ -1,0 +1,2 @@
+MainPackage=C:\Users\fxpro\Source\Repos\GifSearch\GifSearch\bin\x64\Release\GifSearch_2.4.0.0_x64.appx
+SymbolPackage=C:\Users\fxpro\Source\Repos\GifSearch\GifSearch\AppPackages\GifSearch_2.4.0.0_Test\GifSearch_2.4.0.0_x64.appxsym

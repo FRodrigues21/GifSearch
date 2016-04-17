@@ -16,11 +16,13 @@ using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Graphics.Display;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -42,14 +44,18 @@ namespace GifSearch
         private static PlayingItem selected_gif { get; set; }
         private static Boolean download_started = false;
         private static String _path { get; set; }
+        private static Rect bounds { get; set; }
+        private static Popup _popup { get; set; }
 
         public Tabs()
         {
             this.InitializeComponent();
+            bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             DataTransferManager.GetForCurrentView().DataRequested += MainPage_DataRequested;
             _appbar = appbar;
             _favorite = favorite;
             selected_gif = new PlayingItem();
+            _popup = popup;
             res = ResourceLoader.GetForCurrentView();
             this.loadChangeLog();
         }
@@ -74,6 +80,7 @@ namespace GifSearch
                     var _container = ((ListView)list).ContainerFromItem(item);
                     var _children = allChildren(_container);
                     var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
+                    selected_gif.control = _control;
                     _gif = AnimationBehavior.GetGifImageSource(_control);
                 }
                 else
@@ -81,6 +88,7 @@ namespace GifSearch
                     var _container = ((GridView)list).ContainerFromItem(item);
                     var _children = allChildren(_container);
                     var _control = _children.OfType<Image>().First(x => x.Name == "gif_image");
+                    selected_gif.control = _control;
                     _gif = AnimationBehavior.GetGifImageSource(_control);
                 }
                 if (_gif != null)
@@ -224,14 +232,14 @@ namespace GifSearch
                 UserFacade.setDownloadQuality(2);
                 App.user_showed = true;
                 UserFacade.setVersion(App.version);
-                string content = String.Format("{0}\n\n- Added Portuguese and Spanish translations (more languages are coming!)\n- You can now share directly into Twitter!\n- Added option to choose default download folders\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
+                string content = String.Format("{0}\n\n- You can now share directly into Twitter, Messaging, Skype!\n- Added option to choose default download folders\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button2"), new UICommandInvokedHandler(CommandInvokedHandler_reviewclick)));
                 await mydial.ShowAsync();
             }
-            else if(App.user_logged > 1 && App.user_logged % 5 == 0 && UserFacade.getReviewed() == 0 && !App.user_showed)
+            else if(App.user_logged > 1 && App.user_logged % 15 == 0 && UserFacade.getReviewed() == 0 && !App.user_showed)
             {
                 App.user_showed = true;
                 MessageDialog mydial = new MessageDialog(res.GetString("DialogSecond_Content"));
@@ -276,7 +284,7 @@ namespace GifSearch
         {
             MessageDialog mydial = new MessageDialog("Sharing a GIF it's still not support by all Windows 10 apps\n\nTwitter, Messaging (use Normal download quality) and Skype are some examples of apps that support GIF sharing!\nThe sharing it's still buggy, so it may take some time for the GIF to appear in the app you are sharing to.");
             mydial.Title = "gif Search";
-            mydial.Commands.Add(new UICommand("Share GIF", new UICommandInvokedHandler(CommandInvokedHandler_shareclick)));
+            mydial.Commands.Add(new UICommand("Share", new UICommandInvokedHandler(CommandInvokedHandler_shareclick)));
             mydial.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
             await mydial.ShowAsync();
         }
@@ -295,7 +303,7 @@ namespace GifSearch
             HttpClient httpClient = new HttpClient();
             HttpResponseMessage message = await httpClient.GetAsync(datum.image_url);
             String filename = String.Format("riffsy_{0}.gif", datum.id);
-            StorageFolder myfolder = await UserFacade.getImageFolderPath();
+            StorageFolder myfolder = KnownFolders.PicturesLibrary;
             StorageFile SampleFile = await myfolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             byte[] file = await message.Content.ReadAsByteArrayAsync();
             await FileIO.WriteBytesAsync(SampleFile, file);
@@ -303,12 +311,39 @@ namespace GifSearch
 
             listfiles.Add(SampleFile);
 
-            args.Request.Data.Properties.Title = "GIF " + datum.title + " from riffsy";
+            args.Request.Data.Properties.Title = filename;
 
             args.Request.Data.SetStorageItems(listfiles);
 
             args.Request.GetDeferral().Complete();
         }
 
+        private void fullscreen_Click(object sender, RoutedEventArgs e)
+        {
+            if(selected_gif.instance != null)
+            {
+                _popup.IsOpen = false;
+                popup_image.Source = selected_gif.control.Source;
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                    popup_image.Width = bounds.Height;
+                else
+                    popup_image.Width = base.Width;
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                    popup_image.Height = bounds.Width;
+                else
+                    popup_image.Height = bounds.Height;
+                popup_image.Stretch = Stretch.Uniform;
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                    DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+                _popup.IsOpen = true;
+            }
+        }
+
+        private void popup_image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+            _popup.IsOpen = false;
+        }
     }
 }
