@@ -327,14 +327,15 @@ namespace GifSearch
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     popup_image.Width = bounds.Height;
                 else
-                    popup_image.Width = base.Width;
+                    popup_image.Width = bounds.Width;
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     popup_image.Height = bounds.Width;
                 else
                     popup_image.Height = bounds.Height;
-                popup_image.Stretch = Stretch.Uniform;
+                
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+                popup_image.Stretch = Stretch.Uniform;
                 _popup.IsOpen = true;
             }
         }
