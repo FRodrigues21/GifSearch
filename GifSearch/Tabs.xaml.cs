@@ -232,7 +232,7 @@ namespace GifSearch
                 UserFacade.setDownloadQuality(2);
                 App.user_showed = true;
                 UserFacade.setVersion(App.version);
-                string content = String.Format("{0}\n\n- You can now share directly into Twitter, Messaging, Skype!\n- Added option to choose default download folders\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
+                string content = String.Format("{0}\n\n- System Light theme is now supported!\n- Added fullscreen GIF viewing (needs improvement)\n- Fixed direct sharing on Twitter, Messaging, etc\n\nWarning: The GIF take a while to display on mobile, please be patient :/", App.version);
                 MessageDialog mydial = new MessageDialog(content);
                 mydial.Title = res.GetString("DialogFirst_Title");
                 mydial.Commands.Add(new UICommand(res.GetString("DialogFirst_Button1"), new UICommandInvokedHandler(CommandInvokedHandler_continueclick)));
@@ -328,10 +328,6 @@ namespace GifSearch
                     popup_image.Width = bounds.Height;
                 else
                     popup_image.Width = bounds.Width;
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                    popup_image.Height = bounds.Width;
-                else
-                    popup_image.Height = bounds.Height;
                 
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                     DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
@@ -340,7 +336,7 @@ namespace GifSearch
             }
         }
 
-        private void popup_image_Tapped(object sender, TappedRoutedEventArgs e)
+        private void popup_close_Click(object sender, RoutedEventArgs e)
         {
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;

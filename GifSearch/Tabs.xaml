@@ -372,9 +372,9 @@
             </Pivot>
         </Grid>
         <Popup x:Name="popup">
-            <Grid>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="popup_image_Tapped" x:Name="popup_image" />
-                <TextBlock FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Tap image to close it" />
+            <Grid BorderBrush="Black" BorderThickness="1">
+                <Image VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="popup_image" />
+                <Button Width="50" x:Name="popup_close" Background="DarkGray" Foreground="Gray" Click="popup_close_Click" Content="X" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="6" />
             </Grid>
         </Popup>
     </Grid>

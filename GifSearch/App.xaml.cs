@@ -28,7 +28,7 @@ namespace GifSearch
     sealed partial class App : Application
     {
 
-        public static string version = "2.4.0.0";
+        public static string version;
         public static int pivot_index = 0;
         public static Frame rootFrame;
 
@@ -46,6 +46,11 @@ namespace GifSearch
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            version = string.Format("{0}.{1}.{2}.{3}",
+                    Package.Current.Id.Version.Major,
+                    Package.Current.Id.Version.Minor,
+                    Package.Current.Id.Version.Build,
+                    Package.Current.Id.Version.Revision);
         }
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
